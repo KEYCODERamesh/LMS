@@ -1,0 +1,112 @@
+﻿@model HospitalManagementSystem.ExPDT
+@using HospitalManagementSystem.Models 
+@{
+    ViewBag.Title = "ExpenseEntry";
+    Layout = "~/Views/Shared/_MainPageLayout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Expnses Entry</title>
+
+</head>
+<body>
+    <div class="page-body">
+        <!-- Container-fluid starts-->
+        <div class="container-fluid">
+            <div class="page-body-wrapper">
+                <div class="container-fluid">
+
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
+
+                    <div class="form-horizontal">
+                        <hr />
+                        <h4>Expense Entry</h4>
+                        <hr />
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        <div class="row">
+                            <div class="col-md-offset-2 col-md-3">
+                                @Html.ActionLink("Expenses", "ShowExpenseDetails", new object { }, new { @class = "btn btn-outline-primary fa-plus-circlesssss" })
+                            </div>
+                        </div>
+                        <hr />
+
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.AccountID, "Accounts", htmlAttributes: new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.DropDownList("ddlaccountsheads", ViewBag.AccountList as SelectList, new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(model => model.AccountID, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.ExDate, "Date", htmlAttributes: new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.EditorFor(model => model.ExDate, new { htmlAttributes = new { @class = "form-control", required = "",placeholder="DD/MM/YYYY" } })
+
+                                        @Html.ValidationMessageFor(model => model.ExDate, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Amount, htmlAttributes: new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.EditorFor(model => model.Amount, new { htmlAttributes = new { @class = "form-control " , required = "" } })
+                                        @Html.ValidationMessageFor(model => model.Amount, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.PayMode, "Payment Mode", htmlAttributes: new { @class = "control-label col-md-4" })
+                                    <div class="col-md-10">
+                                        @*@Html.DropDownList("ddlpaymodes", (IEnumerable<SelectListItem>)ViewData["PayModes"], "--Select--", new { @class = "form-control dropdown-toggle", @onChange = "SelectedPayMode(this)" })*@
+
+                                        @Html.DropDownList("ddlpaymodes2", new SelectList(Enum.GetValues(typeof(PaymentModes))), "--Select Mode--", new { @class = "form-control", required = "" })
+                                        @Html.ValidationMessageFor(model => model.PayMode, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+
+                            </div>
+                            <div class="col-md-8">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Remarks, htmlAttributes: new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.EditorFor(model => model.Remarks, new { htmlAttributes = new { @class = "form-control", placeholder = "ENTER REMARKS", required = "" } })
+                                        @Html.ValidationMessageFor(model => model.Remarks, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-10">
+                                <input type="submit" value="Save" class="btn btn-outline-primary" />
+                            </div>
+                        </div>
+                    </div>
+                    }
+
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

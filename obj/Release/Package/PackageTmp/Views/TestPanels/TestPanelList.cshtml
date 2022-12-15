@@ -1,0 +1,109 @@
+﻿@model IEnumerable<HospitalManagementSystem.TestsPanel>
+
+@{
+    ViewBag.Title = "TestPanelList";
+    Layout = "~/Views/Shared/_MainPageLayout.cshtml";
+    <script src="~/Content/assets/js/jquery-3.3.1.min.js"></script>
+}
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+
+
+</head>
+<body>
+    <div class="page-body">
+        <!-- Container-fluid starts-->
+        <div class="container-fluid">
+            <div class="page-body-wrapper">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-2">
+                            @Html.ActionLink("Add New Panel", "AddNewTestPanel", new object { }, new { @class = "btn btn-primary " })
+                        </div>
+                    </div>
+
+                    <hr />
+                    <table class="table">
+                        <tr>
+                            <th>Action</th>
+                            <th>
+                                Test Panel
+                            </th>
+                            <th>
+                                Category
+                            </th>
+                            <th>
+                                Tset Included
+                            </th>
+                            <th>
+                                Amount
+                            </th>
+                            <th>View</th>
+                        </tr>
+
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.ActionLink("Edit", "Edit", new { id = item.PanelID }) |
+                                    @Html.ActionLink("Delete", "Delete", new { id = item.PanelID })
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.PanelName)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.CategoryID)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.TestNames)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Fees)
+                                </td>
+                                <td>
+                                    @Html.ActionLink("Edit", "Edit", new { id = item.PanelID }) |
+                                    @Html.ActionLink("Delete", "Delete", new { id = item.PanelID })
+                                </td>
+                            </tr>
+                        }
+
+                    </table>
+
+
+                    <hr />
+
+                    <!-- HTML -->
+                    @*<div class="ui-widget">
+                        <p>Type I OR A</p>
+                        <input id="autocomplete-4">
+                    </div>*@
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!--<link href="https://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>-->
+
+    <!-- Javascript -->
+    <!--<script>
+        $(function () {
+            $("#autocomplete-4").autocomplete({
+                source: [
+                    { label: "India", value: "India" },
+                    { label: "America", value: "America" },
+                    { label: "Pakistan", value: "Pakistan" },
+                    { label: "Iceland", value: "Iceland" },
+                    { label: "Australia", value: "Australia" }
+                ]
+            });
+        });
+    </script>-->
+</body>
+</html>

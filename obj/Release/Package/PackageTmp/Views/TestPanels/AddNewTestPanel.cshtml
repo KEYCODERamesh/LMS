@@ -1,0 +1,333 @@
+﻿@model HospitalManagementSystem.Models.MyTestPanels
+
+@{
+    ViewBag.Title = "AddNewTestPanel";
+    Layout = "~/Views/Shared/_MainPageLayout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Add Test Panels</title>
+
+    @*<link href="https://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css" rel="stylesheet">
+        <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+        <script src="https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>*@
+
+    <link href="~/Scripts/Autocomplete/Jquery-ui.css" rel="stylesheet" />
+    <script src="~/Scripts/Autocomplete/jquery-1.10.2.js"></script>
+    <script src="~/Scripts/Autocomplete/jquery-ui.js"></script>
+</head>
+<body>
+    <div class="page-body">
+        <!-- Container-fluid starts-->
+        <div class="container-fluid">
+            <div class="page-body-wrapper">
+                <div class="container-fluid">
+
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
+
+                    <div class="form-horizontal">
+
+                        <hr />
+
+
+                        <div class="row">
+                            <div class="col-md-8">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.PanelName,"* Test Panel Name", htmlAttributes: new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                        @*@Html.EditorFor(model => model.PanelName, new { htmlAttributes = new { @class = "form-control" } })
+                                         @Html.ValidationMessageFor(model => model.PanelName, "", new { @class = "text-danger" })*@
+
+                                        <input type="text" id="txtpanelsname" placeholder="Enter Panel Name" class="form-control" />
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Fees, htmlAttributes: new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                        <input type="text" id="txtotalsfees" placeholder="FEES" class="form-control" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                      
+                        <table id="tblCustomers" class="table" cellpadding="0" cellspacing="0">
+                            <thead>
+                                <tr>
+                                    <th style="width:500px">Test Name</th>
+                                    <th style="width:150px">Fee</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <td><input type="text" id="txtCustomer" placeholder="Search Test Name" class="form-control" /></td>
+                                    <td> <input type="text" id="hfCustomer" class="form-control" /></td>
+                                    <td><input type="button" id="btnAdd" value="Add Test" class="btn btn-outline-primary" /></td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                        <input type="submit" id="btnSubmit" value="Save" class="btn btn-outline-primary" />
+
+                    </div>
+                    }
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    @*<script type="text/javascript">
+            $(function () {
+                GetCustomers();
+                $("#txtCustomerName").keyup(function () {
+                    GetCustomers();
+                });
+            });
+            function GetCustomers() {
+                var customerName = $.trim($("#txtCustomerName").val());
+                $.ajax({
+                    type: "POST",
+                    url: "/TestPanels/SearchCustomers",
+                    data: "{customerName:'" + customerName + "'}",
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function (customers) {
+                        var table = $("#tblCustomers");
+                        table.find("tr:not(:first)").remove();
+                        $.each(customers, function (i, customer) {
+                            var table = $("#tblCustomers");
+                            var row = table[0].insertRow(-1);
+                            $(row).append("<td />");
+                            $(row).find("td").eq(0).html(customer.Test_Name);
+                            $(row).append("<td />");
+                            $(row).find("td").eq(1).html(customer.Group_Name);
+                            $(row).append("<td />");
+                            $(row).find("td").eq(2).html(customer.T_ShortName);
+                            $(row).append("<td />");
+                            $(row).find("td").eq(3).html(customer.MethodName);
+                            $(row).append("<td />");
+
+                        });
+                    }
+                });
+            }
+        </script>*@
+
+
+
+    <script type="text/javascript">
+
+
+        $(function () {
+            $("#txtCustomer").autocomplete({
+                source: function (request, response) {
+                    $.ajax({
+                          url: '/TestPanels/AutoComplete/',
+                        @*url:'@Url.Action("SearchCustomers", "TestPanels")',*@
+                        data: "{'term': '" + request.term + "'}",
+                        dataType: "json",
+                        type: "POST",
+                        contentType: "application/json; charset=utf-8",
+                        success: function (data) {
+                            response($.map(data, function (item) {
+                                return item;
+                            }))
+                        },
+                        error: function (response) {
+                            alert(response.responseText);
+                        },
+                        failure: function (response) {
+                            alert(response.responseText);
+                        }
+                    });
+                },
+                select: function (e, i) {
+
+                    $("#hfCustomer").val(i.item.val);
+                },
+                minLength: 1
+            });
+        });
+
+
+    </script>
+
+
+    <script type="text/javascript">
+        $("body").on("click", "#btnAdd", function () {
+            //Reference the Name and Country TextBoxes.
+            var txtName = $("#txtCustomer");
+            var txtFees = $("#hfCustomer");
+            var Totalamount = 0;
+            //Get the reference of the Table's TBODY element.
+            var tBody = $("#tblCustomers > TBODY")[0];
+
+            //Add Row.
+            var row = tBody.insertRow(-1);
+
+            //Add Name cell.
+            var cell = $(row.insertCell(-1));
+            cell.html(txtName.val());
+
+            //Add Fee cell.
+            var cell = $(row.insertCell(-1));
+            cell.html(txtFees.val());
+
+           
+            //Add Button cell.
+            cell = $(row.insertCell(-1));
+            var btnRemove = $("<input />");
+            btnRemove.attr("type", "button");
+            btnRemove.attr("onclick", "Remove(this);");
+            btnRemove.addClass("btn btn-outline-danger");
+            btnRemove.val("Remove");
+          
+            cell.append(btnRemove);
+
+            // Diplay Totals 
+
+            //var grid = document.getElementById("tblCustomers");
+            //var rows = grid.getElementsByTagName("TR");
+           
+            //var txttotalfees = $("#txtotalsfees");
+            //for (var i = 1; i < rows.length; i++) {
+            //    var cells = rows[i].getElementsByTagName("TD");
+            //   // Totalamount += parseFloat(cells[1].value);
+            //    Totalamount += parseFloat(rows.find("TD").eq(1).html());
+            //    //Totalamount += (cells[1].innerHTML)
+            //    //alert(cells[1].innerHTML);
+            //   // txttotalfees.val(amount); NaN
+            //}
+            //// alert(amount);
+
+            $("#tblCustomers TBODY TR").each(function () {
+                var row = $(this);
+                //customer.Fees = row.find("TD").eq(1).html();
+                Totalamount += parseFloat(row.find("TD").eq(1).html());
+            });
+
+
+            if (!isNaN(Totalamount)) {
+                $('#txtotalsfees').val(Totalamount.toFixed());
+            }
+            else {
+                $('#txtotalsfees').val(Totalamount);
+            }
+           
+           // $('[id*=txtotalsfees]').val(amount);
+
+
+
+            //CalculateTotal();
+            //Clear the TextBoxes.
+            txtName.val("");
+            txtFees.val("");
+        });
+
+        function Remove(button) {
+            //Determine the reference of the Row using the Button.
+            var row = $(button).closest("TR");
+            var name = $("TD", row).eq(0).html();
+            if (confirm("Do you want to delete: " + name)) {
+                //Get the reference of the Table.
+                var table = $("#tblCustomers")[0];
+
+                //Delete the Table row using it's Index.
+                table.deleteRow(row[0].rowIndex);
+
+                var Totalamount = 0;
+                $("#tblCustomers TBODY TR").each(function () {
+                    var row = $(this);
+                    //customer.Fees = row.find("TD").eq(1).html();
+                    Totalamount += parseFloat(row.find("TD").eq(1).html());
+                });
+
+
+                if (!isNaN(Totalamount)) {
+                    $('#txtotalsfees').val(Totalamount.toFixed());
+                }
+                else {
+                    $('#txtotalsfees').val(Totalamount);
+                }
+
+
+               // CalculateTotal();
+            }
+        };
+
+        //function CalculateTotal() {
+        //    var grandT = 0;
+        //    $("#tblCustomers > TBODY > tr").each(function () {
+        //        var t3 = $(this).find('td').eq(1).html();
+        //        if (!isNaN(t3)) {
+        //            grandT += parseFloat(t3);
+        //        }
+        //    });
+        //    $("#txtotalsfees").html(grandT.toFixed());
+        //}
+
+
+        $("body").on("click", "#btnSubmit", function () {
+            //Loop through the Table rows and build a JSON array.
+            var customers = new Array();
+            var panels = document.getElementById("txtpanelsname").value;
+            $("#tblCustomers TBODY TR").each(function () {
+                var row = $(this);
+                var customer = {};
+                customer.TestNames = row.find("TD").eq(0).html();
+                customer.Fees = row.find("TD").eq(1).html();
+                customer.PanelName = panels;
+                customers.push(customer);
+            });
+
+            //Send the JSON array to Controller using AJAX.
+            $.ajax({
+                type: "POST",
+                url: "/TestPanels/SaveTestInPanels",
+                data: JSON.stringify(customers),
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (r) {
+                    alert(r + " record(s) inserted.");
+                }
+                
+            });
+        });
+    </script>
+
+
+    @*<script>
+            var list = [
+                { value: "mary", label: "Mary" },
+                { value: "mark", label: "Mark" },
+                { value: "john", label: "John" },
+            ];
+            $(function () {
+                $("#customer").autocomplete({
+                    source: list,
+                    minLength: 2,
+                    select: function (event, ui) {
+                        event.preventDefault();
+                        $("#customer").val(ui.item.label);
+                    }
+                });
+            })
+        </script>*@
+
+
+</body>
+</html>

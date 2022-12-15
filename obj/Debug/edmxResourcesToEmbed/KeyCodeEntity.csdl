@@ -1,0 +1,623 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="HMS_OnWebsModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="HMSOnWebsEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="User_DT" EntityType="HMS_OnWebsModel.User_DT" />
+    <EntitySet Name="LabCompanies" EntityType="HMS_OnWebsModel.LabCompany" />
+    <EntitySet Name="GroupDTs" EntityType="HMS_OnWebsModel.GroupDT" />
+    <EntitySet Name="ReferalDTs" EntityType="HMS_OnWebsModel.ReferalDT" />
+    <EntitySet Name="UserRoles" EntityType="HMS_OnWebsModel.UserRole" />
+    <FunctionImport Name="SP_SEARCHUSERSROLES" ReturnType="Collection(HMS_OnWebsModel.SP_SEARCHUSERSROLES_Result)">
+      <Parameter Name="LOGINID" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="SearchUserRoles" EntitySet="UserRoles" ReturnType="Collection(HMS_OnWebsModel.UserRole)">
+      <Parameter Name="LOGINID" Mode="In" Type="String" />
+    </FunctionImport>
+    <EntitySet Name="VendorDTs" EntityType="HMS_OnWebsModel.VendorDT" />
+    <EntitySet Name="LabITEMDTs" EntityType="HMS_OnWebsModel.LabITEMDT" />
+    <EntitySet Name="LabPurchaseDTs" EntityType="HMS_OnWebsModel.LabPurchaseDT" />
+    <AssociationSet Name="FK_PItemID" Association="HMS_OnWebsModel.FK_PItemID">
+      <End Role="LabITEMDT" EntitySet="LabITEMDTs" />
+      <End Role="LabPurchaseDT" EntitySet="LabPurchaseDTs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_VendorID" Association="HMS_OnWebsModel.FK_VendorID">
+      <End Role="VendorDT" EntitySet="VendorDTs" />
+      <End Role="LabPurchaseDT" EntitySet="LabPurchaseDTs" />
+    </AssociationSet>
+    <EntitySet Name="TestDTs" EntityType="HMS_OnWebsModel.TestDT" />
+    <AssociationSet Name="FK_TestGroupID" Association="HMS_OnWebsModel.FK_TestGroupID">
+      <End Role="GroupDT" EntitySet="GroupDTs" />
+      <End Role="TestDT" EntitySet="TestDTs" />
+    </AssociationSet>
+    <EntitySet Name="UnitDTs" EntityType="HMS_OnWebsModel.UnitDT" />
+    <EntitySet Name="TestParameterDTs" EntityType="HMS_OnWebsModel.TestParameterDT" />
+    <AssociationSet Name="FK_TestParametersGroupID" Association="HMS_OnWebsModel.FK_TestParametersGroupID">
+      <End Role="GroupDT" EntitySet="GroupDTs" />
+      <End Role="TestParameterDT" EntitySet="TestParameterDTs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TestID" Association="HMS_OnWebsModel.FK_TestID">
+      <End Role="TestDT" EntitySet="TestDTs" />
+      <End Role="TestParameterDT" EntitySet="TestParameterDTs" />
+    </AssociationSet>
+    <EntitySet Name="Customers" EntityType="HMS_OnWebsModel.Customer" />
+    <EntitySet Name="ReferenceValuesDTs" EntityType="HMS_OnWebsModel.ReferenceValuesDT" />
+    <AssociationSet Name="FK_ReferenceValuesDTGroupID" Association="HMS_OnWebsModel.FK_ReferenceValuesDTGroupID">
+      <End Role="GroupDT" EntitySet="GroupDTs" />
+      <End Role="ReferenceValuesDT" EntitySet="ReferenceValuesDTs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ReferenceValuesDTParameterID" Association="HMS_OnWebsModel.FK_ReferenceValuesDTParameterID">
+      <End Role="TestParameterDT" EntitySet="TestParameterDTs" />
+      <End Role="ReferenceValuesDT" EntitySet="ReferenceValuesDTs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RefTestID" Association="HMS_OnWebsModel.FK_RefTestID">
+      <End Role="TestDT" EntitySet="TestDTs" />
+      <End Role="ReferenceValuesDT" EntitySet="ReferenceValuesDTs" />
+    </AssociationSet>
+    <EntitySet Name="TestsPanels" EntityType="HMS_OnWebsModel.TestsPanel" />
+    <EntitySet Name="TestsPackagesDTs" EntityType="HMS_OnWebsModel.TestsPackagesDT" />
+    <EntitySet Name="Assigned_test_DT" EntityType="HMS_OnWebsModel.Assigned_test_DT" />
+    <EntitySet Name="AccHeadDTs" EntityType="HMS_OnWebsModel.AccHeadDT" />
+    <EntitySet Name="AccSubHeadsDTs" EntityType="HMS_OnWebsModel.AccSubHeadsDT" />
+    <AssociationSet Name="FK_AccHeadID" Association="HMS_OnWebsModel.FK_AccHeadID">
+      <End Role="AccHeadDT" EntitySet="AccHeadDTs" />
+      <End Role="AccSubHeadsDT" EntitySet="AccSubHeadsDTs" />
+    </AssociationSet>
+    <EntitySet Name="ExPDTs" EntityType="HMS_OnWebsModel.ExPDT" />
+    <AssociationSet Name="FK_ExpAccHeadID" Association="HMS_OnWebsModel.FK_ExpAccHeadID">
+      <End Role="AccSubHeadsDT" EntitySet="AccSubHeadsDTs" />
+      <End Role="ExPDT" EntitySet="ExPDTs" />
+    </AssociationSet>
+    <EntitySet Name="Pat_InvestList" EntityType="HMS_OnWebsModel.Pat_InvestList" />
+    <AssociationSet Name="FK_PatRegsID" Association="HMS_OnWebsModel.FK_PatRegsID">
+      <End Role="Assigned_test_DT" EntitySet="Assigned_test_DT" />
+      <End Role="Pat_InvestList" EntitySet="Pat_InvestList" />
+    </AssociationSet>
+    <EntitySet Name="TestResultDTs" EntityType="HMS_OnWebsModel.TestResultDT" />
+  </EntityContainer>
+  <EntityType Name="User_DT">
+    <Key>
+      <PropertyRef Name="LoginID" />
+    </Key>
+    <Property Name="User_Id" Type="Int32" Nullable="false" />
+    <Property Name="User_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Old_Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="New_Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Re_Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Created_By" Type="Int32" />
+    <Property Name="Edited_By" Type="Int32" />
+    <Property Name="Created_On" Type="DateTime" Precision="3" />
+    <Property Name="Edited_On" Type="DateTime" Precision="3" />
+    <Property Name="LoginID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Modules" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="DoctorsName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="MobileNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="LabCompany">
+    <Key>
+      <PropertyRef Name="Company_ID" />
+    </Key>
+    <Property Name="Company_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Company_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Address" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="Landmark" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="State" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="District" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Pincode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Contact1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Contact2" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Email_ID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Website" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Reg_No" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Slogan1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Slogan2" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Logo" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="Created_By" Type="Int32" />
+    <Property Name="Edited_By" Type="Int32" />
+    <Property Name="Created_On" Type="DateTime" Precision="3" />
+    <Property Name="Edited_On" Type="DateTime" Precision="3" />
+    <Property Name="StateCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="MsgSend" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="GroupDT">
+    <Key>
+      <PropertyRef Name="Group_ID" />
+    </Key>
+    <Property Name="Group_ID" Type="Int32" Nullable="false" />
+    <Property Name="Group_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Created_By" Type="Int32" />
+    <Property Name="Edited_By" Type="Int32" />
+    <Property Name="Created_On" Type="DateTime" Precision="3" />
+    <Property Name="Edited_On" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="TestDTs" Relationship="HMS_OnWebsModel.FK_TestGroupID" FromRole="GroupDT" ToRole="TestDT" />
+    <NavigationProperty Name="TestParameterDTs" Relationship="HMS_OnWebsModel.FK_TestParametersGroupID" FromRole="GroupDT" ToRole="TestParameterDT" />
+    <NavigationProperty Name="ReferenceValuesDTs" Relationship="HMS_OnWebsModel.FK_ReferenceValuesDTGroupID" FromRole="GroupDT" ToRole="ReferenceValuesDT" />
+  </EntityType>
+  <EntityType Name="ReferalDT">
+    <Key>
+      <PropertyRef Name="RefId" />
+    </Key>
+    <Property Name="RefId" Type="Int32" Nullable="false" />
+    <Property Name="Referal_Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="MobileNos" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ComP" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+    <Property Name="Ref_Status" Type="Boolean" Nullable="false" />
+    <Property Name="RefType" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Specialization" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Degree" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="UserRole">
+    <Key>
+      <PropertyRef Name="RID" />
+    </Key>
+    <Property Name="RID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="LoginID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Modules" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="AddRecord" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="EditRecord" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="DeleteRecord" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="DelPass" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="EditPass" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <ComplexType Name="SP_Search_Result">
+    <Property Type="Int64" Name="PatientID" Nullable="false" />
+    <Property Type="String" Name="UHIDNO" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Title" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Name" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Mobile" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Gender" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Age" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="AgeIn" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="CareOff" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Relatuion_With" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Alternate_Mob" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="EmailID" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Address1" Nullable="true" />
+    <Property Type="String" Name="Address2" Nullable="true" />
+    <Property Type="String" Name="Pincode" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="City" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="StateName" Nullable="true" MaxLength="50" />
+    <Property Type="DateTime" Name="RegDate" Nullable="true" Precision="23" />
+  </ComplexType>
+  <ComplexType Name="SP_SEARCHUSERSROLES_Result">
+    <Property Type="Int32" Name="RID" Nullable="false" />
+    <Property Type="String" Name="LoginID" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Modules" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="AddRecord" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="EditRecord" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="DeleteRecord" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="DelPass" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="EditPass" Nullable="true" MaxLength="50" />
+  </ComplexType>
+  <EntityType Name="VendorDT">
+    <Key>
+      <PropertyRef Name="VID" />
+    </Key>
+    <Property Name="VID" Type="Int32" Nullable="false" />
+    <Property Name="VendorName" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="GSTIN" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Address" Type="String" MaxLength="550" FixedLength="false" Unicode="true" />
+    <Property Name="StateName" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="StateCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Mobile" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="EmailId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="OpBal" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="HID" Type="Int32" />
+    <Property Name="SyncSts" Type="Boolean" />
+    <NavigationProperty Name="LabPurchaseDTs" Relationship="HMS_OnWebsModel.FK_VendorID" FromRole="VendorDT" ToRole="LabPurchaseDT" />
+  </EntityType>
+  <EntityType Name="LabITEMDT">
+    <Key>
+      <PropertyRef Name="ITEMID" />
+    </Key>
+    <Property Name="ITEMID" Type="Int64" Nullable="false" />
+    <Property Name="HID" Type="Int32" />
+    <Property Name="ItemName" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="OPQTY" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="OnDate" Type="DateTime" Precision="3" />
+    <Property Name="Createdby" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="BrID" Type="Int32" />
+    <NavigationProperty Name="LabPurchaseDTs" Relationship="HMS_OnWebsModel.FK_PItemID" FromRole="LabITEMDT" ToRole="LabPurchaseDT" />
+  </EntityType>
+  <EntityType Name="LabPurchaseDT">
+    <Key>
+      <PropertyRef Name="PurchId" />
+      <PropertyRef Name="HID" />
+      <PropertyRef Name="VendorID" />
+    </Key>
+    <Property Name="PurchId" Type="Int64" Nullable="false" />
+    <Property Name="HID" Type="Int32" Nullable="false" />
+    <Property Name="VendorID" Type="Int32" Nullable="false" />
+    <Property Name="BillNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="BillDate" Type="DateTime" Precision="3" />
+    <Property Name="ItemName" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="QTY" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="Units" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Rate" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="GSTP" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="GSTMAT" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="DisPer" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="Grands" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="EntryBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="EDate" Type="DateTime" Precision="3" />
+    <Property Name="ITEMID" Type="Int64" />
+    <NavigationProperty Name="LabITEMDT" Relationship="HMS_OnWebsModel.FK_PItemID" FromRole="LabPurchaseDT" ToRole="LabITEMDT" />
+    <NavigationProperty Name="VendorDT" Relationship="HMS_OnWebsModel.FK_VendorID" FromRole="LabPurchaseDT" ToRole="VendorDT" />
+  </EntityType>
+  <Association Name="FK_PItemID">
+    <End Type="HMS_OnWebsModel.LabITEMDT" Role="LabITEMDT" Multiplicity="0..1" />
+    <End Type="HMS_OnWebsModel.LabPurchaseDT" Role="LabPurchaseDT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LabITEMDT">
+        <PropertyRef Name="ITEMID" />
+      </Principal>
+      <Dependent Role="LabPurchaseDT">
+        <PropertyRef Name="ITEMID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_VendorID">
+    <End Type="HMS_OnWebsModel.VendorDT" Role="VendorDT" Multiplicity="1" />
+    <End Type="HMS_OnWebsModel.LabPurchaseDT" Role="LabPurchaseDT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="VendorDT">
+        <PropertyRef Name="VID" />
+      </Principal>
+      <Dependent Role="LabPurchaseDT">
+        <PropertyRef Name="VendorID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="TestDT">
+    <Key>
+      <PropertyRef Name="Test_ID" />
+    </Key>
+    <Property Name="Test_ID" Type="Int64" Nullable="false" />
+    <Property Name="Test_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Test_Rate" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="Group_ID" Type="Int32" />
+    <Property Name="Group_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Created_By" Type="Int32" />
+    <Property Name="Edited_By" Type="Int32" />
+    <Property Name="Created_On" Type="DateTime" Precision="3" />
+    <Property Name="Edited_On" Type="DateTime" Precision="3" />
+    <Property Name="T_ShortName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Method_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Instruemnt" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Interpretation" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="Notes" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="Comments" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="GroupDT" Relationship="HMS_OnWebsModel.FK_TestGroupID" FromRole="TestDT" ToRole="GroupDT" />
+    <NavigationProperty Name="TestParameterDTs" Relationship="HMS_OnWebsModel.FK_TestID" FromRole="TestDT" ToRole="TestParameterDT" />
+    <NavigationProperty Name="ReferenceValuesDTs" Relationship="HMS_OnWebsModel.FK_RefTestID" FromRole="TestDT" ToRole="ReferenceValuesDT" />
+  </EntityType>
+  <Association Name="FK_TestGroupID">
+    <End Type="HMS_OnWebsModel.GroupDT" Role="GroupDT" Multiplicity="0..1" />
+    <End Type="HMS_OnWebsModel.TestDT" Role="TestDT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="GroupDT">
+        <PropertyRef Name="Group_ID" />
+      </Principal>
+      <Dependent Role="TestDT">
+        <PropertyRef Name="Group_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="UnitDT">
+    <Key>
+      <PropertyRef Name="Unit_ID" />
+    </Key>
+    <Property Name="Unit_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Unit_Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="TestParameterDT">
+    <Key>
+      <PropertyRef Name="Test_P_ID" />
+    </Key>
+    <Property Name="Test_P_ID" Type="Int64" Nullable="false" />
+    <Property Name="GrpID" Type="Int32" />
+    <Property Name="TestID" Type="Int64" Nullable="false" />
+    <Property Name="GroupName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="TestName" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="TestParam" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="TSubParam" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="InputType" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="PGroupBy" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="DefaultResult" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="PreResult" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Lower_Ref" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Higher_Ref" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Units" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Gender" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Min_Age" Type="Int32" />
+    <Property Name="MinAge_unit" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Max_Age" Type="Int32" />
+    <Property Name="Max_Age_unit" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Remarks" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Inorder" Type="Int32" />
+    <Property Name="SbInorder" Type="Int32" />
+    <Property Name="ShSTS" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="GroupDT" Relationship="HMS_OnWebsModel.FK_TestParametersGroupID" FromRole="TestParameterDT" ToRole="GroupDT" />
+    <NavigationProperty Name="TestDT" Relationship="HMS_OnWebsModel.FK_TestID" FromRole="TestParameterDT" ToRole="TestDT" />
+    <NavigationProperty Name="ReferenceValuesDTs" Relationship="HMS_OnWebsModel.FK_ReferenceValuesDTParameterID" FromRole="TestParameterDT" ToRole="ReferenceValuesDT" />
+  </EntityType>
+  <Association Name="FK_TestParametersGroupID">
+    <End Type="HMS_OnWebsModel.GroupDT" Role="GroupDT" Multiplicity="0..1" />
+    <End Type="HMS_OnWebsModel.TestParameterDT" Role="TestParameterDT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="GroupDT">
+        <PropertyRef Name="Group_ID" />
+      </Principal>
+      <Dependent Role="TestParameterDT">
+        <PropertyRef Name="GrpID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TestID">
+    <End Type="HMS_OnWebsModel.TestDT" Role="TestDT" Multiplicity="1" />
+    <End Type="HMS_OnWebsModel.TestParameterDT" Role="TestParameterDT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TestDT">
+        <PropertyRef Name="Test_ID" />
+      </Principal>
+      <Dependent Role="TestParameterDT">
+        <PropertyRef Name="TestID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Customer">
+    <Key>
+      <PropertyRef Name="CustomerID" />
+    </Key>
+    <Property Name="CustomerID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Country" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="ReferenceValuesDT">
+    <Key>
+      <PropertyRef Name="RefSRNO" />
+    </Key>
+    <Property Name="RefSRNO" Type="Int64" Nullable="false" />
+    <Property Name="CateID" Type="Int32" Nullable="false" />
+    <Property Name="TestID" Type="Int64" Nullable="false" />
+    <Property Name="TestParamID" Type="Int64" Nullable="false" />
+    <Property Name="Gender" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="MinimumAgeInDays" Type="Int32" />
+    <Property Name="MaxAgeIndays" Type="Int32" />
+    <Property Name="MinInYears" Type="Int32" />
+    <Property Name="MaxInYear" Type="Int32" />
+    <Property Name="LowerValue" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="UpperValues" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="InWords" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="GroupDT" Relationship="HMS_OnWebsModel.FK_ReferenceValuesDTGroupID" FromRole="ReferenceValuesDT" ToRole="GroupDT" />
+    <NavigationProperty Name="TestParameterDT" Relationship="HMS_OnWebsModel.FK_ReferenceValuesDTParameterID" FromRole="ReferenceValuesDT" ToRole="TestParameterDT" />
+    <NavigationProperty Name="TestDT" Relationship="HMS_OnWebsModel.FK_RefTestID" FromRole="ReferenceValuesDT" ToRole="TestDT" />
+  </EntityType>
+  <Association Name="FK_ReferenceValuesDTGroupID">
+    <End Type="HMS_OnWebsModel.GroupDT" Role="GroupDT" Multiplicity="1" />
+    <End Type="HMS_OnWebsModel.ReferenceValuesDT" Role="ReferenceValuesDT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="GroupDT">
+        <PropertyRef Name="Group_ID" />
+      </Principal>
+      <Dependent Role="ReferenceValuesDT">
+        <PropertyRef Name="CateID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ReferenceValuesDTParameterID">
+    <End Type="HMS_OnWebsModel.TestParameterDT" Role="TestParameterDT" Multiplicity="1" />
+    <End Type="HMS_OnWebsModel.ReferenceValuesDT" Role="ReferenceValuesDT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TestParameterDT">
+        <PropertyRef Name="Test_P_ID" />
+      </Principal>
+      <Dependent Role="ReferenceValuesDT">
+        <PropertyRef Name="TestParamID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RefTestID">
+    <End Type="HMS_OnWebsModel.TestDT" Role="TestDT" Multiplicity="1" />
+    <End Type="HMS_OnWebsModel.ReferenceValuesDT" Role="ReferenceValuesDT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TestDT">
+        <PropertyRef Name="Test_ID" />
+      </Principal>
+      <Dependent Role="ReferenceValuesDT">
+        <PropertyRef Name="TestID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="TestsPanel">
+    <Key>
+      <PropertyRef Name="PanelID" />
+    </Key>
+    <Property Name="PanelID" Type="Int32" Nullable="false" />
+    <Property Name="PanelName" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="CategoryID" Type="Int32" />
+    <Property Name="TestNames" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Fees" Type="Decimal" Precision="18" Scale="2" />
+  </EntityType>
+  <EntityType Name="TestsPackagesDT">
+    <Key>
+      <PropertyRef Name="PSRNO" />
+    </Key>
+    <Property Name="PSRNO" Type="Int32" Nullable="false" />
+    <Property Name="PackageID" Type="Int32" Nullable="false" />
+    <Property Name="PackageName" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="PanelID" Type="Int32" />
+    <Property Name="TestID" Type="Int32" />
+    <Property Name="Fees" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="Panel_Test_Namelist" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Assigned_test_DT">
+    <Key>
+      <PropertyRef Name="AssignID" />
+      <PropertyRef Name="DoctorID" />
+    </Key>
+    <Property Name="AssignID" Type="Int64" Nullable="false" />
+    <Property Name="PatieintID" Type="Int32" />
+    <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="FirstName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="LastName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Gender" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="AadharNos" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="AgeYear" Type="Int32" />
+    <Property Name="Inmonth" Type="Int32" />
+    <Property Name="InDays" Type="Int32" />
+    <Property Name="MobileNo" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="EmailID" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="AddressDetails" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="CollectionCenter" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="DoctorID" Type="Int32" Nullable="false" />
+    <Property Name="SampleColAgents" Type="Int32" Nullable="false" />
+    <Property Name="TotRs" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="Discounts" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="Paid" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="Balance" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="PayMode" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="PakageID" Type="Int32" />
+    <Property Name="PanelID" Type="Int32" />
+    <Property Name="TestID" Type="Int32" />
+    <Property Name="TsetName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Rate" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="TDate" Type="DateTime" Precision="3" />
+    <Property Name="GrpName" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="TSRNo" Type="Int32" />
+    <Property Name="GSRNO" Type="Int32" />
+    <Property Name="LoginID" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="ResultSTs" Type="Boolean" />
+    <Property Name="SyncSts" Type="Boolean" />
+    <Property Name="HID" Type="Int32" />
+    <Property Name="SDate" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Pat_InvestList" Relationship="HMS_OnWebsModel.FK_PatRegsID" FromRole="Assigned_test_DT" ToRole="Pat_InvestList" />
+  </EntityType>
+  <EntityType Name="AccHeadDT">
+    <Key>
+      <PropertyRef Name="AHID" />
+    </Key>
+    <Property Name="AHID" Type="Int32" Nullable="false" />
+    <Property Name="Acc_HeadName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="AccSubHeadsDTs" Relationship="HMS_OnWebsModel.FK_AccHeadID" FromRole="AccHeadDT" ToRole="AccSubHeadsDT" />
+  </EntityType>
+  <EntityType Name="AccSubHeadsDT">
+    <Key>
+      <PropertyRef Name="HeadID" />
+    </Key>
+    <Property Name="HeadID" Type="Int32" Nullable="false" />
+    <Property Name="AccID" Type="Int32" />
+    <Property Name="Accounts" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="AccTypes" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="AccHeadDT" Relationship="HMS_OnWebsModel.FK_AccHeadID" FromRole="AccSubHeadsDT" ToRole="AccHeadDT" />
+    <NavigationProperty Name="ExPDTs" Relationship="HMS_OnWebsModel.FK_ExpAccHeadID" FromRole="AccSubHeadsDT" ToRole="ExPDT" />
+  </EntityType>
+  <Association Name="FK_AccHeadID">
+    <End Type="HMS_OnWebsModel.AccHeadDT" Role="AccHeadDT" Multiplicity="0..1" />
+    <End Type="HMS_OnWebsModel.AccSubHeadsDT" Role="AccSubHeadsDT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AccHeadDT">
+        <PropertyRef Name="AHID" />
+      </Principal>
+      <Dependent Role="AccSubHeadsDT">
+        <PropertyRef Name="AccID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="ExPDT">
+    <Key>
+      <PropertyRef Name="ExpID" />
+    </Key>
+    <Property Name="ExpID" Type="Int64" Nullable="false" />
+    <Property Name="AccountID" Type="Int32" Nullable="false" />
+    <Property Name="ExDate" Type="DateTime" Precision="3" />
+    <Property Name="Remarks" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="Amount" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+    <Property Name="EntryBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Edate" Type="DateTime" Precision="3" />
+    <Property Name="ESTS" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="HID" Type="Int64" Nullable="false" />
+    <Property Name="EType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="PayMode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ChqNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Chqdate" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="AccSubHeadsDT" Relationship="HMS_OnWebsModel.FK_ExpAccHeadID" FromRole="ExPDT" ToRole="AccSubHeadsDT" />
+  </EntityType>
+  <Association Name="FK_ExpAccHeadID">
+    <End Type="HMS_OnWebsModel.AccSubHeadsDT" Role="AccSubHeadsDT" Multiplicity="1" />
+    <End Type="HMS_OnWebsModel.ExPDT" Role="ExPDT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AccSubHeadsDT">
+        <PropertyRef Name="HeadID" />
+      </Principal>
+      <Dependent Role="ExPDT">
+        <PropertyRef Name="AccountID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Pat_InvestList">
+    <Key>
+      <PropertyRef Name="LabSrNo" />
+    </Key>
+    <Property Name="LabSrNo" Type="Int64" Nullable="false" />
+    <Property Name="RegsID" Type="Int64" Nullable="false" />
+    <Property Name="PkgID" Type="Int32" />
+    <Property Name="PnlID" Type="Int32" />
+    <Property Name="TestID" Type="Int32" />
+    <Property Name="TestNames" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="TOrderNos" Type="Int32" />
+    <Property Name="Amount" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="DoctorID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Assigned_test_DT" Relationship="HMS_OnWebsModel.FK_PatRegsID" FromRole="Pat_InvestList" ToRole="Assigned_test_DT" />
+  </EntityType>
+  <Association Name="FK_PatRegsID">
+    <End Type="HMS_OnWebsModel.Assigned_test_DT" Role="Assigned_test_DT" Multiplicity="1" />
+    <End Type="HMS_OnWebsModel.Pat_InvestList" Role="Pat_InvestList" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Assigned_test_DT">
+        <PropertyRef Name="AssignID" />
+        <PropertyRef Name="DoctorID" />
+      </Principal>
+      <Dependent Role="Pat_InvestList">
+        <PropertyRef Name="RegsID" />
+        <PropertyRef Name="DoctorID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="TestResultDT">
+    <Key>
+      <PropertyRef Name="RecordSRNo" />
+    </Key>
+    <Property Name="RecordSRNo" Type="Int64" Nullable="false" />
+    <Property Name="RAssignID" Type="Int64" Nullable="false" />
+    <Property Name="TDate" Type="DateTime" Precision="3" />
+    <Property Name="SDate" Type="DateTime" Precision="3" />
+    <Property Name="PatientID" Type="Int64" />
+    <Property Name="DrID" Type="Int32" />
+    <Property Name="GRPID" Type="Int32" />
+    <Property Name="TestID" Type="Int32" />
+    <Property Name="ParamID" Type="Int32" />
+    <Property Name="TSrNo" Type="Int32" />
+    <Property Name="GroupName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="TestName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Parm_Name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Sub_Param" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Ref_Min" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Ref_Max" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="InputResult" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="InputRemarks" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="TestRemarks" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="LabTechnician" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="TestedIn" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ReportRemarks" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="TUnit" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Minref" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="MAXref" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="CMin_ref" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="CMAX_ref" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="CompValues" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="GSRNO" Type="Int32" />
+    <Property Name="TeSRNO" Type="Int32" />
+    <Property Name="PSRNO" Type="Int32" />
+    <Property Name="Printsts" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+</Schema>

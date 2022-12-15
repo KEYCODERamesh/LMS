@@ -1,0 +1,60 @@
+﻿@model IEnumerable<HospitalManagementSystem.AccSubHeadsDT>
+
+@{
+    ViewBag.Title = "ShowAccountsList";
+    Layout = "~/Views/Shared/_MainPageLayout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Add Test Panels</title>
+
+</head>
+<body>
+    <div class="page-body">
+        <!-- Container-fluid starts-->
+        <div class="container-fluid">
+            <div class="page-body-wrapper">
+                <div class="container-fluid">
+                    <hr />
+                    <h3>Account List</h3>
+                    <hr />
+                    <table class="table table-striped table-bordered table-hover table-active">
+                        <tr>
+
+                            <th>
+                                Head
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Accounts)
+                            </th>
+                            <th></th>
+                        </tr>
+                        @foreach (var item in Model)
+                        {
+                    <tr>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.AccHeadDT.Acc_HeadName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Accounts)
+                        </td>
+                        <td>
+                            @Html.ActionLink("Edit", "EditSubAccounts", new { id = item.HeadID }, new { @class = "btn btn-outline-primary btn-def fa fa-edit" }) |
+                            @Html.ActionLink("Delete", "DeleteSubAccounts", new { id = item.HeadID }, new { @class = "btn btn-outline-primary btn-def fa fa-trash" })
+                        </td>
+
+                    </tr>
+                        }
+
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

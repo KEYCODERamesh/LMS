@@ -1,0 +1,160 @@
+﻿@model IEnumerable<HospitalManagementSystem.TestParameterDT>
+
+@{
+    ViewBag.Title = "ShowTestParemeters";
+    Layout = "~/Views/Shared/_MainPageLayout.cshtml";
+}
+
+<h2>ShowTestParemeters</h2>
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Add Tset Parameters</title>
+    @*<link href="~/Content/assets/css/bootstrap.min.css" rel="stylesheet" />*@
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+
+    <script type="text/javascript" src="http://ajax.cdnjs.com/ajax/libs/json2/20110223/json2.js"></script>
+
+    <style>
+        table, td, th {
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th, td {
+            padding: 10px;
+        }
+    </style>
+
+</head>
+<body>
+    <div class="page-body">
+        <!-- Container-fluid starts-->
+        <div class="container-fluid">
+            <div class="page-body-wrapper">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-2">
+                            @Html.ActionLink("Test List", "Index", new object { }, new { @class = "btn btn-outline-primary fa fa-list" })
+                        </div>
+                        <div class="col-md-2">
+                            @Html.ActionLink("Add New Test", "Create", new object { }, new { @class = "btn btn-outline-primary fa fa-plus-circless" })
+                        </div>
+                        <div class="col-md-2">
+                            <a href="#" class="btn btn-outline-primary" data-toggle="modal" data-target="#AddModal"><i class="fa fa-plus-circle" aria-hidden="true"></i>Test Panel</a>
+                        </div>
+                        <div class="col-md-2">
+                            <a href="#" class="btn btn-outline-primary" data-toggle="modal" data-target="#AddModal"><i class="fa fa-plus-circle" aria-hidden="true"></i> Package</a>
+                        </div>
+
+                    </div>
+                    <hr/>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                @Html.Label("Category", htmlAttributes: new { @class = "control-label col-md-4" })
+                                <div class="col-md-10">
+                                    <h3>@ViewBag.CategoryName</h3>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-5">
+                            <div class="form-group">
+                                @Html.Label("Tset Name", htmlAttributes: new { @class = "control-label col-md-4" })
+                                <div class="col-md-10">
+                                    <h3>@ViewBag.TestName</h3>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-1">
+                            <div class="form-group">
+                                <div class="col-md-10">
+                                    @*@Html.EditorFor(model => model.GrpID, new { htmlAttributes = new { @class = "form-control", @style = "display: none", @readonly = "readonly" } })*@
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-1">
+                            <div class="form-group">
+                                <div class="col-md-10">
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <br />
+
+
+
+
+                    <table class="table">
+                        <tr>
+                            <th>Action ?</th>
+
+                            <th>
+                                Order
+                            </th>
+                            
+                            <th>
+                                Parameter
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.InputType)
+                            </th>
+                            <th>
+                                Unit
+                            </th>
+                            <th>
+                                Default
+                            </th>
+                            <th>Reference Value ?</th>
+                        </tr>
+
+                        @foreach (var item in Model)
+                        {
+                    <tr>
+                        <td>
+                            @Html.ActionLink("Edit", "Edit_Test_Paremeters", new { id = item.Test_P_ID, TestName = item.TestName, CategoryName = item.GroupName, TestID = item.TestID, CategoryID = item.GrpID }, new { @class = "btn btn-outline-primary btn-def fa fa-edit" })
+                            @*@Html.ActionLink("Add New", "AddTestParameterParameter", new { id = item.TestID, TestName = item.TestName, CategoryName = item.GroupName, TestID = item.TestID, CategoryID = item.GrpID }, new { @class = "btn btn-primary btn-def fa fa-add" })*@
+                            @*@Html.ActionLink("Value", "Edit", new { id = item.Test_P_ID }, new { @class = "btn btn-outline-primary fa fa-plus-circle" })*@
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Inorder)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.TestParam)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.InputType)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Units)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.DefaultResult)
+                        </td>
+                        <td>
+                            @Html.ActionLink("View", "ParameterNormalValues", new { id = item.Test_P_ID }, new { @class = "btn btn-outline-primary btn-def fa fa-eye" })
+                            @Html.ActionLink("ADD", "AddParameterNormalValues", new { TestParameterID = item.Test_P_ID, TestName = item.TestName, CategoryName = item.GroupName, TestID = item.TestID, CategoryID = item.GrpID, ParameterName=item.TestParam }, new { @class = "btn btn-outline-primary btn-def fa fa-edit" })
+                            @*@Html.ActionLink("Edit", "Edit_Test_Paremeters", new { id = item.Test_P_ID }, new { @class = "btn btn-outline-primary btn-def fa fa-edit" })*@
+                        </td>
+                    </tr>
+                        }
+
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

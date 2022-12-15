@@ -1,0 +1,67 @@
+﻿@model IEnumerable<HospitalManagementSystem.TestsPackagesDT>
+
+@{
+    ViewBag.Title = "ViewPackageList";
+    Layout = "~/Views/Shared/_MainPageLayout.cshtml";
+    <script src="~/Content/assets/js/jquery-3.3.1.min.js"></script>
+    }
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+</head>
+<body>
+    <div class="page-body">
+        <!-- Container-fluid starts-->
+        <div class="container-fluid">
+            <div class="page-body-wrapper">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-4">
+                            @Html.ActionLink("Add New Package", "AddNewTestPackages", new object { }, new { @class = "btn btn-primary " })
+                        </div>
+                    </div>
+
+                    <hr />
+                    <table class="table">
+                        <tr>
+                            <th>Action ?</th>
+                            <th>
+                                Package Name
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Fees)
+                            </th>
+                            <th>
+                                Test Name
+                            </th>
+
+                        </tr>
+
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.ActionLink("Edit", "Edit", new { id = item.PSRNO }) |
+                                    @Html.ActionLink("Delete", "Delete", new { id = item.PSRNO })
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.PackageName)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Fees)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Panel_Test_Namelist)
+                                </td>
+
+                            </tr>
+                        }
+
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

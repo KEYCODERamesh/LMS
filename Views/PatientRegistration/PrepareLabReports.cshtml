@@ -1,0 +1,112 @@
+﻿@*@model HospitalManagementSystem.Models.TestReportModel*@
+@using System.Data ;
+@model DataSet
+
+@{
+    ViewBag.Title = "PrepareLabReports";
+    Layout = "~/Views/Shared/_MainPageLayout.cshtml";
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+</head>
+<body>
+    <div class="page-body">
+        <!-- Container-fluid starts-->
+        <div class="container-fluid">
+            <div class="page-body-wrapper">
+                <div class="container-fluid">
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
+
+                        <div class="form-horizontal">
+                            <hr />
+                            <h4>Lab report</h4>
+                            <hr />
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                            <div class="row" style="border:groove;background-color:white; border-width:thin;border-color:black">
+                                <div class="col-md-12">
+                                    <div class="row">
+                                        <div class="col-md-2">Regs No. :  </div>
+                                        <div class="col-md-4"> @ViewBag.RegisNos</div>
+                                        <div class="col-md-2">Date: </div>
+                                        <div class="col-md-4">@ViewBag.RegDate </div>
+
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-2">Patient's Name :  </div>
+                                        <div class="col-md-4"> @ViewBag.PatientName</div>
+                                        <div class="col-md-2">Age/Sex :</div>
+                                        <div class="col-md-4">@ViewBag.Age / @ViewBag.Gender </div>
+
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-2">Referred By: </div>
+                                        <div class="col-md-4"> @ViewBag.Referals</div>
+                                        <div class="col-md-2">Mobile: </div>
+                                        <div class="col-md-4">@ViewBag.MobileNo </div>
+
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-2">Address : </div>
+                                        <div class="col-md-10"> @ViewBag.Address</div>
+
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <hr />
+                            <table id="tblpanellist" class="table" cellpadding="0" cellspacing="0">
+                                <thead>
+                                    <tr>
+                                        <th style="width:500px">TEST</th>
+                                        <th style="width:150px">VALUE</th>
+                                        <th style="width:150px">UNIT</th>
+                                        <th style="width:150px">REFERENCE</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (DataRow row in Model.Tables[0].Rows)
+                                    {
+                                    <tr>
+                                        <td class="service">@row["TestName"]</td>
+                                        <td><input type="text" id="txtvalues" placeholder="VALUES" class="form-control" /></td>
+                                        <td class="desc">@row["GroupName"]</td>
+                                        <td class="desc">@row["UNIT"]</td>
+                                        <td class="qty" colspan="2">@row["REFERENCE"]</td>
+
+                                    </tr>
+                                    }
+                                </tbody>
+                                <tfoot>
+                                    @*<tr>
+                                        <td><input type="text" id="txtpanelnames" placeholder="Search Package/Panel/Test Name" class="form-control" /></td>
+                                        <td> <input type="text" id="txtfpanelfees" class="form-control" /></td>
+                                        <td><input type="button" id="btnAddpanels" value="+ ADD INVESTIGATION" class="btn btn-outline-primary" /></td>
+                                    </tr>*@
+                                </tfoot>
+                            </table>
+
+
+                            <div class="form-group">
+                                <div class="col-md-offset-2 col-md-10">
+                                    <input type="submit" value="Save" class="btn btn-default" />
+                                </div>
+                            </div>
+                        </div>
+                    }
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

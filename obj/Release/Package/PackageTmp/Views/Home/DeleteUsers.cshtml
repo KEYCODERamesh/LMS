@@ -1,0 +1,42 @@
+﻿@model HospitalManagementSystem.User_DT
+
+@{
+    ViewBag.Title = "DeleteUsers";
+    Layout = "~/Views/Shared/_MainPageLayout.cshtml";
+}
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Edit Users Details</title>
+</head>
+<body>
+    <div class="page-body">
+        <!-- Container-fluid starts-->
+        <div class="container-fluid">
+            <div class="page-body-wrapper">
+                <div class="container-fluid">
+                    <h2>Delete Users</h2>
+
+                    <h3>Are you sure you want to delete this?</h3>
+                    <div>
+                        <h4>User_DT</h4>
+                        <hr />
+                        @using (Html.BeginForm())
+                        {
+                            @Html.AntiForgeryToken()
+
+                            <div class="form-actions no-color">
+                                <input type="submit" value="Delete" class="btn btn-default" /> |
+                                @Html.ActionLink("Back to List", "Userslists")
+                            </div>
+                        }
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

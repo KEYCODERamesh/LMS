@@ -1,0 +1,173 @@
+﻿@using System.Data;
+@model DataSet
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="~/Content/assets/css/style.css" media="all" />
+
+    <style type="text/css" media="print">
+    @*@page
+    {
+        size:  auto;   /* auto is the initial value */
+        margin: 0mm;  /* this affects the margin in the printer settings */
+    }*@
+
+    html
+    {
+        background-color: #FFFFFF;
+        margin: 0px;  /* this affects the margin on the html before sending to printer */
+    }
+
+    /*body
+    {
+        border: solid 1px blue ;
+        margin: 10mm 15mm 10mm 15mm;*/ /* margin you want for the content */
+    /*}*/
+    </style>
+
+    <script type="text/javascript">
+        function PrintfinalPanel() {
+            var panel = document.getElementById("printdiv");
+
+            var printWindow = window.open('', '', 'height=21cm,width=29.7cm');
+            printWindow.document.write('<html><head><title>Receipt Preview</title>');
+            printWindow.document.write('</head><body >');
+            printWindow.document.write(panel.innerHTML);
+            printWindow.document.write('</body></html>');
+            printWindow.document.close();
+            setTimeout(function () {
+                printWindow.print();
+                printWindow.close();
+            }, 5000);
+            return false;
+        }
+    </script>
+
+</head>
+<body lang="en-US" dir="LTR" onload="window.print()">
+    @*<button id="btnprints" onclick=PrintfinalPanel()>Print</button>*@
+    <div id="printdiv" class="row">
+        <header class="clearfix">
+            @*<div id="logo">
+                <img src="~/Content/assets/images/dashboard/TejaLogo.jpeg">
+            </div>*@
+            @*<h1 style="font-weight:bold">PAYMENT RECEIPTS</h1>*@
+            <h1 style="font-weight:bold"><a href="/PatientRegistration/Pat_Registration_List">Payment Receipt</a></h1>
+            <div class="clearfix">
+                <div style="text-align:center;font-size:22px;">
+                    @ViewBag.CompanyName
+                </div>
+            </div>
+            <div class="clearfix">
+                <div style="text-align:center;font-size:18px;">
+                    @ViewBag.Address
+                </div>
+            </div>
+            <div class="clearfix">
+                <div style="text-align:center;font-size:18px;">
+                    @ViewBag.Landmarks
+                </div>
+            </div>
+            <div class="clearfix">
+                <div style="text-align:center;font-size:18px;">
+                    Contact: @ViewBag.Mobile
+                </div>
+            </div>
+            <div class="clearfix">
+                <div style="text-align:center;font-size:16px;">
+                    Mail Us at: @ViewBag.EmailID
+                </div>
+            </div>
+            <hr />
+            <div id="company" class="clearfix">
+                <div><strong>Referred By:</strong> @ViewBag.Referredby</div>
+                <div><strong>Date:</strong>@ViewBag.Dates</div>
+                <div><strong>Received By:</strong>@ViewBag.Receivedbys</div>
+                @*<div><a href="mailto:company@example.com">company@example.com</a></div>*@
+            </div>
+            <div id="project">
+                <div><strong>Reg.No.</strong>@ViewBag.RegNos</div>
+                <div><strong>Patient's Name:</strong> @ViewBag.Names</div>
+                <div><strong>Age/Sex.</strong> @ViewBag.SexGenders</div>
+                <div><strong>Mobile:</strong>@ViewBag.PatMobiles</div>
+                <div><strong>Address:</strong>@ViewBag.PatAddress</div>
+                @*<div><span>DUE DATE</span> September 17, 2015</div>*@
+            </div>
+        </header>
+        <main>
+            <table>
+                <thead>
+                    <tr>
+                        <th class="service"><strong>Sr.No</strong></th>
+                        <th class="service"><strong>Investigation Detail</strong></th>
+                        <th class="qty" colspan="3"><strong>Amount</strong></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (DataRow row in Model.Tables[2].Rows)
+                    {
+                        <tr>
+                            <td class="service">@row["InSrNos"]</td>
+                            <td class="desc">@row["TestNames"]</td>
+                            <td class="qty" colspan="2">@row["Amount"]</td>
+                            @*<td><img src="~/Content/assets/images/favicon/favicon.png" id="PrintIcon" alt="Print" onclick="Print(this);" height="30" width="30" /></td>*@
+                        </tr>
+                    }
+                    @*<tr>
+            <td class="service">Development</td>
+            <td class="desc">Developing a Content Management System-based Website</td>
+            <td class="unit">$40.00</td>
+            <td class="qty">80</td>
+            <td class="total">$3,200.00</td>
+        </tr>*@
+
+                    <tr>
+                        <td colspan="3">Total Fees:</td>
+                        <td class="total"> ₹ @ViewBag.Totals</td>
+                    </tr>
+                    <tr>
+                        <td colspan="3"> Discount:</td>
+                        <td class="total"> ₹ @ViewBag.Discounts</td>
+                    </tr>
+                    <tr>
+                        <td colspan="3" class="grand total">GRAND TOTAL</td>
+                        <td class="grand total">₹ @ViewBag.Payables</td>
+                    </tr>
+                    <tr>
+                        <td colspan="3" class="total">PAID</td>
+                        <td class="total">₹ @ViewBag.Paid</td>
+                    </tr>
+                    <tr>
+                        <td colspan="3" class="total">DUE</td>
+                        <td class="total">₹ @ViewBag.Dues</td>
+                    </tr>
+                    <tr>
+                        <td colspan="3" class="total">Payment Mode</td>
+                        <td class="total"> @ViewBag.Paymodes</td>
+                    </tr>
+                </tbody>
+            </table>
+            @*<div id="notices">
+                    <div>NOTICE:</div>
+                    <div class="notice">A finance charge of 1.5% will be made on unpaid balances after 30 days.</div>
+                </div>*@
+
+            <h5>
+                Payment Receipt was created on a computer and is valid without the signature and seal.
+            </h5>
+            <h4>  ~~~ Thank You to Serve Us ~~~</h4>
+
+        </main>
+        @*<footer>
+                Invoice was created on a computer and is valid without the signature and seal.
+            </footer>*@
+
+    </div>
+</body>
+</html>

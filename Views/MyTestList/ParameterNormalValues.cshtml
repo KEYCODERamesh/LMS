@@ -1,0 +1,133 @@
+﻿@model IEnumerable<HospitalManagementSystem.ReferenceValuesDT>
+
+@{
+    ViewBag.Title = "ParameterNormalValues";
+    Layout = "~/Views/Shared/_MainPageLayout.cshtml";
+}
+
+<h2>ParameterNormalValues</h2>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Add Center Detail</title>
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript" src="http://ajax.cdnjs.com/ajax/libs/json2/20110223/json2.js"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        table, td, th {
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th, td {
+            padding: 10px;
+        }
+
+        th {
+            background-color: yellow;
+        }
+    </style>
+</head>
+<body>
+    <div class="page-body">
+        <!-- Container-fluid starts-->
+        <div class="container-fluid">
+            <div class="page-body-wrapper">
+                <div class="container-fluid">
+
+                    <hr />
+                    <div class="row">
+                       
+
+                    </div>
+
+
+                    <table class="table">
+                        <tr>
+                            <th>Action ?</th>
+                            <th>
+                               Parameter
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Gender)
+                            </th>
+                            <th>
+                                Min(Days)
+                            </th>
+                            <th>
+                                Max(Days)
+                            </th>
+                            <th>
+                                Min(Year)
+                            </th>
+                            <th>
+                                Max(Year)
+                            </th>
+                            <th>
+                               Lower Value
+                            </th>
+                            <th>
+                                Upper Value
+                            </th>
+                            <th>
+                                In Words
+                            </th>
+
+                        </tr>
+
+                        @foreach (var item in Model)
+                        {
+                    <tr>
+                        <td>
+                            @Html.ActionLink(".", "Edit", new { id = item.RefSRNO }, new { @class = "btn btn-outline-primary btn-def fa fa-edit" })
+                            @Html.ActionLink(".", "Delete", new { id = item.RefSRNO }, new { @class = "btn btn-outline-danger btn-def fa fa-trash-o" ,@onclick = "return confirm('Do you really want to delete the tag ?')" })
+                            @*new { @class = "btn btn-outline-danger btn-def fa fa-trash-o" }*@
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.TestParameterDT.TestParam)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Gender)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.MinimumAgeInDays)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.MaxAgeIndays)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.MinInYears)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.MaxInYear)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.LowerValue)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.UpperValues)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.InWords)
+                        </td>
+
+
+                    </tr>
+                        }
+
+                    </table>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

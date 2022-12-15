@@ -1,0 +1,294 @@
+﻿@model HospitalManagementSystem.Assigned_test_DT
+
+@{
+    ViewBag.Title = "Pat_Registration_List";
+    Layout = "~/Views/Shared/_MainPageLayout.cshtml";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+</head>
+<body>
+    <div class="page-body">
+        <!-- Container-fluid starts-->
+        <div class="container-fluid">
+            <div class="page-body-wrapper">
+                <div class="container-fluid">
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
+
+                        <div class="form-horizontal">
+                            <h4>New Patient Registration</h4>
+                            <hr />
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                            <div class="row">
+                                <div class="col-md-1">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.Title, "Title", htmlAttributes: new { @class = "control-label col-md-2" })
+                                        <div class="col-md-10">
+                                            @Html.DropDownList("SelectTitels", (IEnumerable<SelectListItem>)ViewData["ListItems"], new { @class = "form-control",id= "SelectTitels" })
+                                            @*@Html.DropDownListFor(model => model.Title, (IEnumerable<SelectListItem>)ViewData["ListItems"],new { @class = "form-control" })*@
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.Gender, "*Gender", htmlAttributes: new { @class = "control-label col-md-3" })
+                                        <div class="col-md-10">
+                                            @Html.DropDownList("ddlgenders", (IEnumerable<SelectListItem>)ViewData["Genders"], new { @class = "form-control dropdown-toggle" })
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-5">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.FirstName, "* First Name", htmlAttributes: new { @class = "control-label col-md-3" })
+                                        <div class="col-md-10">
+                                            @*@Html.TextBoxFor(model => model.FirstName)*@
+                                            @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control", id = "txtfirstnames", required = "" } })
+                                            @*<input type="text" id="txtfirstnames" placeholder="Enter First Name" class="form-control" required="" value=model.FirstName />*@
+                                            @*@Html.ValidationMessageFor(model => model.FirstName, "Please enter First Name", new { @class = "text- danger", style = "display:none" })*@
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.LastName, "* Last Name", htmlAttributes: new { @class = "control-label col-md-3" })
+                                        <div class="col-md-10">
+                                            @*<input type="text" id="txtlastnames" placeholder="Enter Last Name" class="form-control" required="" />*@
+                                            @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control", id = "txtlastnames",required="" } })
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+
+                                <div class="col-md-5">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.AadharNos, "Aadhar No(12 Digit).", htmlAttributes: new { @class = "control-label col-md-4" })
+                                        <div class="col-md-10">
+                                            @Html.EditorFor(model => model.AadharNos, new { htmlAttributes = new { @class = "form-control" ,id = "txtaadharnos" } })
+                                            @Html.ValidationMessageFor(model => model.AadharNos, "", new { @class = "text-danger" })
+                                            @*<input type="text" id="txtaadharnos" placeholder="Enter Aadhar No" class="form-control" />*@
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-7">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.AddressDetails, "Patinet's Address", htmlAttributes: new { @class = "control-label col-md-3" })
+                                        <div class="col-md-10">
+                                            @*<input type="text" id="txtaddress" placeholder="Enter Address Details" class="form-control" />*@
+                                            @Html.EditorFor(model => model.AddressDetails, new { htmlAttributes = new { @class = "form-control", id = "txtaddress" } })
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-1">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.AgeYear, "*Year", htmlAttributes: new { @class = "control-label col-md-2" })
+                                        <div class="col-md-10">
+                                            @*<input type="text" id="txtageinyears" placeholder="YEAR" class="form-control" required="" />*@
+                                            @Html.EditorFor(model => model.AgeYear, new { htmlAttributes = new { @class = "form-control", id = "txtageinyears" } })
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-1">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.Inmonth, "*Month", htmlAttributes: new { @class = "control-label col-md-2" })
+                                        <div class="col-md-10">
+                                            @*<input type="text" id="txtageinmonth" placeholder="MON" class="form-control" required="" />*@
+                                            @Html.EditorFor(model => model.Inmonth, new { htmlAttributes = new { @class = "form-control", id = "txtageinmonth" } })
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-1">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.InDays, "*Days", htmlAttributes: new { @class = "control-label col-md-2" })
+                                        <div class="col-md-10">
+                                            @*<input type="text" id="txtageindays" placeholder="DAY" class="form-control" required="" />*@
+                                            @Html.EditorFor(model => model.InDays, new { htmlAttributes = new { @class = "form-control", id = "txtageindays" } })
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.MobileNo, "*Mobile", htmlAttributes: new { @class = "control-label col-md-3" })
+                                        <div class="col-md-10">
+                                            @*<input type="text" id="txtmobilenos" placeholder="ENTER MOBILE NO" class="form-control" required="" />*@
+                                            @Html.EditorFor(model => model.MobileNo, new { htmlAttributes = new { @class = "form-control", id = "txtmobilenos" } })
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-5">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.EmailID, htmlAttributes: new { @class = "control-label col-md-2" })
+                                        <div class="col-md-10">
+                                            @*<input type="text" id="txtemailid" placeholder="ENTER EMAIL-ID" class="form-control" />*@
+                                            @Html.EditorFor(model => model.EmailID, new { htmlAttributes = new { @class = "form-control", id = "txtemailid" } })
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                            <hr />
+
+                            <h4> CASE DETAILS</h4>
+                            <br />
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.DoctorID, "* Referred By", htmlAttributes: new { @class = "control-label col-md-3" })
+                                        <div class="col-md-10">
+                                            @*@Html.DropDownList("SelectedItem", (IEnumerable<SelectListItem>)ViewData["Centers"], new { @class = "form-control dropdown-toggle" })*@
+                                            @Html.DropDownList("ddldoctors", ViewBag.ReferalList as SelectList, new { @class = "form-control" })
+                                            @*<a href="/Referal/Index" class="btn btn-outline-primary">Add New Referrar</a>*@
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <div class="col-md-2">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.CollectionCenter, "Center", htmlAttributes: new { @class = "control-label col-md-2" })
+                                        <div class="col-md-5">
+                                            @*@Html.EditorFor(model => model.CollectionCenter, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.CollectionCenter, "", new { @class = "text-danger" })*@
+                                            @Html.DropDownList("ddlcenters", (IEnumerable<SelectListItem>)ViewData["Centers"], new { @class = "form-control dropdown-toggle" })
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.SampleColAgents, "Col. Agent", htmlAttributes: new { @class = "control-label col-md-3" })
+
+                                        <div class="col-md-10">
+                                            @Html.DropDownList("ddlagents", ViewBag.AgentList as SelectList, new { @class = "form-control" })
+                                            @Html.ValidationMessageFor(model => model.SampleColAgents, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-1">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.SampleColAgents, "New", htmlAttributes: new { @class = "control-label col-md-3" })
+                                        <div class="col-md-10">
+                                            @*<a href="/Referal/Index" class="btn btn-outline-primary">Add</a>*@
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                            <table id="tblpanellist" class="table" cellpadding="0" cellspacing="0">
+                                <thead>
+                                    <tr>
+                                        <th style="width:500px">Package/Panel Name/Test Name</th>
+                                        <th style="width:150px">Fee</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <td><input type="text" id="txtpanelnames" placeholder="Search Package/Panel/Test Name" class="form-control" /></td>
+                                        <td> <input type="text" id="txtfpanelfees" class="form-control" /></td>
+                                        <td><input type="button" id="btnAddpanels" value="+ ADD INVESTIGATION" class="btn btn-outline-primary" /></td>
+                                    </tr>
+                                </tfoot>
+                            </table>
+
+                            <hr />
+
+                            <h4>PAYMENT DETAILS</h4>
+                            <hr />
+
+                            <div class="row">
+                                <div class="col-md-2">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.TotRs, "Total", htmlAttributes: new { @class = "control-label col-md-2" })
+                                        <div class="col-md-10">
+                                            @*<input type="text" id="txtamounts" placeholder="AMOUNT" class="form-control" readonly />*@
+                                            @Html.EditorFor(model => model.TotRs, new { htmlAttributes = new { @class = "form-control", id = "txtamounts" } })
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.Discounts, htmlAttributes: new { @class = "control-label col-md-2" })
+                                        <div class="col-md-10">
+                                            @*<input type="text" id="txtdiscounts" placeholder="DIS RS..." class="form-control" />*@
+                                            @Html.EditorFor(model => model.Discounts, new { htmlAttributes = new { @class = "form-control", id = "txtdiscounts" } })
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.Discounts, "PAYABLE", htmlAttributes: new { @class = "control-label col-md-2" })
+                                        <div class="col-md-10">
+                                            @*<input type="text" id="txtpayables" placeholder="PAYABLE" class="form-control" readonly />*@
+                                            @Html.EditorFor(model => model.TotRs, new { htmlAttributes = new { @class = "form-control", id = "txtpayables" } })
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.Paid, htmlAttributes: new { @class = "control-label col-md-2" })
+                                        <div class="col-md-10">
+                                            @*<input type="text" id="txtpaids" placeholder="PAID" class="form-control" required="" />*@
+                                            @Html.EditorFor(model => model.Paid, new { htmlAttributes = new { @class = "form-control",id = "txtpaids" } })
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.Balance, htmlAttributes: new { @class = "control-label col-md-2" })
+                                        <div class="col-md-10">
+                                            @*<input type="text" id="txtbalance" placeholder="BALANCE" class="form-control" readonly />*@
+                                            @Html.EditorFor(model => model.Balance, new { htmlAttributes = new { @class = "form-control", disabled = "disabled", id = "txtbalance" } })
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="col-md-2">
+
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.PayMode, htmlAttributes: new { @class = "control-label col-md-2" })
+                                        <div class="col-md-10">
+                                            @Html.DropDownList("ddlpaymodes", (IEnumerable<SelectListItem>)ViewData["PayModes"], "--Select--", new { @class = "form-control dropdown-toggle", @onChange = "SelectedPayMode(this)" })
+                                            @Html.ValidationMessageFor(model => model.PayMode, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+
+                                </div>
+
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-md-offset-2 col-md-10">
+                                    <input type="submit" id="btnSubmit" value="Save Registration" class="btn btn-outline-primary" />
+                                </div>
+                            </div>
+                        </div>
+                    }
+
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

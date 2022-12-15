@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="6fe336734e874219a085ba21aba4cc5c" Name="Diagram1" ZoomLevel="100">
+        <EntityTypeShape EntityType="HMS_OnWebsModel.User_DT" Width="1.5" PointX="0.5" PointY="0.5" />
+        <EntityTypeShape EntityType="HMS_OnWebsModel.LabCompany" Width="1.5" PointX="2.125" PointY="0.5" />
+        <EntityTypeShape EntityType="HMS_OnWebsModel.GroupDT" Width="1.5" PointX="7.25" PointY="0.5" />
+        <EntityTypeShape EntityType="HMS_OnWebsModel.ReferalDT" Width="1.5" PointX="3.75" PointY="0.5" />
+        <EntityTypeShape EntityType="HMS_OnWebsModel.UserRole" Width="1.5" PointX="0.5" PointY="4.125" />
+        <EntityTypeShape EntityType="HMS_OnWebsModel.VendorDT" Width="1.5" PointX="3.75" PointY="3" />
+        <EntityTypeShape EntityType="HMS_OnWebsModel.LabITEMDT" Width="1.5" PointX="2" PointY="7.125" />
+        <EntityTypeShape EntityType="HMS_OnWebsModel.LabPurchaseDT" Width="1.5" PointX="5.625" PointY="0.5" />
+        <AssociationConnector Association="HMS_OnWebsModel.FK_PItemID" />
+        <AssociationConnector Association="HMS_OnWebsModel.FK_VendorID" ></AssociationConnector>
+        <EntityTypeShape EntityType="HMS_OnWebsModel.TestDT" Width="1.5" PointX="9.25" PointY="0.75" />
+        <AssociationConnector Association="HMS_OnWebsModel.FK_TestGroupID" />
+        <EntityTypeShape EntityType="HMS_OnWebsModel.UnitDT" Width="1.5" PointX="2.125" PointY="5.625" />
+        <EntityTypeShape EntityType="HMS_OnWebsModel.TestParameterDT" Width="1.5" PointX="11" PointY="0.625" />
+        <AssociationConnector Association="HMS_OnWebsModel.FK_TestParametersGroupID" />
+        <AssociationConnector Association="HMS_OnWebsModel.FK_TestID" />
+        <EntityTypeShape EntityType="HMS_OnWebsModel.Customer" Width="1.5" PointX="0.5" PointY="6.75" />
+        <EntityTypeShape EntityType="HMS_OnWebsModel.ReferenceValuesDT" Width="1.5" PointX="13.125" PointY="0.625" />
+        <AssociationConnector Association="HMS_OnWebsModel.FK_ReferenceValuesDTGroupID" />
+        <AssociationConnector Association="HMS_OnWebsModel.FK_ReferenceValuesDTParameterID" />
+        <AssociationConnector Association="HMS_OnWebsModel.FK_RefTestID" />
+        <EntityTypeShape EntityType="HMS_OnWebsModel.TestsPanel" Width="1.5" PointX="7.25" PointY="3.375" />
+        <EntityTypeShape EntityType="HMS_OnWebsModel.TestsPackagesDT" Width="1.5" PointX="7.25" PointY="5.5" />
+        <EntityTypeShape EntityType="HMS_OnWebsModel.Assigned_test_DT" Width="1.5" PointX="9.125" PointY="5.375" />
+        <EntityTypeShape EntityType="HMS_OnWebsModel.AccHeadDT" Width="1.5" PointX="3.75" PointY="8.875" />
+        <EntityTypeShape EntityType="HMS_OnWebsModel.AccSubHeadsDT" Width="1.5" PointX="6" PointY="8.625" />
+        <AssociationConnector Association="HMS_OnWebsModel.FK_AccHeadID" />
+        <EntityTypeShape EntityType="HMS_OnWebsModel.ExPDT" Width="1.5" PointX="4.125" PointY="10.875" />
+        <AssociationConnector Association="HMS_OnWebsModel.FK_ExpAccHeadID" />
+        <EntityTypeShape EntityType="HMS_OnWebsModel.Pat_InvestList" Width="1.5" PointX="12.625" PointY="8" />
+        <AssociationConnector Association="HMS_OnWebsModel.FK_PatRegsID" />
+        </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

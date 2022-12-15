@@ -1,0 +1,359 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="HMS_OnWebsModelStoreContainer" CdmEntityContainer="HMSOnWebsEntities">
+    <EntitySetMapping Name="User_DT">
+      <EntityTypeMapping TypeName="HMS_OnWebsModel.User_DT">
+        <MappingFragment StoreEntitySet="User_DT">
+          <ScalarProperty Name="MobileNo" ColumnName="MobileNo" />
+          <ScalarProperty Name="DoctorsName" ColumnName="DoctorsName" />
+          <ScalarProperty Name="Modules" ColumnName="Modules" />
+          <ScalarProperty Name="LoginID" ColumnName="LoginID" />
+          <ScalarProperty Name="Edited_On" ColumnName="Edited_On" />
+          <ScalarProperty Name="Created_On" ColumnName="Created_On" />
+          <ScalarProperty Name="Edited_By" ColumnName="Edited_By" />
+          <ScalarProperty Name="Created_By" ColumnName="Created_By" />
+          <ScalarProperty Name="Re_Password" ColumnName="Re_Password" />
+          <ScalarProperty Name="New_Password" ColumnName="New_Password" />
+          <ScalarProperty Name="Old_Password" ColumnName="Old_Password" />
+          <ScalarProperty Name="User_Name" ColumnName="User_Name" />
+          <ScalarProperty Name="User_Id" ColumnName="User_Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="LabCompanies">
+      <EntityTypeMapping TypeName="HMS_OnWebsModel.LabCompany">
+        <MappingFragment StoreEntitySet="LabCompany">
+          <ScalarProperty Name="MsgSend" ColumnName="MsgSend" />
+          <ScalarProperty Name="StateCode" ColumnName="StateCode" />
+          <ScalarProperty Name="Edited_On" ColumnName="Edited_On" />
+          <ScalarProperty Name="Created_On" ColumnName="Created_On" />
+          <ScalarProperty Name="Edited_By" ColumnName="Edited_By" />
+          <ScalarProperty Name="Created_By" ColumnName="Created_By" />
+          <ScalarProperty Name="Logo" ColumnName="Logo" />
+          <ScalarProperty Name="Slogan2" ColumnName="Slogan2" />
+          <ScalarProperty Name="Slogan1" ColumnName="Slogan1" />
+          <ScalarProperty Name="Reg_No" ColumnName="Reg_No" />
+          <ScalarProperty Name="Website" ColumnName="Website" />
+          <ScalarProperty Name="Email_ID" ColumnName="Email_ID" />
+          <ScalarProperty Name="Contact2" ColumnName="Contact2" />
+          <ScalarProperty Name="Contact1" ColumnName="Contact1" />
+          <ScalarProperty Name="Pincode" ColumnName="Pincode" />
+          <ScalarProperty Name="District" ColumnName="District" />
+          <ScalarProperty Name="State" ColumnName="State" />
+          <ScalarProperty Name="Landmark" ColumnName="Landmark" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="Company_Name" ColumnName="Company_Name" />
+          <ScalarProperty Name="Company_ID" ColumnName="Company_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="GroupDTs">
+      <EntityTypeMapping TypeName="HMS_OnWebsModel.GroupDT">
+        <MappingFragment StoreEntitySet="GroupDT">
+          <ScalarProperty Name="Edited_On" ColumnName="Edited_On" />
+          <ScalarProperty Name="Created_On" ColumnName="Created_On" />
+          <ScalarProperty Name="Edited_By" ColumnName="Edited_By" />
+          <ScalarProperty Name="Created_By" ColumnName="Created_By" />
+          <ScalarProperty Name="Group_Name" ColumnName="Group_Name" />
+          <ScalarProperty Name="Group_ID" ColumnName="Group_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ReferalDTs">
+      <EntityTypeMapping TypeName="HMS_OnWebsModel.ReferalDT">
+        <MappingFragment StoreEntitySet="ReferalDT">
+          <ScalarProperty Name="RefType" ColumnName="RefType" />
+          <ScalarProperty Name="Ref_Status" ColumnName="Ref_Status" />
+          <ScalarProperty Name="ComP" ColumnName="ComP" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="MobileNos" ColumnName="MobileNos" />
+          <ScalarProperty Name="Referal_Name" ColumnName="Referal_Name" />
+          <ScalarProperty Name="RefId" ColumnName="RefId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserRoles">
+      <EntityTypeMapping TypeName="HMS_OnWebsModel.UserRole">
+        <MappingFragment StoreEntitySet="UserRoles">
+          <ScalarProperty Name="EditPass" ColumnName="EditPass" />
+          <ScalarProperty Name="DelPass" ColumnName="DelPass" />
+          <ScalarProperty Name="DeleteRecord" ColumnName="DeleteRecord" />
+          <ScalarProperty Name="EditRecord" ColumnName="EditRecord" />
+          <ScalarProperty Name="AddRecord" ColumnName="AddRecord" />
+          <ScalarProperty Name="Modules" ColumnName="Modules" />
+          <ScalarProperty Name="LoginID" ColumnName="LoginID" />
+          <ScalarProperty Name="RID" ColumnName="RID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="SP_SEARCHUSERSROLES" FunctionName="HMS_OnWebsModel.Store.SP_SEARCHUSERSROLES">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="HMS_OnWebsModel.SP_SEARCHUSERSROLES_Result">
+          <ScalarProperty Name="RID" ColumnName="RID" />
+          <ScalarProperty Name="LoginID" ColumnName="LoginID" />
+          <ScalarProperty Name="Modules" ColumnName="Modules" />
+          <ScalarProperty Name="AddRecord" ColumnName="AddRecord" />
+          <ScalarProperty Name="EditRecord" ColumnName="EditRecord" />
+          <ScalarProperty Name="DeleteRecord" ColumnName="DeleteRecord" />
+          <ScalarProperty Name="DelPass" ColumnName="DelPass" />
+          <ScalarProperty Name="EditPass" ColumnName="EditPass" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SearchUserRoles" FunctionName="HMS_OnWebsModel.Store.SP_SEARCHUSERSROLES" />
+    <EntitySetMapping Name="VendorDTs">
+      <EntityTypeMapping TypeName="HMS_OnWebsModel.VendorDT">
+        <MappingFragment StoreEntitySet="VendorDT">
+          <ScalarProperty Name="SyncSts" ColumnName="SyncSts" />
+          <ScalarProperty Name="HID" ColumnName="HID" />
+          <ScalarProperty Name="OpBal" ColumnName="OpBal" />
+          <ScalarProperty Name="EmailId" ColumnName="EmailId" />
+          <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+          <ScalarProperty Name="StateCode" ColumnName="StateCode" />
+          <ScalarProperty Name="StateName" ColumnName="StateName" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="GSTIN" ColumnName="GSTIN" />
+          <ScalarProperty Name="VendorName" ColumnName="VendorName" />
+          <ScalarProperty Name="VID" ColumnName="VID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="LabITEMDTs">
+      <EntityTypeMapping TypeName="HMS_OnWebsModel.LabITEMDT">
+        <MappingFragment StoreEntitySet="LabITEMDT">
+          <ScalarProperty Name="BrID" ColumnName="BrID" />
+          <ScalarProperty Name="Createdby" ColumnName="Createdby" />
+          <ScalarProperty Name="OnDate" ColumnName="OnDate" />
+          <ScalarProperty Name="OPQTY" ColumnName="OPQTY" />
+          <ScalarProperty Name="ItemName" ColumnName="ItemName" />
+          <ScalarProperty Name="HID" ColumnName="HID" />
+          <ScalarProperty Name="ITEMID" ColumnName="ITEMID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="LabPurchaseDTs">
+      <EntityTypeMapping TypeName="HMS_OnWebsModel.LabPurchaseDT">
+        <MappingFragment StoreEntitySet="LabPurchaseDT">
+          <ScalarProperty Name="ITEMID" ColumnName="ITEMID" />
+          <ScalarProperty Name="EDate" ColumnName="EDate" />
+          <ScalarProperty Name="EntryBy" ColumnName="EntryBy" />
+          <ScalarProperty Name="Grands" ColumnName="Grands" />
+          <ScalarProperty Name="DisPer" ColumnName="DisPer" />
+          <ScalarProperty Name="GSTMAT" ColumnName="GSTMAT" />
+          <ScalarProperty Name="GSTP" ColumnName="GSTP" />
+          <ScalarProperty Name="Rate" ColumnName="Rate" />
+          <ScalarProperty Name="Units" ColumnName="Units" />
+          <ScalarProperty Name="QTY" ColumnName="QTY" />
+          <ScalarProperty Name="ItemName" ColumnName="ItemName" />
+          <ScalarProperty Name="BillDate" ColumnName="BillDate" />
+          <ScalarProperty Name="BillNo" ColumnName="BillNo" />
+          <ScalarProperty Name="VendorID" ColumnName="VendorID" />
+          <ScalarProperty Name="HID" ColumnName="HID" />
+          <ScalarProperty Name="PurchId" ColumnName="PurchId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TestDTs">
+      <EntityTypeMapping TypeName="HMS_OnWebsModel.TestDT">
+        <MappingFragment StoreEntitySet="TestDT">
+          <ScalarProperty Name="Comments" ColumnName="Comments" />
+          <ScalarProperty Name="Notes" ColumnName="Notes" />
+          <ScalarProperty Name="Interpretation" ColumnName="Interpretation" />
+          <ScalarProperty Name="Instruemnt" ColumnName="Instruemnt" />
+          <ScalarProperty Name="Method_Name" ColumnName="Method_Name" />
+          <ScalarProperty Name="T_ShortName" ColumnName="T_ShortName" />
+          <ScalarProperty Name="Edited_On" ColumnName="Edited_On" />
+          <ScalarProperty Name="Created_On" ColumnName="Created_On" />
+          <ScalarProperty Name="Edited_By" ColumnName="Edited_By" />
+          <ScalarProperty Name="Created_By" ColumnName="Created_By" />
+          <ScalarProperty Name="Group_Name" ColumnName="Group_Name" />
+          <ScalarProperty Name="Group_ID" ColumnName="Group_ID" />
+          <ScalarProperty Name="Test_Rate" ColumnName="Test_Rate" />
+          <ScalarProperty Name="Test_Name" ColumnName="Test_Name" />
+          <ScalarProperty Name="Test_ID" ColumnName="Test_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UnitDTs">
+      <EntityTypeMapping TypeName="HMS_OnWebsModel.UnitDT">
+        <MappingFragment StoreEntitySet="UnitDT">
+          <ScalarProperty Name="Unit_Name" ColumnName="Unit_Name" />
+          <ScalarProperty Name="Unit_ID" ColumnName="Unit_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TestParameterDTs">
+      <EntityTypeMapping TypeName="HMS_OnWebsModel.TestParameterDT">
+        <MappingFragment StoreEntitySet="TestParameterDT">
+          <ScalarProperty Name="ShSTS" ColumnName="ShSTS" />
+          <ScalarProperty Name="SbInorder" ColumnName="SbInorder" />
+          <ScalarProperty Name="Inorder" ColumnName="Inorder" />
+          <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+          <ScalarProperty Name="Max_Age_unit" ColumnName="Max_Age_unit" />
+          <ScalarProperty Name="Max_Age" ColumnName="Max_Age" />
+          <ScalarProperty Name="MinAge_unit" ColumnName="MinAge_unit" />
+          <ScalarProperty Name="Min_Age" ColumnName="Min_Age" />
+          <ScalarProperty Name="Gender" ColumnName="Gender" />
+          <ScalarProperty Name="Units" ColumnName="Units" />
+          <ScalarProperty Name="Higher_Ref" ColumnName="Higher_Ref" />
+          <ScalarProperty Name="Lower_Ref" ColumnName="Lower_Ref" />
+          <ScalarProperty Name="PreResult" ColumnName="PreResult" />
+          <ScalarProperty Name="DefaultResult" ColumnName="DefaultResult" />
+          <ScalarProperty Name="PGroupBy" ColumnName="PGroupBy" />
+          <ScalarProperty Name="InputType" ColumnName="InputType" />
+          <ScalarProperty Name="TSubParam" ColumnName="TSubParam" />
+          <ScalarProperty Name="TestParam" ColumnName="TestParam" />
+          <ScalarProperty Name="TestName" ColumnName="TestName" />
+          <ScalarProperty Name="GroupName" ColumnName="GroupName" />
+          <ScalarProperty Name="TestID" ColumnName="TestID" />
+          <ScalarProperty Name="GrpID" ColumnName="GrpID" />
+          <ScalarProperty Name="Test_P_ID" ColumnName="Test_P_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Customers">
+      <EntityTypeMapping TypeName="HMS_OnWebsModel.Customer">
+        <MappingFragment StoreEntitySet="Customers">
+          <ScalarProperty Name="Country" ColumnName="Country" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ReferenceValuesDTs">
+      <EntityTypeMapping TypeName="HMS_OnWebsModel.ReferenceValuesDT">
+        <MappingFragment StoreEntitySet="ReferenceValuesDT">
+          <ScalarProperty Name="InWords" ColumnName="InWords" />
+          <ScalarProperty Name="UpperValues" ColumnName="UpperValues" />
+          <ScalarProperty Name="LowerValue" ColumnName="LowerValue" />
+          <ScalarProperty Name="MaxInYear" ColumnName="MaxInYear" />
+          <ScalarProperty Name="MinInYears" ColumnName="MinInYears" />
+          <ScalarProperty Name="MaxAgeIndays" ColumnName="MaxAgeIndays" />
+          <ScalarProperty Name="MinimumAgeInDays" ColumnName="MinimumAgeInDays" />
+          <ScalarProperty Name="Gender" ColumnName="Gender" />
+          <ScalarProperty Name="TestParamID" ColumnName="TestParamID" />
+          <ScalarProperty Name="TestID" ColumnName="TestID" />
+          <ScalarProperty Name="CateID" ColumnName="CateID" />
+          <ScalarProperty Name="RefSRNO" ColumnName="RefSRNO" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TestsPanels">
+      <EntityTypeMapping TypeName="HMS_OnWebsModel.TestsPanel">
+        <MappingFragment StoreEntitySet="TestsPanels">
+          <ScalarProperty Name="Fees" ColumnName="Fees" />
+          <ScalarProperty Name="TestNames" ColumnName="TestNames" />
+          <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
+          <ScalarProperty Name="PanelName" ColumnName="PanelName" />
+          <ScalarProperty Name="PanelID" ColumnName="PanelID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TestsPackagesDTs">
+      <EntityTypeMapping TypeName="HMS_OnWebsModel.TestsPackagesDT">
+        <MappingFragment StoreEntitySet="TestsPackagesDT">
+          <ScalarProperty Name="Panel_Test_Namelist" ColumnName="Panel_Test_Namelist" />
+          <ScalarProperty Name="Fees" ColumnName="Fees" />
+          <ScalarProperty Name="TestID" ColumnName="TestID" />
+          <ScalarProperty Name="PanelID" ColumnName="PanelID" />
+          <ScalarProperty Name="PackageName" ColumnName="PackageName" />
+          <ScalarProperty Name="PackageID" ColumnName="PackageID" />
+          <ScalarProperty Name="PSRNO" ColumnName="PSRNO" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Assigned_test_DT">
+      <EntityTypeMapping TypeName="HMS_OnWebsModel.Assigned_test_DT">
+        <MappingFragment StoreEntitySet="Assigned_test_DT">
+          <ScalarProperty Name="SDate" ColumnName="SDate" />
+          <ScalarProperty Name="HID" ColumnName="HID" />
+          <ScalarProperty Name="SyncSts" ColumnName="SyncSts" />
+          <ScalarProperty Name="ResultSTs" ColumnName="ResultSTs" />
+          <ScalarProperty Name="LoginID" ColumnName="LoginID" />
+          <ScalarProperty Name="GSRNO" ColumnName="GSRNO" />
+          <ScalarProperty Name="TSRNo" ColumnName="TSRNo" />
+          <ScalarProperty Name="GrpName" ColumnName="GrpName" />
+          <ScalarProperty Name="TDate" ColumnName="TDate" />
+          <ScalarProperty Name="Rate" ColumnName="Rate" />
+          <ScalarProperty Name="TsetName" ColumnName="TsetName" />
+          <ScalarProperty Name="TestID" ColumnName="TestID" />
+          <ScalarProperty Name="PanelID" ColumnName="PanelID" />
+          <ScalarProperty Name="PakageID" ColumnName="PakageID" />
+          <ScalarProperty Name="PayMode" ColumnName="PayMode" />
+          <ScalarProperty Name="Balance" ColumnName="Balance" />
+          <ScalarProperty Name="Paid" ColumnName="Paid" />
+          <ScalarProperty Name="Discounts" ColumnName="Discounts" />
+          <ScalarProperty Name="TotRs" ColumnName="TotRs" />
+          <ScalarProperty Name="SampleColAgents" ColumnName="SampleColAgents" />
+          <ScalarProperty Name="DoctorID" ColumnName="DoctorID" />
+          <ScalarProperty Name="CollectionCenter" ColumnName="CollectionCenter" />
+          <ScalarProperty Name="AddressDetails" ColumnName="AddressDetails" />
+          <ScalarProperty Name="EmailID" ColumnName="EmailID" />
+          <ScalarProperty Name="MobileNo" ColumnName="MobileNo" />
+          <ScalarProperty Name="InDays" ColumnName="InDays" />
+          <ScalarProperty Name="Inmonth" ColumnName="Inmonth" />
+          <ScalarProperty Name="AgeYear" ColumnName="AgeYear" />
+          <ScalarProperty Name="AadharNos" ColumnName="AadharNos" />
+          <ScalarProperty Name="Gender" ColumnName="Gender" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="PatieintID" ColumnName="PatieintID" />
+          <ScalarProperty Name="AssignID" ColumnName="AssignID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AccHeadDTs">
+      <EntityTypeMapping TypeName="HMS_OnWebsModel.AccHeadDT">
+        <MappingFragment StoreEntitySet="AccHeadDT">
+          <ScalarProperty Name="Acc_HeadName" ColumnName="Acc_HeadName" />
+          <ScalarProperty Name="AHID" ColumnName="AHID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AccSubHeadsDTs">
+      <EntityTypeMapping TypeName="HMS_OnWebsModel.AccSubHeadsDT">
+        <MappingFragment StoreEntitySet="AccSubHeadsDT">
+          <ScalarProperty Name="AccTypes" ColumnName="AccTypes" />
+          <ScalarProperty Name="Accounts" ColumnName="Accounts" />
+          <ScalarProperty Name="AccID" ColumnName="AccID" />
+          <ScalarProperty Name="HeadID" ColumnName="HeadID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ExPDTs">
+      <EntityTypeMapping TypeName="HMS_OnWebsModel.ExPDT">
+        <MappingFragment StoreEntitySet="ExPDT">
+          <ScalarProperty Name="Chqdate" ColumnName="Chqdate" />
+          <ScalarProperty Name="ChqNo" ColumnName="ChqNo" />
+          <ScalarProperty Name="PayMode" ColumnName="PayMode" />
+          <ScalarProperty Name="EType" ColumnName="EType" />
+          <ScalarProperty Name="HID" ColumnName="HID" />
+          <ScalarProperty Name="ESTS" ColumnName="ESTS" />
+          <ScalarProperty Name="Edate" ColumnName="Edate" />
+          <ScalarProperty Name="EntryBy" ColumnName="EntryBy" />
+          <ScalarProperty Name="Amount" ColumnName="Amount" />
+          <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+          <ScalarProperty Name="ExDate" ColumnName="ExDate" />
+          <ScalarProperty Name="AccountID" ColumnName="AccountID" />
+          <ScalarProperty Name="ExpID" ColumnName="ExpID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Pat_InvestList">
+      <EntityTypeMapping TypeName="HMS_OnWebsModel.Pat_InvestList">
+        <MappingFragment StoreEntitySet="Pat_InvestList">
+          <ScalarProperty Name="DoctorID" ColumnName="DoctorID" />
+          <ScalarProperty Name="Amount" ColumnName="Amount" />
+          <ScalarProperty Name="TOrderNos" ColumnName="TOrderNos" />
+          <ScalarProperty Name="TestNames" ColumnName="TestNames" />
+          <ScalarProperty Name="TestID" ColumnName="TestID" />
+          <ScalarProperty Name="PnlID" ColumnName="PnlID" />
+          <ScalarProperty Name="PkgID" ColumnName="PkgID" />
+          <ScalarProperty Name="RegsID" ColumnName="RegsID" />
+          <ScalarProperty Name="LabSrNo" ColumnName="LabSrNo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

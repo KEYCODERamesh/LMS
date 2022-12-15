@@ -1,0 +1,229 @@
+﻿@model IEnumerable<HospitalManagementSystem.Models.MyLabTestList>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_MainPageLayout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Add Center Detail</title>
+    <link href="~/Content/assets/css/bootstrap.min.css" rel="stylesheet" />
+    <style>
+        table, td, th {
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th, td {
+            padding: 10px;
+            
+        }
+        th{
+            background-color: yellow;
+        }
+    </style>
+</head>
+<body>
+    <div class="page-body">
+        <!-- Container-fluid starts-->
+        <div class="container-fluid">
+            <div class="page-body-wrapper">
+                <div class="container-fluid">
+                    <hr />
+                    <div class="row">
+                        <div class="col-md-2">
+                            @Html.ActionLink("Add New Test", "Create", new object { }, new { @class = "btn btn-primary " })
+                        </div>
+
+                        <div class="col-md-2">
+                            <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#AddModal">Test Panel</a>
+                        </div>
+                        <div class="col-md-1">
+                            <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#AddModal">Package</a>
+                        </div>
+                        <div class="col-md-1">
+                            <a href="/Referal/Index" class="btn btn-primary">Agent</a>
+                        </div>
+                        <div class="col-md-2">
+                            <a href="/Referal/Index" class="btn btn-primary">Referrar</a>
+                        </div>
+                        <div class="col-md-2">
+                            <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#AddModal">Add Unit</a>
+                        </div>
+                        <div class="col-md-2">
+                            @Html.ActionLink("Unit List", "ShowUnits", new object { }, new { @class = "btn btn-primary" })
+                        </div>
+
+                    </div>
+                    <hr />
+                    <div class="row">
+                      
+                    </div>
+                    <br />
+                    <table class="table">
+                        <tr>
+                            <th>Action?</th>
+                            <th>Parameter</th>
+                            @*<th>Normal Value ?</th>*@
+                            <th>
+                                @*@Html.DisplayNameFor(model => model.Test_Name)*@
+                                Test Name
+                            </th>
+                            <th>
+                                Short Name
+                            </th>
+                            <th>
+                                Rate
+                            </th>
+                            <th>
+                                Category
+                            </th>
+                            @*<th>
+                                Method Name
+                            </th>
+                            <th>
+                                Instrument
+                            </th>*@
+                            @*<th>
+                                Comments
+                            </th>*@
+
+                        </tr>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.ActionLink("Edit", "Edit", new { id = item.Test_ID }, new { @class = "btn btn-outline-primary btn-def fa fa-edit" }) 
+                                    
+                                    @*<a href="/MyTestList/AddTestParameterParameter/?data1=678&data2=c-sharpcorner">Click here for passing the parameter</a>*@
+                                    @*@Html.ActionLink("Values", "AddValues", new { id = item.Test_ID }) |*@
+                                    @*<a href="#" class="btn btn-primary" data-toggle="modal" data-target="#AddModal">Add Parametr</a>*@
+                                </td>
+                                <td>
+                                    @Html.ActionLink("View", "ShowTestParemeters", new { id = item.Test_ID, TestName = item.Test_Name, CategoryName = item.Group_Name, TestID = item.Test_ID, CategoryID = item.Group_ID }, new { @class = "btn btn-outline-primary btn-def fa fa-eye" })
+                                    @Html.ActionLink("Add", "AddTestParameterParameter", new { id = item.Test_ID, TestName = item.Test_Name, CategoryName = item.Group_Name, TestID = item.Test_ID, CategoryID = item.Group_ID }, new { @class = "btn btn-outline-primary btn-def fa fa-plus-circle" })
+                                </td>
+                                @*<td>
+                                    @Html.ActionLink("Add", "AddNormalValues", new { id = item.Test_ID }, new { @class = "btn btn-outline-primary" })
+                                    @Html.ActionLink("Edit", "EditNormalValues", new { id = item.Test_ID }, new { @class = "btn btn-outline-primary btn-def fa fa-edit" })
+                                </td>*@
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Test_Name)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.T_ShortName)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Test_Rate)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Group_Name)
+                                </td>
+
+                                @*<td>
+                                    @Html.DisplayFor(modelItem => item.Method_Name)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Instruemnt)
+                                </td>*@
+                                @*<td>
+                                    @Html.DisplayFor(modelItem => item.Comments)
+                                </td>*@
+
+                            </tr>
+                        }
+
+                    </table>
+                </div>
+
+
+                <div class="modal fade bd-example-modal-lg" id="AddModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                    <div class="modal-dialog modal-lg" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h3 class="modal-title">Add New Unit Name</h3>
+                                <a href="#" data-dismiss="modal" class="close">&times;</a>
+                            </div>
+                            <div class="modal-body">
+
+                                <form id="myForm">
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <label>Unit</label>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <input type="text" class="form-control" id="txtName" name="name" placeholder="Unit Name" />
+                                                @Html.ValidationMessage("", "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br />
+                                    <div class="modal-footer">
+                                        <div class="col-md-2">
+                                            <a href="#" class="btn btn-default" data-dismiss="modal">Cancel</a>
+                                        </div>
+                                        <div class="col-md-2">
+                                            @*<input type="reset" value="submit" class="btn btn-success" id="btnsubmit" />*@
+                                            <a href="#" class="btn btn-success" onclick="AddUnits()">Save</a>
+                                        </div>
+                                    </div>
+
+                                </form>
+
+
+                                <div style="text-align:center;display:none" id="loaderdiv">
+                                    <img src="~/Content/assets/images/loader.gif" />
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+
+        var AddUnits = function () {
+            $("#loaderdiv").show();
+            var myformData = $("myForm").serialize();
+            var txtitemName = $("#txtName");
+            $.ajax({
+                type: "POST",
+                url: "/MyTestList/InsertUnits",
+                data: '{Unit_Name: "' + txtitemName.val() + '"  }',
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function () {
+
+                    $("#loaderdiv").hide();
+                    $("#AddModal").modal('hide');
+                    txtitemName.val("");
+                    $("#AddModal").modal('hide');
+                    setInterval('location.reload()', 500);
+                },
+                error: function (response) {
+                    alert("Must Enter Unit Name");
+                }
+            })
+
+        }
+    </script>
+</body>
+</html>

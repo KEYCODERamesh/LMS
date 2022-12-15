@@ -1,0 +1,610 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="HMS_OnWebsModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="AccHeadDT">
+    <Key>
+      <PropertyRef Name="AHID" />
+    </Key>
+    <Property Name="AHID" Type="int" Nullable="false" />
+    <Property Name="Acc_HeadName" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="AccSubHeadsDT">
+    <Key>
+      <PropertyRef Name="HeadID" />
+    </Key>
+    <Property Name="HeadID" Type="int" Nullable="false" />
+    <Property Name="AccID" Type="int" />
+    <Property Name="Accounts" Type="nvarchar" MaxLength="50" />
+    <Property Name="AccTypes" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Assigned_test_DT">
+    <Key>
+      <PropertyRef Name="AssignID" />
+      <PropertyRef Name="DoctorID" />
+    </Key>
+    <Property Name="AssignID" Type="bigint" Nullable="false" />
+    <Property Name="PatieintID" Type="int" />
+    <Property Name="Title" Type="nvarchar" MaxLength="50" />
+    <Property Name="FirstName" Type="nvarchar" MaxLength="100" />
+    <Property Name="LastName" Type="nvarchar" MaxLength="100" />
+    <Property Name="Gender" Type="nvarchar" MaxLength="100" />
+    <Property Name="AadharNos" Type="nvarchar" MaxLength="100" />
+    <Property Name="AgeYear" Type="int" />
+    <Property Name="Inmonth" Type="int" />
+    <Property Name="InDays" Type="int" />
+    <Property Name="MobileNo" Type="nvarchar" MaxLength="100" />
+    <Property Name="EmailID" Type="nvarchar" MaxLength="100" />
+    <Property Name="AddressDetails" Type="nvarchar" MaxLength="100" />
+    <Property Name="CollectionCenter" Type="nvarchar" MaxLength="100" />
+    <Property Name="DoctorID" Type="int" Nullable="false" />
+    <Property Name="SampleColAgents" Type="int" Nullable="false" />
+    <Property Name="TotRs" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="Discounts" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="Paid" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="Balance" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="PayMode" Type="nvarchar" MaxLength="100" />
+    <Property Name="PakageID" Type="int" />
+    <Property Name="PanelID" Type="int" />
+    <Property Name="TestID" Type="int" />
+    <Property Name="TsetName" Type="nvarchar(max)" />
+    <Property Name="Rate" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="TDate" Type="datetime" />
+    <Property Name="GrpName" Type="nvarchar" MaxLength="150" />
+    <Property Name="TSRNo" Type="int" />
+    <Property Name="GSRNO" Type="int" />
+    <Property Name="LoginID" Type="nvarchar" MaxLength="150" />
+    <Property Name="ResultSTs" Type="bit" />
+    <Property Name="SyncSts" Type="bit" />
+    <Property Name="HID" Type="int" />
+    <Property Name="SDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="Customers">
+    <Key>
+      <PropertyRef Name="CustomerID" />
+    </Key>
+    <Property Name="CustomerID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" />
+    <Property Name="Country" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="ExPDT">
+    <Key>
+      <PropertyRef Name="ExpID" />
+    </Key>
+    <Property Name="ExpID" Type="bigint" Nullable="false" />
+    <Property Name="AccountID" Type="int" Nullable="false" />
+    <Property Name="ExDate" Type="datetime" />
+    <Property Name="Remarks" Type="nvarchar" MaxLength="500" />
+    <Property Name="Amount" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="EntryBy" Type="nvarchar" MaxLength="50" />
+    <Property Name="Edate" Type="datetime" />
+    <Property Name="ESTS" Type="nvarchar" MaxLength="50" />
+    <Property Name="HID" Type="bigint" Nullable="false" />
+    <Property Name="EType" Type="nvarchar" MaxLength="50" />
+    <Property Name="PayMode" Type="nvarchar" MaxLength="50" />
+    <Property Name="ChqNo" Type="nvarchar" MaxLength="50" />
+    <Property Name="Chqdate" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="GroupDT">
+    <Key>
+      <PropertyRef Name="Group_ID" />
+    </Key>
+    <Property Name="Group_ID" Type="int" Nullable="false" />
+    <Property Name="Group_Name" Type="nvarchar" MaxLength="50" />
+    <Property Name="Created_By" Type="int" />
+    <Property Name="Edited_By" Type="int" />
+    <Property Name="Created_On" Type="datetime" />
+    <Property Name="Edited_On" Type="datetime" />
+  </EntityType>
+  <EntityType Name="LabCompany">
+    <Key>
+      <PropertyRef Name="Company_ID" />
+    </Key>
+    <Property Name="Company_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Company_Name" Type="nvarchar" MaxLength="50" />
+    <Property Name="Address" Type="nvarchar" MaxLength="500" />
+    <Property Name="Landmark" Type="nvarchar" MaxLength="500" />
+    <Property Name="State" Type="nvarchar" MaxLength="50" />
+    <Property Name="District" Type="nvarchar" MaxLength="50" />
+    <Property Name="Pincode" Type="nvarchar" MaxLength="50" />
+    <Property Name="Contact1" Type="nvarchar" MaxLength="50" />
+    <Property Name="Contact2" Type="nvarchar" MaxLength="50" />
+    <Property Name="Email_ID" Type="nvarchar" MaxLength="50" />
+    <Property Name="Website" Type="nvarchar" MaxLength="50" />
+    <Property Name="Reg_No" Type="nvarchar" MaxLength="50" />
+    <Property Name="Slogan1" Type="nvarchar" MaxLength="50" />
+    <Property Name="Slogan2" Type="nvarchar" MaxLength="50" />
+    <Property Name="Logo" Type="nvarchar" MaxLength="500" />
+    <Property Name="Created_By" Type="int" />
+    <Property Name="Edited_By" Type="int" />
+    <Property Name="Created_On" Type="datetime" />
+    <Property Name="Edited_On" Type="datetime" />
+    <Property Name="StateCode" Type="nvarchar" MaxLength="50" />
+    <Property Name="MsgSend" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="LabITEMDT">
+    <Key>
+      <PropertyRef Name="ITEMID" />
+    </Key>
+    <Property Name="ITEMID" Type="bigint" Nullable="false" />
+    <Property Name="HID" Type="int" />
+    <Property Name="ItemName" Type="nvarchar" MaxLength="150" />
+    <Property Name="OPQTY" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="OnDate" Type="datetime" />
+    <Property Name="Createdby" Type="nvarchar" MaxLength="50" />
+    <Property Name="BrID" Type="int" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'HMS_OnWebs.dbo.LabPurchaseDT' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="LabPurchaseDT">
+    <Key>
+      <PropertyRef Name="PurchId" />
+      <PropertyRef Name="HID" />
+      <PropertyRef Name="VendorID" />
+    </Key>
+    <Property Name="PurchId" Type="bigint" Nullable="false" />
+    <Property Name="HID" Type="int" Nullable="false" />
+    <Property Name="VendorID" Type="int" Nullable="false" />
+    <Property Name="BillNo" Type="nvarchar" MaxLength="50" />
+    <Property Name="BillDate" Type="datetime" />
+    <Property Name="ItemName" Type="nvarchar" MaxLength="150" />
+    <Property Name="QTY" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="Units" Type="nvarchar" MaxLength="50" />
+    <Property Name="Rate" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="GSTP" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="GSTMAT" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="DisPer" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="Grands" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="EntryBy" Type="nvarchar" MaxLength="50" />
+    <Property Name="EDate" Type="datetime" />
+    <Property Name="ITEMID" Type="bigint" />
+  </EntityType>
+  <EntityType Name="Pat_InvestList">
+    <Key>
+      <PropertyRef Name="LabSrNo" />
+    </Key>
+    <Property Name="LabSrNo" Type="bigint" Nullable="false" />
+    <Property Name="RegsID" Type="bigint" Nullable="false" />
+    <Property Name="PkgID" Type="int" />
+    <Property Name="PnlID" Type="int" />
+    <Property Name="TestID" Type="int" />
+    <Property Name="TestNames" Type="nvarchar(max)" />
+    <Property Name="TOrderNos" Type="int" />
+    <Property Name="Amount" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="DoctorID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ReferalDT">
+    <Key>
+      <PropertyRef Name="RefId" />
+    </Key>
+    <Property Name="RefId" Type="int" Nullable="false" />
+    <Property Name="Referal_Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="MobileNos" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Address" Type="nvarchar" MaxLength="50" />
+    <Property Name="ComP" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="Ref_Status" Type="bit" Nullable="false" />
+    <Property Name="RefType" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Specialization" Type="nvarchar" MaxLength="100" />
+    <Property Name="Degree" Type="nvarchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="ReferenceValuesDT">
+    <Key>
+      <PropertyRef Name="RefSRNO" />
+    </Key>
+    <Property Name="RefSRNO" Type="bigint" Nullable="false" />
+    <Property Name="CateID" Type="int" Nullable="false" />
+    <Property Name="TestID" Type="bigint" Nullable="false" />
+    <Property Name="TestParamID" Type="bigint" Nullable="false" />
+    <Property Name="Gender" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="MinimumAgeInDays" Type="int" />
+    <Property Name="MaxAgeIndays" Type="int" />
+    <Property Name="MinInYears" Type="int" />
+    <Property Name="MaxInYear" Type="int" />
+    <Property Name="LowerValue" Type="nvarchar" MaxLength="50" />
+    <Property Name="UpperValues" Type="nvarchar" MaxLength="50" />
+    <Property Name="InWords" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="TestDT">
+    <Key>
+      <PropertyRef Name="Test_ID" />
+    </Key>
+    <Property Name="Test_ID" Type="bigint" Nullable="false" />
+    <Property Name="Test_Name" Type="nvarchar" MaxLength="50" />
+    <Property Name="Test_Rate" Type="numeric" Precision="18" Scale="0" />
+    <Property Name="Group_ID" Type="int" />
+    <Property Name="Group_Name" Type="nvarchar" MaxLength="50" />
+    <Property Name="Created_By" Type="int" />
+    <Property Name="Edited_By" Type="int" />
+    <Property Name="Created_On" Type="datetime" />
+    <Property Name="Edited_On" Type="datetime" />
+    <Property Name="T_ShortName" Type="nvarchar" MaxLength="50" />
+    <Property Name="Method_Name" Type="nvarchar" MaxLength="50" />
+    <Property Name="Instruemnt" Type="nvarchar" MaxLength="250" />
+    <Property Name="Interpretation" Type="nvarchar" MaxLength="1000" />
+    <Property Name="Notes" Type="nvarchar" MaxLength="1000" />
+    <Property Name="Comments" Type="nvarchar" MaxLength="1000" />
+  </EntityType>
+  <EntityType Name="TestParameterDT">
+    <Key>
+      <PropertyRef Name="Test_P_ID" />
+    </Key>
+    <Property Name="Test_P_ID" Type="bigint" Nullable="false" />
+    <Property Name="GrpID" Type="int" />
+    <Property Name="TestID" Type="bigint" Nullable="false" />
+    <Property Name="GroupName" Type="nvarchar" MaxLength="50" />
+    <Property Name="TestName" Type="nvarchar" MaxLength="150" />
+    <Property Name="TestParam" Type="nvarchar" MaxLength="50" />
+    <Property Name="TSubParam" Type="nvarchar" MaxLength="50" />
+    <Property Name="InputType" Type="nvarchar" MaxLength="100" />
+    <Property Name="PGroupBy" Type="nvarchar" MaxLength="100" />
+    <Property Name="DefaultResult" Type="nvarchar" MaxLength="100" />
+    <Property Name="PreResult" Type="nvarchar" MaxLength="50" />
+    <Property Name="Lower_Ref" Type="nvarchar" MaxLength="50" />
+    <Property Name="Higher_Ref" Type="nvarchar" MaxLength="50" />
+    <Property Name="Units" Type="nvarchar" MaxLength="50" />
+    <Property Name="Gender" Type="nvarchar" MaxLength="50" />
+    <Property Name="Min_Age" Type="int" />
+    <Property Name="MinAge_unit" Type="nvarchar" MaxLength="50" />
+    <Property Name="Max_Age" Type="int" />
+    <Property Name="Max_Age_unit" Type="nvarchar" MaxLength="50" />
+    <Property Name="Remarks" Type="nvarchar(max)" />
+    <Property Name="Inorder" Type="int" />
+    <Property Name="SbInorder" Type="int" />
+    <Property Name="ShSTS" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="TestResultDT">
+    <Key>
+      <PropertyRef Name="RecordSRNo" />
+    </Key>
+    <Property Name="RecordSRNo" Type="bigint" Nullable="false" />
+    <Property Name="RAssignID" Type="bigint" Nullable="false" />
+    <Property Name="TDate" Type="datetime" />
+    <Property Name="SDate" Type="datetime" />
+    <Property Name="PatientID" Type="bigint" />
+    <Property Name="DrID" Type="int" />
+    <Property Name="GRPID" Type="int" />
+    <Property Name="TestID" Type="int" />
+    <Property Name="ParamID" Type="int" />
+    <Property Name="TSrNo" Type="int" />
+    <Property Name="GroupName" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="TestName" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="Parm_Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="Sub_Param" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="Ref_Min" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="Ref_Max" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="InputResult" Type="nvarchar(max)" />
+    <Property Name="InputRemarks" Type="nvarchar(max)" />
+    <Property Name="TestRemarks" Type="nvarchar(max)" />
+    <Property Name="LabTechnician" Type="nvarchar(max)" />
+    <Property Name="TestedIn" Type="nvarchar(max)" />
+    <Property Name="ReportRemarks" Type="nvarchar(max)" />
+    <Property Name="TUnit" Type="nvarchar" MaxLength="50" />
+    <Property Name="Minref" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="MAXref" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="CMin_ref" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="CMAX_ref" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="CompValues" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="GSRNO" Type="int" />
+    <Property Name="TeSRNO" Type="int" />
+    <Property Name="PSRNO" Type="int" />
+    <Property Name="Printsts" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="TestsPackagesDT">
+    <Key>
+      <PropertyRef Name="PSRNO" />
+    </Key>
+    <Property Name="PSRNO" Type="int" Nullable="false" />
+    <Property Name="PackageID" Type="int" Nullable="false" />
+    <Property Name="PackageName" Type="nvarchar" MaxLength="250" />
+    <Property Name="PanelID" Type="int" />
+    <Property Name="TestID" Type="int" />
+    <Property Name="Fees" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="Panel_Test_Namelist" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="TestsPanels">
+    <Key>
+      <PropertyRef Name="PanelID" />
+    </Key>
+    <Property Name="PanelID" Type="int" Nullable="false" />
+    <Property Name="PanelName" Type="nvarchar" MaxLength="250" />
+    <Property Name="CategoryID" Type="int" />
+    <Property Name="TestNames" Type="nvarchar(max)" />
+    <Property Name="Fees" Type="decimal" Precision="18" Scale="2" />
+  </EntityType>
+  <EntityType Name="UnitDT">
+    <Key>
+      <PropertyRef Name="Unit_ID" />
+    </Key>
+    <Property Name="Unit_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Unit_Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="User_DT">
+    <Key>
+      <PropertyRef Name="LoginID" />
+    </Key>
+    <Property Name="User_Id" Type="int" Nullable="false" />
+    <Property Name="User_Name" Type="nvarchar" MaxLength="50" />
+    <Property Name="Old_Password" Type="nvarchar" MaxLength="50" />
+    <Property Name="New_Password" Type="nvarchar" MaxLength="50" />
+    <Property Name="Re_Password" Type="nvarchar" MaxLength="50" />
+    <Property Name="Created_By" Type="int" />
+    <Property Name="Edited_By" Type="int" />
+    <Property Name="Created_On" Type="datetime" />
+    <Property Name="Edited_On" Type="datetime" />
+    <Property Name="LoginID" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Modules" Type="nvarchar" MaxLength="50" />
+    <Property Name="DoctorsName" Type="nvarchar" MaxLength="50" />
+    <Property Name="MobileNo" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'HMS_OnWebs.dbo.UserRoles' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="UserRoles">
+    <Key>
+      <PropertyRef Name="RID" />
+    </Key>
+    <Property Name="RID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="LoginID" Type="nvarchar" MaxLength="50" />
+    <Property Name="Modules" Type="nvarchar" MaxLength="50" />
+    <Property Name="AddRecord" Type="nvarchar" MaxLength="50" />
+    <Property Name="EditRecord" Type="nvarchar" MaxLength="50" />
+    <Property Name="DeleteRecord" Type="nvarchar" MaxLength="50" />
+    <Property Name="DelPass" Type="nvarchar" MaxLength="50" />
+    <Property Name="EditPass" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="VendorDT">
+    <Key>
+      <PropertyRef Name="VID" />
+    </Key>
+    <Property Name="VID" Type="int" Nullable="false" />
+    <Property Name="VendorName" Type="nvarchar" MaxLength="150" />
+    <Property Name="GSTIN" Type="nvarchar" MaxLength="50" />
+    <Property Name="Address" Type="nvarchar" MaxLength="550" />
+    <Property Name="StateName" Type="nvarchar" MaxLength="150" />
+    <Property Name="StateCode" Type="nvarchar" MaxLength="50" />
+    <Property Name="Mobile" Type="nvarchar" MaxLength="50" />
+    <Property Name="EmailId" Type="nvarchar" MaxLength="50" />
+    <Property Name="OpBal" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="HID" Type="int" />
+    <Property Name="SyncSts" Type="bit" />
+  </EntityType>
+  <Association Name="FK_AccHeadID">
+    <End Role="AccHeadDT" Type="Self.AccHeadDT" Multiplicity="0..1" />
+    <End Role="AccSubHeadsDT" Type="Self.AccSubHeadsDT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AccHeadDT">
+        <PropertyRef Name="AHID" />
+      </Principal>
+      <Dependent Role="AccSubHeadsDT">
+        <PropertyRef Name="AccID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ExpAccHeadID">
+    <End Role="AccSubHeadsDT" Type="Self.AccSubHeadsDT" Multiplicity="1" />
+    <End Role="ExPDT" Type="Self.ExPDT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AccSubHeadsDT">
+        <PropertyRef Name="HeadID" />
+      </Principal>
+      <Dependent Role="ExPDT">
+        <PropertyRef Name="AccountID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PatRegsID">
+    <End Role="Assigned_test_DT" Type="Self.Assigned_test_DT" Multiplicity="1" />
+    <End Role="Pat_InvestList" Type="Self.Pat_InvestList" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Assigned_test_DT">
+        <PropertyRef Name="AssignID" />
+        <PropertyRef Name="DoctorID" />
+      </Principal>
+      <Dependent Role="Pat_InvestList">
+        <PropertyRef Name="RegsID" />
+        <PropertyRef Name="DoctorID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PItemID">
+    <End Role="LabITEMDT" Type="Self.LabITEMDT" Multiplicity="0..1" />
+    <End Role="LabPurchaseDT" Type="Self.LabPurchaseDT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LabITEMDT">
+        <PropertyRef Name="ITEMID" />
+      </Principal>
+      <Dependent Role="LabPurchaseDT">
+        <PropertyRef Name="ITEMID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ReferenceValuesDTGroupID">
+    <End Role="GroupDT" Type="Self.GroupDT" Multiplicity="1" />
+    <End Role="ReferenceValuesDT" Type="Self.ReferenceValuesDT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="GroupDT">
+        <PropertyRef Name="Group_ID" />
+      </Principal>
+      <Dependent Role="ReferenceValuesDT">
+        <PropertyRef Name="CateID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ReferenceValuesDTParameterID">
+    <End Role="TestParameterDT" Type="Self.TestParameterDT" Multiplicity="1" />
+    <End Role="ReferenceValuesDT" Type="Self.ReferenceValuesDT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TestParameterDT">
+        <PropertyRef Name="Test_P_ID" />
+      </Principal>
+      <Dependent Role="ReferenceValuesDT">
+        <PropertyRef Name="TestParamID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RefTestID">
+    <End Role="TestDT" Type="Self.TestDT" Multiplicity="1" />
+    <End Role="ReferenceValuesDT" Type="Self.ReferenceValuesDT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TestDT">
+        <PropertyRef Name="Test_ID" />
+      </Principal>
+      <Dependent Role="ReferenceValuesDT">
+        <PropertyRef Name="TestID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TestGroupID">
+    <End Role="GroupDT" Type="Self.GroupDT" Multiplicity="0..1" />
+    <End Role="TestDT" Type="Self.TestDT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="GroupDT">
+        <PropertyRef Name="Group_ID" />
+      </Principal>
+      <Dependent Role="TestDT">
+        <PropertyRef Name="Group_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TestID">
+    <End Role="TestDT" Type="Self.TestDT" Multiplicity="1" />
+    <End Role="TestParameterDT" Type="Self.TestParameterDT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TestDT">
+        <PropertyRef Name="Test_ID" />
+      </Principal>
+      <Dependent Role="TestParameterDT">
+        <PropertyRef Name="TestID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TestParametersGroupID">
+    <End Role="GroupDT" Type="Self.GroupDT" Multiplicity="0..1" />
+    <End Role="TestParameterDT" Type="Self.TestParameterDT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="GroupDT">
+        <PropertyRef Name="Group_ID" />
+      </Principal>
+      <Dependent Role="TestParameterDT">
+        <PropertyRef Name="GrpID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_VendorID">
+    <End Role="VendorDT" Type="Self.VendorDT" Multiplicity="1" />
+    <End Role="LabPurchaseDT" Type="Self.LabPurchaseDT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="VendorDT">
+        <PropertyRef Name="VID" />
+      </Principal>
+      <Dependent Role="LabPurchaseDT">
+        <PropertyRef Name="VendorID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="SP_Search" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="OPERATION" Type="nvarchar" Mode="In" />
+    <Parameter Name="CONDI1" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="CONDI2" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="CONDI3" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="CONDI4" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="CONDI5" Type="nvarchar(max)" Mode="In" />
+  </Function>
+  <Function Name="SP_SEARCHUSERSROLES" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="LOGINID" Type="nvarchar" Mode="In" />
+  </Function>
+  <EntityContainer Name="HMS_OnWebsModelStoreContainer">
+    <EntitySet Name="AccHeadDT" EntityType="Self.AccHeadDT" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AccSubHeadsDT" EntityType="Self.AccSubHeadsDT" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Assigned_test_DT" EntityType="Self.Assigned_test_DT" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Customers" EntityType="Self.Customers" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ExPDT" EntityType="Self.ExPDT" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="GroupDT" EntityType="Self.GroupDT" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="LabCompany" EntityType="Self.LabCompany" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="LabITEMDT" EntityType="Self.LabITEMDT" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Pat_InvestList" EntityType="Self.Pat_InvestList" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ReferalDT" EntityType="Self.ReferalDT" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ReferenceValuesDT" EntityType="Self.ReferenceValuesDT" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TestDT" EntityType="Self.TestDT" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TestParameterDT" EntityType="Self.TestParameterDT" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TestResultDT" EntityType="Self.TestResultDT" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TestsPackagesDT" EntityType="Self.TestsPackagesDT" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TestsPanels" EntityType="Self.TestsPanels" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UnitDT" EntityType="Self.UnitDT" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="User_DT" EntityType="Self.User_DT" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="VendorDT" EntityType="Self.VendorDT" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="LabPurchaseDT" EntityType="Self.LabPurchaseDT" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [LabPurchaseDT].[PurchId] AS [PurchId], 
+    [LabPurchaseDT].[HID] AS [HID], 
+    [LabPurchaseDT].[VendorID] AS [VendorID], 
+    [LabPurchaseDT].[BillNo] AS [BillNo], 
+    [LabPurchaseDT].[BillDate] AS [BillDate], 
+    [LabPurchaseDT].[ItemName] AS [ItemName], 
+    [LabPurchaseDT].[QTY] AS [QTY], 
+    [LabPurchaseDT].[Units] AS [Units], 
+    [LabPurchaseDT].[Rate] AS [Rate], 
+    [LabPurchaseDT].[GSTP] AS [GSTP], 
+    [LabPurchaseDT].[GSTMAT] AS [GSTMAT], 
+    [LabPurchaseDT].[DisPer] AS [DisPer], 
+    [LabPurchaseDT].[Grands] AS [Grands], 
+    [LabPurchaseDT].[EntryBy] AS [EntryBy], 
+    [LabPurchaseDT].[EDate] AS [EDate], 
+    [LabPurchaseDT].[ITEMID] AS [ITEMID]
+    FROM [dbo].[LabPurchaseDT] AS [LabPurchaseDT]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="UserRoles" EntityType="Self.UserRoles" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [UserRoles].[RID] AS [RID], 
+    [UserRoles].[LoginID] AS [LoginID], 
+    [UserRoles].[Modules] AS [Modules], 
+    [UserRoles].[AddRecord] AS [AddRecord], 
+    [UserRoles].[EditRecord] AS [EditRecord], 
+    [UserRoles].[DeleteRecord] AS [DeleteRecord], 
+    [UserRoles].[DelPass] AS [DelPass], 
+    [UserRoles].[EditPass] AS [EditPass]
+    FROM [dbo].[UserRoles] AS [UserRoles]</DefiningQuery>
+    </EntitySet>
+    <AssociationSet Name="FK_AccHeadID" Association="Self.FK_AccHeadID">
+      <End Role="AccHeadDT" EntitySet="AccHeadDT" />
+      <End Role="AccSubHeadsDT" EntitySet="AccSubHeadsDT" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ExpAccHeadID" Association="Self.FK_ExpAccHeadID">
+      <End Role="AccSubHeadsDT" EntitySet="AccSubHeadsDT" />
+      <End Role="ExPDT" EntitySet="ExPDT" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PatRegsID" Association="Self.FK_PatRegsID">
+      <End Role="Assigned_test_DT" EntitySet="Assigned_test_DT" />
+      <End Role="Pat_InvestList" EntitySet="Pat_InvestList" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PItemID" Association="Self.FK_PItemID">
+      <End Role="LabITEMDT" EntitySet="LabITEMDT" />
+      <End Role="LabPurchaseDT" EntitySet="LabPurchaseDT" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ReferenceValuesDTGroupID" Association="Self.FK_ReferenceValuesDTGroupID">
+      <End Role="GroupDT" EntitySet="GroupDT" />
+      <End Role="ReferenceValuesDT" EntitySet="ReferenceValuesDT" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ReferenceValuesDTParameterID" Association="Self.FK_ReferenceValuesDTParameterID">
+      <End Role="TestParameterDT" EntitySet="TestParameterDT" />
+      <End Role="ReferenceValuesDT" EntitySet="ReferenceValuesDT" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RefTestID" Association="Self.FK_RefTestID">
+      <End Role="TestDT" EntitySet="TestDT" />
+      <End Role="ReferenceValuesDT" EntitySet="ReferenceValuesDT" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TestGroupID" Association="Self.FK_TestGroupID">
+      <End Role="GroupDT" EntitySet="GroupDT" />
+      <End Role="TestDT" EntitySet="TestDT" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TestID" Association="Self.FK_TestID">
+      <End Role="TestDT" EntitySet="TestDT" />
+      <End Role="TestParameterDT" EntitySet="TestParameterDT" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TestParametersGroupID" Association="Self.FK_TestParametersGroupID">
+      <End Role="GroupDT" EntitySet="GroupDT" />
+      <End Role="TestParameterDT" EntitySet="TestParameterDT" />
+    </AssociationSet>
+    <AssociationSet Name="FK_VendorID" Association="Self.FK_VendorID">
+      <End Role="VendorDT" EntitySet="VendorDT" />
+      <End Role="LabPurchaseDT" EntitySet="LabPurchaseDT" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

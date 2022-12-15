@@ -1,0 +1,112 @@
+﻿@model IEnumerable<HospitalManagementSystem.LabPurchaseDT>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_MainPageLayout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.BillNo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BillDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ItemName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.QTY)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Units)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Rate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.GSTP)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.GSTMAT)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DisPer)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Grands)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EntryBy)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LabITEMDT.ItemName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.VendorDT.VendorName)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.BillNo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BillDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ItemName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.QTY)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Units)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Rate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.GSTP)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.GSTMAT)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DisPer)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Grands)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EntryBy)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LabITEMDT.ItemName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.VendorDT.VendorName)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+        </td>
+    </tr>
+}
+
+</table>

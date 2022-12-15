@@ -1,0 +1,289 @@
+﻿@model IEnumerable<HospitalManagementSystem.ReferenceValuesDT>
+
+@{
+    ViewBag.Title = "AddParameterNormalValues";
+    Layout = "~/Views/Shared/_MainPageLayout.cshtml";
+}
+
+<h2>AddParameterNormalValues</h2>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Add Center Detail</title>
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript" src="http://ajax.cdnjs.com/ajax/libs/json2/20110223/json2.js"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        table, td, th {
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th, td {
+            padding: 10px;
+        }
+
+        th {
+            background-color: yellow;
+        }
+    </style>
+</head>
+<body>
+    <div class="page-body">
+        <!-- Container-fluid starts-->
+        <div class="container-fluid">
+            <div class="page-body-wrapper">
+                <div class="container-fluid">
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
+
+                    <div class="form-horizontal">
+                        <div class="row">
+                            <div class="col-md-2">
+                                @Html.ActionLink("Test List", "Index", new object { }, new { @class = "btn btn-outline-primary fa fa-list" })
+                            </div>
+                            <div class="col-md-2">
+                                @Html.ActionLink("New Test", "Create", new object { }, new { @class = "btn btn-outline-primary fa fa-plus-circless" })
+                            </div>
+
+                            <div class="col-md-2">
+                                <a href="#" class="btn btn-outline-primary fa fa-plus-circless" data-toggle="modal" data-target="#AddModal">Test Panel</a>
+                            </div>
+
+                            <div class="col-md-2">
+                                <a href="#" class="btn btn-outline-primary fa fa-plus-circless" data-toggle="modal" data-target="#AddModal">Add Package</a>
+                            </div>
+                            <div class="col-md-2">
+                                <a href="#" class="btn btn-outline-primary fa fa-plus-circless" data-toggle="modal" data-target="#AddModal">Add Unit</a>
+                            </div>
+
+                        </div>
+
+
+                        <hr />
+                        <div class="row">
+                            <div class="col-md-2">
+                                <div class="form-group">
+                                    @Html.Label("Category", htmlAttributes: new { @class = "control-label col-md-4" })
+                                    <div class="col-md-10">
+                                        <h4>@ViewBag.CategoryName</h4>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    @Html.Label("Tset Name", htmlAttributes: new { @class = "control-label col-md-4" })
+                                    <div class="col-md-10">
+                                        <h4>@ViewBag.TestName</h4>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    @Html.Label("Parameter", htmlAttributes: new { @class = "control-label col-md-4" })
+                                    <div class="col-md-10">
+                                        <h4>@ViewBag.ParameterName</h4>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-1">
+                                <div class="form-group">
+                                    <div class="col-md-10">
+                                        @*@Html.EditorFor(model => model.GrpID, new { htmlAttributes = new { @class = "form-control", @style = "display: none", @readonly = "readonly" } })*@
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-1">
+                                <div class="form-group">
+                                    <div class="col-md-10">
+                                        @*@Html.EditorFor(model => model.TestID, new { htmlAttributes = new { @class = "form-control", @style = "display: none", @readonly = "readonly" } })*@
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <hr />
+                        <table id="tblCustomers" class="table" cellpadding="0" cellspacing="0">
+                            <thead>
+                                <tr>
+                                    <th style="width:150px">* Gender</th>
+                                    <th style="width:100px">* Minimum Age(Days)</th>
+                                    <th style="width:100px">* Maximum Age(Days)</th>
+                                    <th style="width:150px">* Lower Value</th>
+                                    <th style="width:150px">* Upper Value</th>
+                                    <th style="width:150px">* In Words</th>
+                                    <th>Action ?</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @*@foreach (TestParameterDT customer in Model)
+                {*@
+                                @*<tr>
+                    <td style="width:150px">*Order</td>
+                    <td style="width:150px">Parameter</td>
+                    <td style="width:150px">Unit</td>
+                    <td style="width:150px">Input Type</td>
+                    <td style="width:150px">Default Value</td>
+                    <td><input type="button" value="-" onclick="Remove(this)" class="btn btn-danger" /></td>
+                </tr>*@
+                                @*}*@
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <td>
+                                        @Html.DropDownList("Gender", new List<SelectListItem>  {
+                                           //new SelectListItem { Text = " ", Value = "0" },
+                                           new SelectListItem { Text = "Any", Value = "0" },
+                                           new SelectListItem { Text = "Male", Value = "1" },
+                                           new SelectListItem { Text = "Female", Value = "1" } },
+                                           new { @class = "form-control form-select-sm form-select" })
+
+                                    </td>
+                                    <td>
+                                        <input type="text" id="txtminimumage" class="form-control" />
+                                    </td>
+                                    <td>
+                                        <input type="text" id="txtmaxages" class="form-control" />
+                                    </td>
+                                    <td>
+                                        <input type="text" id="txtlowervalues" class="form-control" />
+                                    </td>
+                                    <td>
+                                        <input type="text" id="txtuppervalues" class="form-control" />
+                                    </td>
+                                    <td>
+                                        <input type="text" id="txtinwords" class="form-control" />
+                                    </td>
+                                    <td><input type="button" id="btnAdd" value="Add More..." class="btn btn-outline-primary fa fa-plus-circless" style="font-size:20px" /></td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-10">
+                                <input type="submit" value="Save" id="btnSave" class="btn btn-primary" />
+                            </div>
+                        </div>
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    </div>
+                    }
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script type="text/javascript">
+        $("body").on("click", "#btnAdd", function () {
+            //Reference the Name and Country TextBoxes.
+            var Gender = $("#Gender option:selected")
+            var txtminimumage = $("#txtminimumage");
+            var txtmaxages = $("#txtmaxages");
+            var txtlowervalues = $("#txtlowervalues");
+            var txtuppervalues = $("#txtuppervalues");
+            var txtinwords = $("#txtinwords");
+
+
+            //Get the reference of the Table's TBODY element.
+            var tBody = $("#tblCustomers > TBODY")[0];
+
+            //Add Row.
+            var row = tBody.insertRow(-1);
+
+            //Add Gender cell.
+            var cell = $(row.insertCell(-1));
+            cell.html(Gender.text());
+
+            //Add Minimum Age cell.
+            cell = $(row.insertCell(-1));
+            cell.html(txtminimumage.val());
+
+            //AddMaximum Age  cell.
+            cell = $(row.insertCell(-1));
+            //cell.html(txtunits.val());
+            cell.html(txtmaxages.val());
+
+            //Add Lower VAlues cell.
+            cell = $(row.insertCell(-1));
+            cell.html(txtlowervalues.val());
+
+            //Add Upper Values Values  cell.
+            cell = $(row.insertCell(-1));
+            cell.html(txtuppervalues.val());
+
+            //Add In Words cell.
+            cell = $(row.insertCell(-1));
+            cell.html(txtinwords.val());
+
+
+            //Add Button cell.
+            cell = $(row.insertCell(-1));
+            var btnRemove = $("<input />");
+            btnRemove.attr("type", "button");
+            btnRemove.attr("class", "btn btn-outline-danger fa fa-trash-o")
+            btnRemove.attr("onclick", "Remove(this);");
+            btnRemove.val("Remove");
+            cell.append(btnRemove);
+
+
+           
+            txtminimumage.val("");
+            txtmaxages.val("");
+            txtlowervalues.val("")
+            txtuppervalues.val("");
+            txtinwords.val("");
+            Gender.cell("");
+            //var rowCount = $("#tblCustomers tr").length;
+        });
+
+        function Remove(button) {
+            //Determine the reference of the Row using the Button.
+            var row = $(button).closest("TR");
+            var name = $("TD", row).eq(0).html();
+            if (confirm("Do you want to delete: " + name)) {
+                //Get the reference of the Table.
+                var table = $("#tblCustomers")[0];
+
+                //Delete the Table row using it's Index.
+                table.deleteRow(row[0].rowIndex);
+            }
+        };
+
+        $("body").on("click", "#btnSave", function () {
+            //Loop through the Table rows and build a JSON array.
+            var ReferenceValuesDTs = new Array();
+            $("#tblCustomers TBODY TR").each(function () {
+                var row = $(this);
+                var NewParameters = {};
+                NewParameters.Gender = row.find("TD").eq(0).html();
+                NewParameters.MinimumAgeInDays = row.find("TD").eq(1).html();
+                NewParameters.MaxAgeIndays = row.find("TD").eq(2).html();
+                NewParameters.LowerValue = row.find("TD").eq(3).html();
+                NewParameters.UpperValues = row.find("TD").eq(4).html();
+                NewParameters.InWords = row.find("TD").eq(5).html();
+                ReferenceValuesDTs.push(NewParameters);
+            });
+
+            //Send the JSON array to Controller using AJAX.
+            $.ajax({
+                type: "POST",
+                url: "/MyTestList/AddParameterNormalValues",
+                data: JSON.stringify(ReferenceValuesDTs),
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (r) {
+                    //alert(r + " record(s) inserted.");
+                }
+            });
+        });
+    </script>
+</body>
+</html>

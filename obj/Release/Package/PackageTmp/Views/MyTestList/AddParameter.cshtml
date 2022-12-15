@@ -1,0 +1,546 @@
+﻿@model HospitalManagementSystem.Models.TestParametsrsModels
+
+@{
+    ViewBag.Title = "AddParameter";
+    Layout = "~/Views/Shared/_MainPageLayout.cshtml";
+}
+
+<h2>AddParameter</h2>
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Add Center Detail</title>
+    @*<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>*@
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+
+    <script type="text/javascript" src="http://ajax.cdnjs.com/ajax/libs/json2/20110223/json2.js"></script>
+
+</head>
+<body>
+    <div class="page-body">
+        <!-- Container-fluid starts-->
+        <div class="container-fluid">
+            <div class="page-body-wrapper">
+                <div class="container-fluid">
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
+
+                        <div class="form-horizontal">
+                            <h4>TestParametsrsModels</h4>
+                            <hr />
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.TestName, "* Test Name", htmlAttributes: new { @class = "control-label col-md-4" })
+                                        <div class="col-md-10">
+                                            @Html.EditorFor(model => model.TestName, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.ValidationMessageFor(model => model.TestName, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.GroupName, "* Category Name", htmlAttributes: new { @class = "control-label col-md-4" })
+                                        <div class="col-md-10">
+                                            @Html.EditorFor(model => model.GroupName, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.ValidationMessageFor(model => model.GroupName, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+
+                                </div>
+
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-1">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.Inorder, "Order", htmlAttributes: new { @class = "control-label col-md-1" })
+                                        <div class="col-md-10">
+                                            @Html.EditorFor(model => model.Inorder, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.ValidationMessageFor(model => model.Inorder, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.TestParam, "* Parameter Name", htmlAttributes: new { @class = "control-label col-md-4" })
+                                        <div class="col-md-10">
+                                            @Html.EditorFor(model => model.TestParam, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.ValidationMessageFor(model => model.TestParam, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.Units, "Unit", htmlAttributes: new { @class = "control-label col-md-2" })
+                                        <div class="col-md-10">
+                                            @Html.EditorFor(model => model.Units, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.ValidationMessageFor(model => model.Units, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.InputType, "Input Type", htmlAttributes: new { @class = "control-label col-md-3" })
+                                        <div class="col-md-10">
+                                            @Html.EditorFor(model => model.InputType, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.ValidationMessageFor(model => model.InputType, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.DefaultResult, "Default", htmlAttributes: new { @class = "control-label col-md-2" })
+                                        <div class="col-md-10">
+                                            @Html.EditorFor(model => model.DefaultResult, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.ValidationMessageFor(model => model.DefaultResult, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+
+                            <table id="tblCustomers" class="table" cellpadding="0" cellspacing="0">
+                                <thead>
+                                    <tr>
+                                        <th style="width:150px">Parameter</th>
+                                        <th style="width:150px">Sub Parameter</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @*@foreach (Customer customer in Model)
+                                        {*@
+                                    @*<tr>
+                                            <td>Name</td>
+                                            <td>Country</td>
+                                            <td><input type="button" value="Remove" onclick="Remove(this)" /></td>
+                                        </tr>*@
+                                    @*}*@
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <td><input type="text" id="txtName" class="form-control" /></td>
+                                        <td><input type="text" id="txtCountry" class="form-control" /></td>
+                                        <td><input type="button" id="btnAdd" value="Add" class="btn-primary" /></td>
+                                    </tr>
+                                </tfoot>
+                            </table>
+
+
+                            <div class="form-group">
+                                <div class="col-md-offset-2 col-md-10">
+                                    <input type="submit" value="Create" class="btn btn-default" />
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                        <input id="btnAdd" type="button" value="Add" onclick="AddTextBox()" />
+                        <br />
+                        <br />
+                        <div id="TextBoxContainer">
+                            <!--Textboxes will be added here -->
+                        </div>
+                        <br />
+                        <input type="submit" value="Submit" />
+                        <br />
+                        <br />
+
+                        <input type="button" value="Add New Item" onclick="addRow();" />
+                        <input type="button" value="Remove Item" onclick="RemoveRow();" />
+
+                        <table id="table1" border="1" width="100%">
+                            <tr>
+                                <td width="10%" bgcolor="#336666">HI </td>
+                                <td width="10%" bgcolor="#336666"> this </td>
+                                <td width="10%" bgcolor="#336666">is </td>
+                                <td width="10%" bgcolor="#336666"> 4</td>
+                                <td width="10%" bgcolor="#336666"> Remove</td>
+                            </tr>
+                        </table>
+
+
+
+
+
+                        <table id="emptbl">
+                            <tr>
+                                <th>Employee Name</th>
+                                <th>Phone</th>
+                                <th>Department</th>
+                                <th>Gender</th>
+                                <th>Remove</th>
+                            </tr>
+                            <tr>
+                                <td id="col0"><input type="text" name="empname[]" value="" /></td>
+                                <td id="col1"><input type="text" name="phone[]" value="" /></td>
+                                <td id="col2">
+                                    <select name="department[]" id="dept">
+                                        <option value="0">Select Department</option>
+                                        <option value="1">Sales</option>
+                                        <option value="2">IT</option>
+                                        <option value="3">Warehouse</option>
+                                    </select>
+                                </td>
+                                <td id="col3">
+                                    <input type="radio" name="gender[0]" value="male" />Male
+                                    <input type="radio" name="gender[1]" value="female" />Female
+                                </td>
+                                <td id="col4">
+                                    <input type="button" id="delPOIbutton" value="Delete" onclick="deleteRow(this)" />
+                                </td>
+                            </tr>
+                        </table>
+                        <table>
+                            <tr>
+                                <td><input type="button" value="Add Row" onclick="addRows()" /></td>
+                                <td><input type="button" value="Delete Row" onclick="deleteRows()" /></td>
+                                <td><input type="submit" value="Submit" /></td>
+                            </tr>
+                        </table>
+
+
+
+
+
+
+
+                        <div id="POItablediv">
+                            <input type="button" id="addPOIbutton" value="Add POIs" /><br /><br />
+                            <table id="POITable" border="1">
+                                <tr>
+                                    <td>Order</td>
+                                    <td>Latitude</td>
+                                    <td>Longitude</td>
+                                    <td>Gender</td>
+                                    <td>Delete?</td>
+                                    <td>Add Rows?</td>
+                                </tr>
+                                <tr>
+                                    <td><input size=10 type="text" id="OrderNo" value="1" /></td>
+                                    <td><input size=25 type="text" id="latbox" /></td>
+                                    <td><input size=25 type="text" id="lngbox" readonly="true" /></td>
+                                    <td>
+                                        <select name="department[]" id="dept">
+                                            <option value="0">Select Department</option>
+                                            <option value="1">Sales</option>
+                                            <option value="2">IT</option>
+                                            <option value="3">Warehouse</option>
+                                        </select>
+                                    </td>
+                                    <td><input type="button" id="delPOIbutton" value="Delete" onclick="deleteRow(this)" /></td>
+                                    <td><input type="button" id="addmorePOIbutton" value="Add More POIs" onclick="insRow()" /></td>
+                                </tr>
+                            </table>
+                        </div>
+
+
+
+
+                    }
+
+                    <div>
+                        @Html.ActionLink("Parameter List", "Index")
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script type="text/javascript">
+        function GetDynamicTextBox(value) {
+            var div = $("<div />");
+
+            var L1 = $("<h6>Order</h6>");
+            div.append(L1);
+
+            var textBox = $("<input />").attr("type", "textbox").attr("name", "DynamicTextBox");
+            textBox.val(value);
+            div.append(textBox);
+
+            var L2 = $("<h6>Parameter</h6>");
+            div.append(L2);
+            var textBox2 = $("<input />").attr("type", "textbox").attr("name", "DynamicTextBox2");
+            textBox2.val(value);
+            div.append(textBox2);
+
+            var L3 = $("<h6>Unit</h6>");
+            div.append(L3);
+            var textBox3 = $("<input />").attr("type", "textbox").attr("name", "DynamicTextBox3");
+            textBox3.val(value);
+            div.append(textBox3);
+
+            var button = $("<input />").attr("type", "button").attr("value", "Remove");
+            button.attr("onclick", "RemoveTextBox(this)");
+            div.append(button);
+
+            //var breaklines = $("<br />");
+
+            //div.append(breaklines);
+
+            return div;
+        }
+        function AddTextBox() {
+            var div = GetDynamicTextBox("");
+            /* $("#TextBoxContainer").append(div);*/
+            $("#TextBoxContainer").append(div);
+        }
+
+        function RemoveTextBox(button) {
+            $(button).parent().remove();
+        }
+
+        $(function () {
+            var values = eval('@Html.Raw(ViewBag.Values)');
+            if (values != null) {
+                $("#TextBoxContainer").html("");
+                $(values).each(function () {
+                    $("#TextBoxContainer").append(GetDynamicTextBox(this));
+                });
+            }
+        });
+    </script>
+    @if (ViewBag.Message != null)
+    {
+        <script type="text/javascript">
+            $(function () {
+                alert("@ViewBag.Message")
+            });
+        </script>
+    }
+
+
+
+    <script language="javascript" type="text/javascript">
+        var i = 1;
+        function addRow() {
+            var tbl = document.getElementById('table1');
+            var lastRow = tbl.rows.length;
+            var iteration = lastRow - 1;
+            var row = tbl.insertRow(lastRow);
+
+            var firstCell = row.insertCell(0);
+            var el = document.createElement('input');
+            el.type = 'text';
+            el.name = 'name_' + i;
+            el.id = 'name_' + i;
+            el.size = 20;
+            el.maxlength = 20;
+            firstCell.appendChild(el);
+
+
+            var SecondCell = row.insertCell(1);
+            var el = document.createElement('input');
+            el.type = 'text';
+            el.name = 'name_' + i;
+            el.id = 'name_' + i;
+            el.size = 20;
+            el.maxlength = 20;
+            SecondCell.appendChild(el);
+
+
+            var ThirdCells = row.insertCell(2);
+            var el = document.createElement('input');
+            el.type = 'text';
+            el.name = 'name_' + i;
+            el.id = 'name_' + i;
+            el.size = 20;
+            el.maxlength = 20;
+            ThirdCells.appendChild(el);
+
+
+            var FourthCells = row.insertCell(3);
+            var el = document.createElement('input');
+            el.type = 'text';
+            el.name = 'name_' + i;
+            el.id = 'name_' + i;
+            el.size = 20;
+            el.maxlength = 20;
+            FourthCells.appendChild(el);
+
+            var Btndelete = row.insertCell(4);
+            var el = document.createElement('input');
+            el.type = 'button';
+            el.value = 'Delete';
+            el.id = 'btn_' + i;
+            el.size = 20;
+            el.onclick = "RemoveRow(this)";
+            Btndelete.appendChild(el);
+
+
+            // alert(i);
+            i++;
+            frm.h.value = i;
+            //  alert(i);
+        }
+
+        function RemoveRow(row) {
+            var tbl = document.getElementById('table1');
+            var i = row.parentNode.parentNode.rowIndex;
+            document.getElementById('table1').deleteRow(i);
+
+        }
+    </script>
+
+
+
+
+
+    <script type="text/javascript">
+        function addRows() {
+            var table = document.getElementById('emptbl');
+            var rowCount = table.rows.length;
+            var cellCount = table.rows[0].cells.length;
+            var row = table.insertRow(rowCount);
+            for (var i = 0; i <= cellCount; i++) {
+                var cell = 'cell' + i;
+                cell = row.insertCell(i);
+                var copycel = document.getElementById('col' + i).innerHTML;
+                cell.innerHTML = copycel;
+                if (i == 3) {
+                    var radioinput = document.getElementById('col3').getElementsByTagName('input');
+                    for (var j = 0; j <= radioinput.length; j++) {
+                        if (radioinput[j].type == 'radio') {
+                            var rownum = rowCount;
+                            radioinput[j].name = 'gender[' + rownum + ']';
+                        }
+                    }
+                }
+
+
+
+            }
+        }
+        function deleteRows() {
+            var table = document.getElementById('emptbl');
+            var rowCount = table.rows.length;
+            if (rowCount > '2') {
+                var row = table.deleteRow(rowCount - 1);
+                rowCount--;
+            }
+            else {
+                alert('There should be atleast one row');
+            }
+        }
+    </script>
+
+
+    <script type="text/javascript">
+
+        function deleteRow(row) {
+            var i = row.parentNode.parentNode.rowIndex;
+            document.getElementById('POITable').deleteRow(i);
+        }
+
+
+        function insRow() {
+            console.log('hi');
+            var x = document.getElementById('POITable');
+            var new_row = x.rows[1].cloneNode(true);
+            var len = x.rows.length;
+            // new_row.cells[0].innerHTML = len;
+
+            var inp0 = new_row.cells[0].getElementsByTagName('input')[0];
+            inp0.id += len;
+            inp0.value = len;
+
+            var inp1 = new_row.cells[1].getElementsByTagName('input')[0];
+            inp1.id += len;
+            inp1.value = '';
+
+            var inp2 = new_row.cells[2].getElementsByTagName('input')[0];
+            inp2.id += len;
+            inp2.value = '';
+            x.appendChild(new_row);
+        }
+
+    </script>
+
+
+
+
+    <script type="text/javascript">
+        $("body").on("click", "#btnAdd", function () {
+            //Reference the Name and Country TextBoxes.
+            var txtName = $("#txtName");
+            var txtCountry = $("#txtCountry");
+
+            //Get the reference of the Table's TBODY element.
+            var tBody = $("#tblCustomers > TBODY")[0];
+
+            //Add Row.
+            var row = tBody.insertRow(-1);
+
+            //Add Name cell.
+            var cell = $(row.insertCell(-1));
+            cell.html(txtName.val());
+
+            //Add Country cell.
+            cell = $(row.insertCell(-1));
+            cell.html(txtCountry.val());
+
+            //Add Button cell.
+            cell = $(row.insertCell(-1));
+            var btnRemove = $("<input />");
+            btnRemove.attr("type", "button");
+            btnRemove.attr("onclick", "Remove(this);");
+            btnRemove.val("Remove");
+            cell.append(btnRemove);
+
+            //Clear the TextBoxes.
+            txtName.val("");
+            txtCountry.val("");
+        });
+
+        function Remove(button) {
+            //Determine the reference of the Row using the Button.
+            var row = $(button).closest("TR");
+            var name = $("TD", row).eq(0).html();
+            if (confirm("Do you want to delete: " + name)) {
+                //Get the reference of the Table.
+                var table = $("#tblCustomers")[0];
+
+                //Delete the Table row using it's Index.
+                table.deleteRow(row[0].rowIndex);
+            }
+        };
+
+        $("body").on("click", "#btnSave", function () {
+            //Loop through the Table rows and build a JSON array.
+            var customers = new Array();
+            $("#tblCustomers TBODY TR").each(function () {
+                var row = $(this);
+                var customer = {};
+                customer.Name = row.find("TD").eq(0).html();
+                customer.Country = row.find("TD").eq(1).html();
+                customers.push(customer);
+            });
+
+            //Send the JSON array to Controller using AJAX.
+            $.ajax({
+                type: "POST",
+                url: "/MyTestList/InsertCustomers",
+                data: JSON.stringify(customers),
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (r) {
+                    alert(r + " record(s) inserted.");
+                }
+            });
+        });
+    </script>
+</body>
+</html>

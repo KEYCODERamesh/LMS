@@ -1,0 +1,402 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>@Page.Title  My Laboratory</title>
+    @RenderSection("head", required: false)
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Bigdeal admin is super flexible, powerful, clean &amp; modern responsive bootstrap 4 admin template with unlimited possibilities.">
+    <meta name="keywords" content="admin template, Bigdeal admin template, dashboard template, flat admin template, responsive admin template, web app">
+    <meta name="author" content="pixelstrap">
+    <link rel="icon" href=@Url.Content("~/Content/assets/images/favicon/TejaLogo.jpeg") type="image/x-icon">
+    <link rel="shortcut icon" href=@Url.Content("~/Content/assets/images/favicon/TejaLogo.jpeg") type="image/x-icon">
+
+
+    <!-- Google font-->
+    <link href=@Url.Content("~/Content/assets/css.css") rel="stylesheet" />
+    <link href=@Url.Content("~/Content/assets/css-1.css") rel="stylesheet" />
+
+
+    <!-- Font Awesome-->
+    <link rel="stylesheet" href=@Url.Content("~/Content/assets/css/font-awesome.css")>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <!-- Flag icon-->
+    <link rel="stylesheet" href=@Url.Content("~/Content/assets/css/flag-icon.css")>
+
+    <!-- ico-font-->
+    <link rel="stylesheet" href=@Url.Content("~/Content/assets/css/icofont.css")>
+
+    <!-- Prism css-->
+    <link rel="stylesheet" href=@Url.Content("~/Content/assets/css/prism.css")>
+
+    <!-- Chartist css -->
+    <link rel="stylesheet" href=@Url.Content("~/Content/assets/css/chartist.css")>
+
+    <!-- vector map css -->
+    <link rel="stylesheet" href=@Url.Content("~/Content/assets/css/vector-map.css")>
+
+    <!-- Bootstrap css-->
+    <link rel="stylesheet" href=@Url.Content("~/Content/assets/css/bootstrap.css")>
+
+    <!-- App css-->
+    <link rel="stylesheet" href=@Url.Content("~/Content/assets/css/admin.css")>
+    <!-- modal i have added -->
+    <script src="~/Content/assets/js/jquery-3.3.1.min.js"></script>
+
+</head>
+<body>
+
+    <!-- page-wrapper Start-->
+    <div class="page-wrapper">
+
+        <!-- Page Header Start-->
+        <div class="page-main-header">
+            <div class="main-header-left">
+                <div class="logo-wrapper"><a href="/Home/Index"><img class="blur-up lazyloaded" src="~/Content/assets/images/dashboard/TejaLogo.jpeg" style="width:70px;height:70px" alt=""></a></div>
+            </div>
+
+            <div class="main-header-right ">
+                <div class="mobile-sidebar">
+                    <div class="media-body text-end switch-sm">
+                        <label class="switch">
+                            <input id="sidebar-toggle" type="checkbox" checked="checked"><span class="switch-state"></span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="nav-right col">
+                    <ul class="nav-menus">
+                        <li>
+                            <form class="form-inline search-form">
+
+                                @*<div class="form-group">
+                                    <input class="form-control-plaintext" type="search" placeholder="Search.."><span class="d-sm-none mobile-search"><i data-feather="search"></i></span>
+                                </div>*@
+
+                            </form>
+                        </li>
+                        <li class="onhover-dropdown">
+                            <a href="/Home/Index" class="txt-dark">Dashboard</a>
+
+                        </li>
+                        <li class="onhover-dropdown">
+                            <a href="/PatientRegistration/Pat_Registration_List" class="txt-dark">+Case</a>
+                            <ul class="language-dropdown onhover-show-div p-20">
+                                <li><a href="/PatientRegistration/Pat_Registration_List" data-lng="pt">Registration</a></li>
+                                <li><a href="/PatientRegistration/Pat_Registration" data-lng="pt">New Case</a></li>
+                            </ul>
+                        </li>
+
+
+                        <li class="onhover-dropdown">
+                            <a href="#" class="txt-dark">Case</a>
+                            <ul class="language-dropdown onhover-show-div p-20">
+                                <li><a href="/MyTestList/Index" data-lng="pt">All Cases</a></li>
+                                <li><a href="/MyTestList/Index" data-lng="pt">Patinets</a></li>
+                                <li><a href="javascript:void(0)" data-lng="pt">Doctor Dtails</a></li>
+                                <li><a href="javascript:void(0)" data-lng="pt">Agent Job</a></li>
+                                <li><a href="javascript:void(0)" data-lng="pt">Payment</a></li>
+                            </ul>
+                        </li>
+
+                        <li class="onhover-dropdown">
+                            <a href="#" class="txt-dark">Test</a>
+                            <ul class="language-dropdown onhover-show-div p-20">
+                                <li><a href="/MyTestList/Index" data-lng="pt">Add Unit</a></li>
+                                <li><a href="/MyTestList/Index" data-lng="pt">New Test</a></li>
+                                <li><a href="javascript:void(0)" data-lng="pt">Parameter</a></li>
+                                <li><a href="javascript:void(0)" data-lng="pt">Normal Values</a></li>
+                            </ul>
+                        </li>
+
+                        <li class="onhover-dropdown">
+                            <a href="/Referal/Index" class="txt-dark">Lab</a>
+                            <ul class="language-dropdown onhover-show-div p-20">
+                                <li><a href="/MyTestList/Index" data-lng="pt">Today Report</a></li>
+                                <li><a href="/MyTestList/Index" data-lng="pt">Search Report</a></li>
+                            </ul>
+
+                        </li>
+                        <li class="onhover-dropdown">
+                            <a href="/Referal/Index" class="txt-dark">Business</a>
+                            <ul class="language-dropdown onhover-show-div p-20">
+                                <li><a href="/MyTestList/Index" data-lng="pt">Daily Business</a></li>
+                                <li><a href="/MyTestList/Index" data-lng="pt">Due Report</a></li>
+                                <li><a href="/MyTestList/Index" data-lng="pt">Referral Business</a></li>
+                            </ul>
+
+                        </li>
+                        <li class="onhover-dropdown">
+                            <a href="#" class="txt-dark">Setup</a>
+                            <ul class="language-dropdown onhover-show-div p-20">
+                                <li><a href="/Home/AddCenterDetails" data-lng="pt">Center Detail</a></li>
+                                <li><a href="#" data-lng="pt">Rate List</a></li>
+                                <li><a href="/TestPanels/TestPanelList" data-lng="pt">Test Panels</a></li>
+                                <li><a href="#" data-lng="pt">Test Package</a></li>
+                                <li><a href="#" data-lng="pt">Test Database</a></li>
+                            </ul>
+                        </li>
+                        <li><a class="text-dark" href="#!" onclick="javascript:toggleFullScreen()"><i data-feather="maximize"></i></a></li>
+                        <li class="onhover-dropdown">
+                            <i data-feather="bell"></i><span class="badge badge-pill badge-primary pull-right notification-badge">1</span><span class="dot"></span>
+                            <ul class="notification-dropdown custom-scrollbar onhover-show-div p-0">
+                                <li>
+                                    <div class="media">
+                                        <div class="notification-icons bg-success me-3"><i data-feather="thumbs-up"></i></div>
+                                        <div class="media-body">
+                                            <h6 class="font-success">KeyCode Technology</h6>
+                                            <p class="mb-0"> Lab Smarat</p>
+                                        </div>
+                                    </div>
+                                </li>
+
+                                @*<li class="bg-light txt-dark"><a href="javascript:void(0)" data-original-title="" title="">All </a> notification</li>*@
+                            </ul>
+                        </li>
+                        <li><a href="javascript:void(0)"><i class="right_side_toggle" data-feather="message-square"></i><span class="dot"></span></a></li>
+                        <li class="onhover-dropdown">
+                            <div class="media align-items-center">
+                                <img class="align-self-center pull-right img-50 rounded-circle blur-up lazyloaded" src="~/Content/assets/images/dashboard/man.png" alt="header-user">
+                                <div class="dotted-animation"><span class="animate-circle"></span><span class="main-circle"></span></div>
+                            </div>
+                            <ul class="profile-dropdown onhover-show-div p-20 profile-dropdown-hover">
+                                <li><a href="javascript:void(0)">Profile<span class="pull-right"><i data-feather="user"></i></span></a></li>
+                                <li><a href="/Home/LogOuts">Logout<span class="pull-right"><i data-feather="log-in"></i></span></a></li>
+
+                            </ul>
+                        </li>
+                    </ul>
+                    <div class="d-lg-none mobile-toggle pull-right"><i data-feather="more-horizontal"></i></div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Page Header Ends -->
+        <!-- Page Body Start-->
+        <div class="page-body-wrapper">
+
+            <!-- Page Sidebar Start-->
+            <div class="page-sidebar">
+                <div class="sidebar custom-scrollbar">
+                    <div class="sidebar-user text-center">
+                        <div>
+                            <img class="img-60 rounded-circle lazyloaded blur-up" src="~/Content/assets/images/dashboard/man.png" alt="#">
+                        </div>
+                        <h6 class="mt-3 f-14">KEYCODE</h6>
+                        <p>LAB CENTER</p>
+                    </div>
+                    <ul class="sidebar-menu">
+                        <li><a class="sidebar-header" href="/Home/Index"><i data-feather="home"></i><span>Dashboard</span></a></li>
+                        <li>
+                            <a class="sidebar-header" href=""><i data-feather="settings"></i><span>Lab Settings</span><i class="fa fa-angle-right pull-right"></i></a>
+                            <ul class="sidebar-submenu">
+                                <li><a href="/Home/AddCenterDetails"><i class="fa fa-circle"></i>Center Detail</a></li>
+                                <li><a href="/TestGroup/ListGroups"><i class="fa fa-circle"></i>Test Category</a></li>
+                                <li><a href="/MyTestList/Index"><i class="fa fa-circle"></i>Test List</a></li>
+                                <li><a href="/TestPanels/TestPanelList"><i class="fa fa-circle"></i>Test Panels</a></li>
+                                <li><a href="/TestPackage/ViewPackageList"><i class="fa fa-circle"></i>Test Package</a></li>
+                                <li><a href="/Referal/ShowReferals"><i class="fa fa-circle"></i>Add Referrar</a></li>
+                                <li><a href="#"><i class="fa fa-circle"></i>Add Employee</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a class="sidebar-header" href="javascript:void(0)"><i data-feather="align-left"></i><span>Cases</span><i class="fa fa-angle-right pull-right"></i></a>
+                            <ul class="sidebar-submenu">
+                                <li><a href="/PatientRegistration/Pat_Registration_List"><i class="fa fa-circle"></i>Registration List</a></li>
+                                <li><a href="/PatientRegistration/Pat_Registration"><i class="fa fa-circle"></i>New Case</a></li>
+                                <li><a href="create-menu.html"><i class="fa fa-circle"></i>Test Report</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a class="sidebar-header" href="javascript:void(0)"><i data-feather="align-left"></i><span>Referrar Report</span><i class="fa fa-angle-right pull-right"></i></a>
+                            <ul class="sidebar-submenu">
+                                <li><a href="/PatientRegistration/Pat_Registration_List"><i class="fa fa-circle"></i>Registration List</a></li>
+                                <li><a href="/PatientRegistration/Pat_Registration"><i class="fa fa-circle"></i>New Case</a></li>
+                                <li><a href="create-menu.html"><i class="fa fa-circle"></i>Test Report</a></li>
+                            </ul>
+                        </li>
+
+                        <li>
+                            <a class="sidebar-header" href=""><i data-feather="users"></i><span>Inventory</span><i class="fa fa-angle-right pull-right"></i></a>
+                            <ul class="sidebar-submenu">
+                                <li><a href="/LabPurchaseDTs/Create"><i class="fa fa-circle"></i>Purchase Entry</a></li>
+                                <li><a href="category-sub.html"><i class="fa fa-circle"></i>Purchase Report</a></li>
+                                <li><a href="product-list.html"><i class="fa fa-circle"></i>Vendor Ledger</a></li>
+                                <li><a href="product-detail.html"><i class="fa fa-circle"></i>Stock Ledger</a></li>
+                                <li><a href="/StockEntry/ShowProducts"><i class="fa fa-circle"></i>Products</a></li>
+                                <li><a href="/StockEntry/ShowVendor"><i class="fa fa-circle"></i>Vendor/Party</a></li>
+                            </ul>
+                        </li>
+                        @*<li>
+            <a class="sidebar-header" href="javascript:void(0)"><i data-feather="box"></i> <span>Purchase</span><i class="fa fa-angle-right pull-right"></i></a>
+            <ul class="sidebar-submenu">
+                <li>
+                    <a href="javascript:void(0)">
+                        <i class="fa fa-circle"></i>
+                        <span>Physical</span> <i class="fa fa-angle-right pull-right"></i>
+                    </a>
+                    <ul class="sidebar-submenu">
+
+                    </ul>
+                </li>
+                <li>
+                    <a href="javascript:void(0)">
+                        <i class="fa fa-circle"></i>
+                        <span>Digital</span> <i class="fa fa-angle-right pull-right"></i>
+                    </a>
+                    <ul class="sidebar-submenu">
+                        <li><a href="category-digital.html"><i class="fa fa-circle"></i>Category</a></li>
+                        <li><a href="category-digitalsub.html"><i class="fa fa-circle"></i>Sub Category</a></li>
+                        <li><a href="product-listdigital.html"><i class="fa fa-circle"></i>Product List</a></li>
+                        <li><a href="add-digital-product.html"><i class="fa fa-circle"></i>Add Product</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </li>*@
+                        @*<li>
+            <a class="sidebar-header" href=""><i data-feather="dollar-sign"></i><span>Stock Out</span><i class="fa fa-angle-right pull-right"></i></a>
+            <ul class="sidebar-submenu">
+                <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                <li>@Html.ActionLink("Order", "Dashboard", "Home")</li>
+                <li><a href="Views/Home/Index.cshtml" )><i class="fa fa-circle"></i>Orders</a></li>
+                <li><a href="transactions.html"><i class="fa fa-circle"></i>Transactions</a></li>
+            </ul>
+        </li>*@
+
+                        <li>
+                            <a class="sidebar-header" href=""><i data-feather="chrome"></i><span>Accounts</span><i class="fa fa-angle-right pull-right"></i></a>
+                            <ul class="sidebar-submenu">
+                                <li><a href="/Accounts/AddNewHeads"><i class="fa fa-circle"></i>Account Head</a></li>
+                                <li><a href="/Accounts/AddAccountHeadsList"><i class="fa fa-circle"></i>Sub.Accounts</a></li>
+                                <li><a href="/Accounts/ExpenseEntry"><i class="fa fa-circle"></i>Expense</a></li>
+                                <li><a href="/Accounts/AddAccountHeadsList"><i class="fa fa-circle"></i>Ledger</a></li>
+                            </ul>
+                        </li>
+
+                        <li>
+                            <a class="sidebar-header" href=""><i data-feather="bar-chart"></i><span>Reports</span><i class="fa fa-angle-right pull-right"></i></a>
+                            <ul class="sidebar-submenu">
+                                <li><a href="/Home/Userslists"><i class="fa fa-circle"></i>User List</a></li>
+                                <li><a href="/Home/ShowUSersRoles"><i class="fa fa-circle"></i>User's Role</a></li>
+                            </ul>
+                        </li>
+
+
+                        <li>
+                            <a class="sidebar-header" href=""><i data-feather="user-plus"></i><span>Users</span><i class="fa fa-angle-right pull-right"></i></a>
+                            <ul class="sidebar-submenu">
+                                <li><a href="/Home/Userslists"><i class="fa fa-circle"></i>User List</a></li>
+                                <li><a href="/Home/ShowUSersRoles"><i class="fa fa-circle"></i>User's Role</a></li>
+                            </ul>
+                        </li>
+
+
+
+                        <li>
+                            <a class="sidebar-header" href="/Home/LogOuts"><i data-feather="log-in"></i><span>Log Out</span></a>
+                        </li>
+
+
+
+
+                    </ul>
+                </div>
+            </div>
+            <!-- Page Sidebar Ends-->
+
+            @RenderBody()
+
+            <!-- footer start-->
+            <footer class="footer">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-6 footer-copyright">
+                            <p class="mb-0">Copyright 2021 © KeyCode All rights reserved.</p>
+                        </div>
+                        <div class="col-md-6">
+                            <a href="http://keycodetech.com/"><p class="pull-right mb-0">Designed & Developed By KeyCode Technology<i class="fa fa-heart"></i></p></a>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+        </div>
+
+
+        @*latest jquery-- this script causing problem in autocomplete textbox search if remove dasborad click problem occurs>*@
+        @*<script src="~/Content/assets/js/jquery-3.3.1.min.js"></script>*@
+        @*<script src="~/Scripts/jquery-2.0.0.min.js"></script>*@
+        @*<script src="~/Scripts/jquery-1.10.2.min.js"></script>*@
+       
+        <!-- Bootstrap js
+    <script src="~/Content/assets/js/popper.min.js"></script>
+    <script src="~/Content/assets/js/bootstrap.js"></script>
+
+    <!-- feather icon js-->
+        <script src="~/Content/assets/js/icons/feather-icon/feather.min.js"></script>
+        <script src="~/Content/assets/js/icons/feather-icon/feather-icon.js"></script>
+
+        <!-- Sidebar jquery-->
+        <script src="~/Content/assets/js/sidebar-menu.js"></script>
+
+        <!--chartist js-->
+        <script src="~/Content/assets/js/chart/chartist/chartist.js"></script>
+
+
+        <!-- lazyload js-->
+        <script src="~/Content/assets/js/lazysizes.min.js"></script>
+
+        <!--copycode js-->
+        <script src="~/Content/assets/js/prism/prism.min.js"></script>
+        <script src="~/Content/assets/js/clipboard/clipboard.min.js"></script>
+        <script src="~/Content/assets/js/custom-card/custom-card.js"></script>
+
+        <!--counter js-->
+        <script src="~/Content/assets/js/counter/jquery.waypoints.min.js"></script>
+        <script src="~/Content/assets/js/counter/jquery.counterup.min.js"></script>
+        <script src="~/Content/assets/js/counter/counter-custom.js"></script>
+
+        <!--Customizer admin-->
+        <script src="~/Content/assets/js/admin-customizer.js"></script>
+
+        <!--map js-->
+        <script src="~/Content/assets/js/vector-map/jquery-jvectormap-2.0.2.min.js"></script>
+        <script src="~/Content/assets/js/vector-map/map/jquery-jvectormap-world-mill-en.js"></script>
+
+        <!--apex chart js-->
+        <script src="~/Content/assets/js/chart/apex-chart/apex-chart.js"></script>
+        <script src="~/Content/assets/js/chart/apex-chart/stock-prices.js"></script>
+
+        <!--chartjs js-->
+        <script src="~/Content/assets/js/chart/flot-chart/excanvas.js"></script>
+        <script src="~/Content/assets/js/chart/flot-chart/jquery.flot.js"></script>
+        <script src="~/Content/assets/js/chart/flot-chart/jquery.flot.time.js"></script>
+        <script src="~/Content/assets/js/chart/flot-chart/jquery.flot.categories.js"></script>
+        <script src="~/Content/assets/js/chart/flot-chart/jquery.flot.stack.js"></script>
+        <script src="~/Content/assets/js/chart/flot-chart/jquery.flot.pie.js"></script>
+        <!--dashboard custom js-->
+        <script src="~/Content/assets/js/dashboard/default.js"></script>
+
+        <!--right sidebar js-->
+        <script src="~/Content/assets/js/chat-menu.js"></script>
+
+        <!--height equal js-->
+        <script src="~/Content/assets/js/equal-height.js"></script>
+
+        <!-- lazyload js-->
+        <script src="~/Content/assets/js/lazysizes.min.js"></script>
+
+        <!--script admin-->
+        <script src="~/Content/assets/js/admin-script.js"></script>
+
+        <!--script admin-->
+        @*<script src="~/Content/assets/js/jquery-3.3.1.min.js"></script>*@
+        <script src="~/Scripts/bootstrap.min.js"></script>
+
+
+    </div>
+</body>
+</html>

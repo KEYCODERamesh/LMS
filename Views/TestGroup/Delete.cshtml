@@ -1,0 +1,50 @@
+﻿@model HospitalManagementSystem.GroupDT
+@{
+    ViewBag.Title = "Delete Group";
+    Layout = "~/Views/Shared/_MainPageLayout.cshtml";
+}
+
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Add Center Detail</title>
+    <link rel="stylesheet" href=@Url.Content("~/Content/themes/base/jquery-ui.css") type="text/css">
+    <script src=@Url.Content("~/Scripts/jquery-ui-1.13.2.js")></script>
+    <script src=@Url.Content("~/Scripts/jquery-ui-1.13.2.min.js")></script>
+</head>
+<body>
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+    <div class="page-body">
+        <!-- Container-fluid starts-->
+        <div class="container-fluid">
+            <div class="page-body-wrapper">
+                <br />
+                <h3>Are you sure you want to delete this?</h3>
+                <div>
+                    
+                    <hr />
+
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
+
+                        <div class="form-actions no-color">
+                            <input type="submit" value="Delete" class="btn btn-danger" /> |
+                            @Html.ActionLink("Back to List", "ListGroups")
+                        </div>
+                    }
+                </div>
+                <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+                <script src="~/Scripts/jquery.validate.min.js"></script>
+                <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+
+            </div>
+        </div>
+    </div>
+</body>
+</html>

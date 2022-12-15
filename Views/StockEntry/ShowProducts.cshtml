@@ -1,0 +1,467 @@
+﻿@using HospitalManagementSystem.Models
+@model IEnumerable<HospitalManagementSystem.Models.LabItems>
+
+@{
+    ViewBag.Title = "ShowVendor";
+    Layout = "~/Views/Shared/_MainPageLayout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Product List</title>
+    @*<script src="~/Scripts/jquery-1.10.2.min.js"></script>*@
+    @*<script src="~/Content/assets/js/jquery-3.3.1.min.js"></script>
+
+        <script src="~/Scripts/bootstrap.min.js"></script>*@
+    @*take care of ordering of above*@
+    <link href="~/Content/assets/css/bootstrap.min.css" rel="stylesheet" />
+
+
+
+    @*<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" />
+        <script type="text/javascript" src="//cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>*@
+</head>
+<body>
+    <div class="page-body">
+        <div class="container-fluid">
+            <div class="page-body-wrapper">
+                <div class="container-fluid">
+                    <br />
+                    <p>
+                        @*@Html.ActionLink("Add New Product", "AddProducts", new object { }, new { @class = "btn btn-warning" })
+            @Html.ActionLink("Add New Product", "AddProductsWithjquery", new object { }, new { @class = "btn btn-warning" })*@
+                        <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#AddModal">Add Product</a>
+                    </p>
+                    <br />
+
+
+
+                    <table class="table table-bordered table-sm" id="tblCustomers">
+                        <tr>
+                            <th>Action ?</th>
+
+                            <th>
+                                @Html.DisplayNameFor(model => model.ItemName)
+                            </th>
+                            <th>
+                                Opeining Stock
+                            </th>
+                            <th>
+                                Created On
+                            </th>
+                            <th>
+                                Created By
+                            </th>
+                            <th>
+                                ITEMID
+                            </th>
+                            @*<th></th>*@
+                        </tr>
+
+                        @foreach (var item in Model)
+                        {
+                            <tr id="row_@item.ITEMID">
+                                <td>
+                                    @*@Html.ActionLink("Edit", "EditProducts", new { id = item.ITEMID })*@
+                                    <a class="btn btn-primary" data-toggle="modal" data-target="#EditModal"
+                                       onclick="ConfirmEdit(['@item.ITEMID','@item.ItemName','@item.OPQTY'])"><i class="fa fa-edit"></i></a>
+                                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myProductDeleteModal" onclick="ConfirmDelete(@item.ITEMID)"> <i class="fa fa-trash"></i> </button>
+                                    @*<a class="btn btn-primary" onclick="GetDetails(@item.ITEMID)" data-toggle="modal" data-target="#EditModal" ><i class="fa fa-edit"></i> </a>*@
+
+                                </td>
+
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.ItemName)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.OPQTY)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.OnDate)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Createdby)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.ITEMID)
+                                </td>
+                                @*<td><a class="details" href="#" data-toggle="modal" data-target="#myModal">View</a></td>*@
+                                @*<td><a class="btn btn-warning" href="#" onclick="ConfirmDelete(@item.ITEMID)">Delete ?</a></td>*@
+                                @*<td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myProductDeleteModal" onclick="ConfirmDelete(@item.ITEMID)"> Delete </button></td>*@
+                                @*<td><a class="btn btn-warning" href="#" onclick="ConfirmDelete(@item.ITEMID)" data-toggle="modal" data-target="#myModal">Delete ?</a></td>*@
+                            </tr>
+                        }
+
+                    </table>
+
+                    <h3>Data Display In Web grid</h3>
+                    @{
+                        WebGrid webgrid = new WebGrid(source: Model, rowsPerPage: 5);
+                    }
+                    @*@MvcHtmlString.Create(webgrid.GetHtml(tableStyle: "table", htmlAttributes: new { @id = "webgrid" },
+        columns: webgrid.Columns(
+            webgrid.Column(header: "{Select}", format:@<text><input type="checkbox" id="chk" class="chkbox" /> </text>),
+           webgrid.Column("ItemName", "Item Name"),
+               webgrid.Column("OPQTY", "Opening Qunatity"),
+           webgrid.Column("OnDate", "Created On Date"),
+           webgrid.Column("Createdby", "Created by")
+               ) ).ToString().Replace("{ Select}", "<input type='checkbox' id='chkheader' class='chkbox' />"))*@
+
+
+       @MvcHtmlString.Create(webgrid.GetHtml(
+                   tableStyle: "table", 
+                  
+        columns: new[] {
+            webgrid.Column(header: "{Select}", format:@<text><input type="checkbox" id="chk" class="chkbox" /> </text>),
+           webgrid.Column("ItemName", "Item Name"),
+               webgrid.Column("OPQTY", "Opening Qunatity"),
+           webgrid.Column("OnDate", "Created On Date"),
+           webgrid.Column("Createdby", "Created by")
+        }).ToString().Replace("{ Select}", "<input type='checkbox' id='chkheaders' />"))
+
+                    <div id="myProductDeleteModal" class="modal fade">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <a href="#" data-dismiss="modal" class="close">&times;</a>
+
+                                    <h5 class="modal-title">Delete Product ?</h5>
+                                </div>
+                                <div class="modal-body">
+                                    <h4>Are You Sure ? You Want To Delete This .</h4>
+                                    <div style="text-align:center;display:none" id="loaderdiv">
+                                        <img src="~/Content/assets/images/loader.gif" />
+                                    </div>
+
+                                </div>
+                                <div class="modal-footer">
+                                    <a href="#" class="btn btn-default" data-dismiss="modal">Cancel</a>
+                                    <a href="#" class="btn btn-success" onclick="DeleteProduct()">Confirm</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <input type="hidden" id="hiddenproductid" />
+
+                    </div>
+
+
+                    <div class="modal fade bd-example-modal-lg" id="AddModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                        <div class="modal-dialog modal-lg" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h3 class="modal-title">Add Products</h3>
+                                    <a href="#" data-dismiss="modal" class="close">&times;</a>
+                                </div>
+                                <div class="modal-body">
+
+                                    <form id="myForm">
+                                        <div class="form-group">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <label>Item Name</label>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <input type="text" class="form-control" id="txtName" name="name" placeholder="Item Name" />
+                                                    @Html.ValidationMessage("", "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <label>Opening Qunatity</label>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <input type="text" class="form-control" id="txtqty" name="name" placeholder="QTY" />
+                                                    @Html.ValidationMessage("", "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+
+
+                                        </div>
+                                        <br />
+                                        <div class="modal-footer">
+                                            <div class="col-md-2">
+                                                <a href="#" class="btn btn-default" data-dismiss="modal">Cancel</a>
+                                            </div>
+                                            <div class="col-md-2">
+                                                @*<input type="reset" value="submit" class="btn btn-success" id="btnsubmit" />*@
+                                                <a href="#" class="btn btn-success" onclick="AddProduct()">Save</a>
+                                            </div>
+                                        </div>
+
+                                    </form>
+
+
+                                    <div style="text-align:center;display:none" id="loaderdiv">
+                                        <img src="~/Content/assets/images/loader.gif" />
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+
+
+
+                            </div>
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="modal fade bd-example-modal-lg" id="EditModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                        <div class="modal-dialog modal-lg" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h3 class="modal-title">Edit Products</h3>
+                                    <a href="#" data-dismiss="modal" class="close">&times;</a>
+                                </div>
+                                <div class="modal-body">
+                                    <form id="myupdateForm">
+                                        <div class="form-group">
+                                            <input type="hidden" id="hfId" name="ITEMID" />
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <label>Item Name</label>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <input type="text" class="form-control" id="txtupdateName" name="ItemName" placeholder="Item Name" />
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <label>Opening Qunatity</label>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <input type="text" class="form-control" id="txtupdateqty" name="OPQTY" placeholder="QTY" />
+                                                </div>
+                                            </div>
+
+
+                                        </div>
+                                        <br />
+                                        <div class="modal-footer">
+                                            <div class="col-md-2">
+                                                <a href="#" class="btn btn-default" data-dismiss="modal">Cancel</a>
+                                            </div>
+                                            <div class="col-md-2">
+                                                @*<input type="reset" value="submit" class="btn btn-success" id="btnsubmit" />*@
+                                                <a href="#" class="btn btn-success" id="btnupdates" onclick="EditProduct()">Save</a>
+                                            </div>
+                                        </div>
+
+                                    </form>
+
+                                    <div style="text-align:center;display:none" id="loaderdivmodify">
+                                        <img src="~/Content/assets/images/loader.gif" />
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+
+
+
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </div>
+    </div>
+
+
+    <script>
+        var ConfirmDelete = function (ITEMID) {
+            $("#hiddenproductid").val(ITEMID);
+            $("#myProductDeleteModal").modal('show');
+        }
+
+        var DeleteProduct = function () {
+            $("#loaderdiv").show();
+            var productid = $("#hiddenproductid").val();
+
+            $.ajax({
+                type: "POST",
+                url: "/StockEntry/DeleteProduct",
+                data: { ITEMID: productid },
+                success: function (result) {
+
+                    if (result = true) {
+                        $("#row_" + productid).remove();
+                        /*alert("Data Deleted Successfully ! , Successful ");*/
+                        $("#loaderdiv").hide();
+                        $("#myProductDeleteModal").modal('hide');
+                        setInterval('location.reload()', 500);
+
+                        //var parser = new DOMParser();
+                        //var htmlDoc = parser.parseFromString(data, 'text/html');
+                        //var form = htmlDoc.getElementById('reload');
+                        //jQuery('#reload').html(form); // refresh form
+                    }
+                    else {
+                        setInterval('location.reload()', 500);
+                        //alert("Page Refresh problem , Try Later!");
+                    }
+
+                    /*  $(this).dialog("close");*/
+
+                }
+            })
+
+        }
+
+    </script>
+
+
+    <script>
+
+        var AddProduct = function () {
+            $("#loaderdiv").show();
+            var myformData = $("myForm").serialize();
+            var txtitemName = $("#txtName");
+            var txtopqty = $("#txtqty");
+            $.ajax({
+                type: "POST",
+                url: "/StockEntry/InsertCustomer",
+                data: '{ItemName: "' + txtitemName.val() + '", OPQTY: "' + txtopqty.val() + '" }',
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function () {
+
+                    $("#loaderdiv").hide();
+                    $("#AddModal").modal('hide');
+                    txtitemName.val("");
+                    txtopqty.val("");
+                    $("#AddModal").modal('hide');
+                    setInterval('location.reload()', 500);
+                },
+                error: function (response) {
+                    alert("Must Name & QTY");
+                }
+            })
+
+        }
+    </script>
+
+    <script>
+        ////Edit event handler.
+        //$("body").on("click", "#tblCustomers .Edit", function () {
+        //    $("#hfId").val($(this).closest('tr').find('.ITEMID').text().trim());
+        //    $("#txtupdateName").val($(this).closest('tr').find('.ItemName').text().trim());
+        //    $("#txtupdateqty").val($(this).closest('tr').find('.OPQTY').text().trim());
+        //    $("#EditModal").modal('show');
+        //});
+
+        var ConfirmEdit = function (ITEMID) {
+
+            $("#hfId").val(ITEMID[0]);
+            /* $("#txtupdateName").val(ITEMID);*/
+            $("#txtupdateName").val(ITEMID[1]);
+            $("#txtupdateqty").val(ITEMID[2]);
+            $("#EditModal").modal('show');
+        }
+    </script>
+
+
+    @*<script>
+            //$(function () {
+            //    $('#tblCustomers').DataTable();
+            //})
+            function GetDetails(id) {
+                $.ajax({
+                    url: "/StockEntry/EditCustomer/" + id,
+                    typr: "GET",
+                    contentType: "application/json;charset=UTF-8",
+                    dataType: "json",
+                    success: function (response) {
+                        $('#hfId').val(response.ITEMID);
+                        $('#txtupdateName').val(response.ItemName);
+                        $('#txtupdateqty').val(response.OPQTY);
+                        $('#EditModal').modal('show');
+                    },
+                    error: function (response) {
+                        alert(response.responseText);
+                    }
+                });
+                return false;
+            }
+        </script>*@
+
+    <script>
+
+        var EditProduct = function () {
+            var LabItems = {};
+            LabItems.ITEMID = $('#EditModal').find("#hfId").val();
+            LabItems.ItemName = $('#EditModal').find("#txtupdateName").val();
+            LabItems.OPQTY = $('#EditModal').find("#txtupdateqty").val();
+            $('#EditModal').find("#loaderdivmodify").show();
+
+            $.ajax({
+                type: "POST",
+                url: "/StockEntry/UpdateCustomer",
+                data: '{labs:' + JSON.stringify(LabItems) + '}',
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function () {
+
+                    $('#EditModal').find("#loaderdivmodify").hide();
+                    $("#EditModal").modal('hide');
+
+                    $('#EditModal').find("#loaderdivmodify").hide();
+                    $("#EditModal").modal('hide');
+                    setInterval('location.reload()', 200);
+                },
+                error: function () {
+                    alert(response.responseText);
+                }
+            })
+
+        }
+    </script>
+
+
+    <script>
+        $(document).ready(function () {
+
+            $("chkheader").click(function () {
+
+                if ($(this).is(":checked")) {
+                    $(".chkbox").prop("checked", true)
+                }
+                else {
+                    $(".chkbox").prop("checked", false)
+                }
+
+
+            });
+
+        });
+
+    </script>
+
+</body>
+
+</html>

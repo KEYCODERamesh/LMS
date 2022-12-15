@@ -1,0 +1,73 @@
+﻿@model HospitalManagementSystem.Models.LabItems
+
+@{
+    ViewBag.Title = "AddProductsWithjquery";
+    Layout = "~/Views/Shared/_MainPageLayout.cshtml";
+}
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Product List</title>
+    <link href="~/Content/assets/css/bootstrap.min.css" rel="stylesheet" />
+    @*<link href="~/Content/assets/mymodalcss.css" rel="stylesheet" />*@
+    @*<style>
+            .modal fade {
+                display: none; /* Hidden by default */
+                position: fixed; /* Stay in place */
+                z-index: 1; /* Sit on top */
+                left: 0;
+                top: 0;
+                width: 100%; /* Full width */
+                height: 100%; /* Full height */
+                overflow: auto; /* Enable scroll if needed */
+                background-color: rgb(0,0,0); /* Fallback color */
+                background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+            }
+        </style>*@
+</head>
+<body>
+
+    <div class="page-body">
+        <div class="container-fluid">
+            <div class="page-body-wrapper">
+                <div class="container-fluid">
+                    <h2>AddProductsWithjquery</h2>
+
+                    @using (Html.BeginForm("AddProductsWithjquery", "StockEntry", FormMethod.Post))
+                    {
+                        @Html.AntiForgeryToken()
+
+                        <div class="form-horizontal">
+                            <h4>LabItems</h4>
+                            <div class="row">
+                                <div class="col-md-2">
+                                    <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#AddModal">Open Add modal</a>
+                                </div>
+                                <div class="col-md-2">
+                                    @Html.ActionLink("Back to List", "ShowProducts", new object { }, new { @class = "btn btn-primary" })
+                                </div>
+
+                            </div>
+
+                           
+
+
+
+                        </div>
+
+                    }
+
+
+                    <div>
+                        @Html.ActionLink("Back to List", "Index")
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+

@@ -1,0 +1,55 @@
+﻿@model IEnumerable<HospitalManagementSystem.Models.MyUnits>
+
+@{
+    ViewBag.Title = "ShowUnits";
+    Layout = "~/Views/Shared/_MainPageLayout.cshtml";
+}
+
+<h2>ShowUnits</h2>
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Add Center Detail</title>
+    <link href="~/Content/assets/css/bootstrap.min.css" rel="stylesheet" />
+
+</head>
+<body>
+    <div class="page-body">
+        <!-- Container-fluid starts-->
+        <div class="container-fluid">
+            <div class="page-body-wrapper">
+                <div class="container-fluid">
+                    <p>
+                        @Html.ActionLink("<< Back", "Index", new object { }, new { @class = "btn btn-primary" })
+                    </p>
+                    <table class="table">
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Unit_Name)
+                            </th>
+                            @*<th></th>*@
+                        </tr>
+
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Unit_Name)
+                                </td>
+                                @*<td>
+                                    @Html.ActionLink("Edit", "Edit", new { id = item.Unit_ID }) |
+                                    @Html.ActionLink("Details", "Details", new { id = item.Unit_ID }) |
+                                    @Html.ActionLink("Delete", "Delete", new { id = item.Unit_ID })
+                                </td>*@
+                            </tr>
+                        }
+
+                    </table>
+</div>
+</div>
+</div>
+</div>
+</body>
+</html>

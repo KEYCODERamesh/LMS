@@ -1,0 +1,558 @@
+﻿<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{87E11F8A-5C45-4ADD-B07D-E60912E067C5}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>HospitalManagementSystem</RootNamespace>
+    <AssemblyName>HospitalManagementSystem</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <Use64BitIISExpress />
+    <IISExpressSSLPort>44349</IISExpressSSLPort>
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Dapper, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Dapper.2.0.123\lib\net461\Dapper.dll</HintPath>
+    </Reference>
+    <Reference Include="Dapper.Database, Version=2.0.0.227, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Dapper.Database.2.0.0.227\lib\net462\Dapper.Database.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.ComponentModel.Annotations, Version=4.2.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ComponentModel.Annotations.5.0.0\lib\net461\System.ComponentModel.Annotations.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System.Web.Razor">
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.7\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Webpages">
+      <HintPath>..\packages\Microsoft.AspNet.Webpages.3.2.7\lib\net45\System.Web.Webpages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Webpages.Deployment">
+      <HintPath>..\packages\Microsoft.AspNet.Webpages.3.2.7\lib\net45\System.Web.Webpages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Webpages.Razor">
+      <HintPath>..\packages\Microsoft.AspNet.Webpages.3.2.7\lib\net45\System.Web.Webpages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Helpers">
+      <HintPath>..\packages\Microsoft.AspNet.Webpages.3.2.7\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.Infrastructure">
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc">
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.7\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\assets\css-1.css" />
+    <Content Include="Content\assets\css.css" />
+    <Content Include="Content\assets\css\admin.css" />
+    <Content Include="Content\assets\css\bootstrap.css" />
+    <Content Include="Content\assets\css\bootstrap.min.css" />
+    <Content Include="Content\assets\css\chartist.css" />
+    <Content Include="Content\assets\css\datatables.css" />
+    <Content Include="Content\assets\css\date-picker.css" />
+    <Content Include="Content\assets\css\dropzone.css" />
+    <Content Include="Content\assets\css\flag-icon.css" />
+    <Content Include="Content\assets\css\font-awesome.css" />
+    <Content Include="Content\assets\css\icofont.css" />
+    <Content Include="Content\assets\css\jsgrid.css" />
+    <Content Include="Content\assets\css\owlcarousel.css" />
+    <Content Include="Content\assets\css\prism.css" />
+    <Content Include="Content\assets\css\rating.css" />
+    <Content Include="Content\assets\css\slick-theme.css" />
+    <Content Include="Content\assets\css\slick.css" />
+    <Content Include="Content\assets\css\style.css" />
+    <Content Include="Content\assets\css\themify-icons.css" />
+    <Content Include="Content\assets\css\themify.css" />
+    <Content Include="Content\assets\css\vector-map.css" />
+    <Content Include="Content\assets\images\dashboard\LoginBackground.jpg" />
+    <Content Include="Content\assets\images\dashboard\man.png" />
+    <Content Include="Content\assets\images\dashboard\TejaLogo.jpeg" />
+    <Content Include="Content\assets\images\dashboard\dimension.png" />
+    <Content Include="Content\assets\images\favicon\favicon.png" />
+    <Content Include="Content\assets\images\favicon\TejaLogo.jpeg" />
+    <Content Include="Content\assets\images\loader.gif" />
+    <Content Include="Content\assets\images\size-chart.jpg" />
+    <Content Include="Content\assets\images\team\1.jpg" />
+    <Content Include="Content\assets\images\team\2.jpg" />
+    <Content Include="Content\assets\images\team\3.jpg" />
+    <Content Include="Content\assets\js\admin-customizer.js" />
+    <Content Include="Content\assets\js\admin-reports.js" />
+    <Content Include="Content\assets\js\admin-script.js" />
+    <Content Include="Content\assets\js\bootstrap.js" />
+    <Content Include="Content\assets\js\chart\apex-chart\apex-chart.js" />
+    <Content Include="Content\assets\js\chart\apex-chart\stock-prices.js" />
+    <Content Include="Content\assets\js\chart\chartist\chartist.js" />
+    <Content Include="Content\assets\js\chart\chartjs\chart.min.js" />
+    <Content Include="Content\assets\js\chart\flot-chart\excanvas.js" />
+    <Content Include="Content\assets\js\chart\flot-chart\jquery.flot.categories.js" />
+    <Content Include="Content\assets\js\chart\flot-chart\jquery.flot.js" />
+    <Content Include="Content\assets\js\chart\flot-chart\jquery.flot.pie.js" />
+    <Content Include="Content\assets\js\chart\flot-chart\jquery.flot.stack.js" />
+    <Content Include="Content\assets\js\chart\flot-chart\jquery.flot.time.js" />
+    <Content Include="Content\assets\js\chart\google\google-chart-loader.js" />
+    <Content Include="Content\assets\js\chat-menu.js" />
+    <Content Include="Content\assets\js\clipboard\clipboard.min.js" />
+    <Content Include="Content\assets\js\counter\counter-custom.js" />
+    <Content Include="Content\assets\js\counter\jquery.counterup.min.js" />
+    <Content Include="Content\assets\js\counter\jquery.waypoints.min.js" />
+    <Content Include="Content\assets\js\custom-card\custom-card.js" />
+    <Content Include="Content\assets\js\dashboard\default.js" />
+    <Content Include="Content\assets\js\dashboard\form-validation-custom.js" />
+    <Content Include="Content\assets\js\dashboard\product-carousel.js" />
+    <Content Include="Content\assets\js\datatables\custom-basic.js" />
+    <Content Include="Content\assets\js\datatables\jquery.dataTables.min.js" />
+    <Content Include="Content\assets\js\datepicker\datepicker.custom.js" />
+    <Content Include="Content\assets\js\datepicker\datepicker.en.js" />
+    <Content Include="Content\assets\js\datepicker\datepicker.js" />
+    <Content Include="Content\assets\js\dropzone\dropzone-script.js" />
+    <Content Include="Content\assets\js\dropzone\dropzone.js" />
+    <Content Include="Content\assets\js\editor\ckeditor\adapters\jquery.js" />
+    <Content Include="Content\assets\js\editor\ckeditor\ckeditor.custom.js" />
+    <Content Include="Content\assets\js\editor\ckeditor\ckeditor.js" />
+    <Content Include="Content\assets\js\editor\ckeditor\styles.js" />
+    <Content Include="Content\assets\js\equal-height.js" />
+    <Content Include="Content\assets\js\icons\feather-icon\feather-icon.js" />
+    <Content Include="Content\assets\js\icons\feather-icon\feather.min.js" />
+    <Content Include="Content\assets\js\jquery-3.3.1.min.js" />
+    <Content Include="Content\assets\js\jquery.elevatezoom.js" />
+    <Content Include="Content\assets\js\jsgrid\griddata-digital-sub.js" />
+    <Content Include="Content\assets\js\jsgrid\griddata-digital.js" />
+    <Content Include="Content\assets\js\jsgrid\griddata-discount-coupon.js" />
+    <Content Include="Content\assets\js\jsgrid\griddata-invoice.js" />
+    <Content Include="Content\assets\js\jsgrid\griddata-manage-product.js" />
+    <Content Include="Content\assets\js\jsgrid\griddata-media.js" />
+    <Content Include="Content\assets\js\jsgrid\griddata-menu-list.js" />
+    <Content Include="Content\assets\js\jsgrid\griddata-page-list.js" />
+    <Content Include="Content\assets\js\jsgrid\griddata-productlist-digital.js" />
+    <Content Include="Content\assets\js\jsgrid\griddata-rates.js" />
+    <Content Include="Content\assets\js\jsgrid\griddata-reports.js" />
+    <Content Include="Content\assets\js\jsgrid\griddata-sub-product.js" />
+    <Content Include="Content\assets\js\jsgrid\griddata-taxes.js" />
+    <Content Include="Content\assets\js\jsgrid\griddata-transactions.js" />
+    <Content Include="Content\assets\js\jsgrid\griddata-translations.js" />
+    <Content Include="Content\assets\js\jsgrid\griddata-users.js" />
+    <Content Include="Content\assets\js\jsgrid\jsgrid-digital-sub.js" />
+    <Content Include="Content\assets\js\jsgrid\jsgrid-discount-coupon.js" />
+    <Content Include="Content\assets\js\jsgrid\jsgrid-invoice.js" />
+    <Content Include="Content\assets\js\jsgrid\jsgrid-list.js" />
+    <Content Include="Content\assets\js\jsgrid\jsgrid-manage-product.js" />
+    <Content Include="Content\assets\js\jsgrid\jsgrid-media.js" />
+    <Content Include="Content\assets\js\jsgrid\jsgrid-menu-list.js" />
+    <Content Include="Content\assets\js\jsgrid\jsgrid-page-list.js" />
+    <Content Include="Content\assets\js\jsgrid\jsgrid-rates.js" />
+    <Content Include="Content\assets\js\jsgrid\jsgrid-reports.js" />
+    <Content Include="Content\assets\js\jsgrid\jsgrid-taxes.js" />
+    <Content Include="Content\assets\js\jsgrid\jsgrid-transactions.js" />
+    <Content Include="Content\assets\js\jsgrid\jsgrid-translations.js" />
+    <Content Include="Content\assets\js\jsgrid\jsgrid-users.js" />
+    <Content Include="Content\assets\js\jsgrid\jsgrid.min.js" />
+    <Content Include="Content\assets\js\lazysizes.min.js" />
+    <Content Include="Content\assets\js\owlcarousel\owl.carousel.js" />
+    <Content Include="Content\assets\js\popper.min.js" />
+    <Content Include="Content\assets\js\prism\prism.min.js" />
+    <Content Include="Content\assets\js\rating\jquery.barrating.js" />
+    <Content Include="Content\assets\js\rating\rating-script.js" />
+    <Content Include="Content\assets\js\sidebar-menu.js" />
+    <Content Include="Content\assets\js\slick.js" />
+    <Content Include="Content\assets\js\timer1.js" />
+    <Content Include="Content\assets\js\touchspin\input-groups.min.js" />
+    <Content Include="Content\assets\js\touchspin\touchspin.js" />
+    <Content Include="Content\assets\js\touchspin\vendors.min.js" />
+    <Content Include="Content\assets\js\vector-map\jquery-jvectormap-2.0.2.min.js" />
+    <Content Include="Content\assets\js\vector-map\map\jquery-jvectormap-world-mill-en.js" />
+    <Content Include="Content\assets\js\zoom-scripts.js" />
+    <Content Include="Content\themes\base\accordion.css" />
+    <Content Include="Content\themes\base\all.css" />
+    <Content Include="Content\themes\base\autocomplete.css" />
+    <Content Include="Content\themes\base\base.css" />
+    <Content Include="Content\themes\base\button.css" />
+    <Content Include="Content\themes\base\core.css" />
+    <Content Include="Content\themes\base\datepicker.css" />
+    <Content Include="Content\themes\base\dialog.css" />
+    <Content Include="Content\themes\base\draggable.css" />
+    <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_75_dadada_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_75_e6e6e6_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_95_fef1ec_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
+    <Content Include="Content\themes\base\images\ui-icons_222222_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_444444_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_454545_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_555555_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_777620_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_777777_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_888888_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_cc0000_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_ffffff_256x240.png" />
+    <Content Include="Content\themes\base\jquery-ui.css" />
+    <Content Include="Content\themes\base\jquery-ui.min.css" />
+    <Content Include="Content\themes\base\menu.css" />
+    <Content Include="Content\themes\base\progressbar.css" />
+    <Content Include="Content\themes\base\resizable.css" />
+    <Content Include="Content\themes\base\selectable.css" />
+    <Content Include="Content\themes\base\selectmenu.css" />
+    <Content Include="Content\themes\base\slider.css" />
+    <Content Include="Content\themes\base\sortable.css" />
+    <Content Include="Content\themes\base\spinner.css" />
+    <Content Include="Content\themes\base\tabs.css" />
+    <Content Include="Content\themes\base\theme.css" />
+    <Content Include="Content\themes\base\tooltip.css" />
+    <Content Include="Global.asax" />
+    <Content Include="Scripts\Autocomplete\jquery-1.10.2.js" />
+    <Content Include="Scripts\Autocomplete\Jquery-ui.css" />
+    <Content Include="Scripts\Autocomplete\jquery-ui.js" />
+    <Content Include="Scripts\Jquery-theme-blitzer-1.13.0.Jquery-ui.css" />
+    <Content Include="Scripts\Jquery-ui-1.13.0.min.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="KeyCodeEntity.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>KeyCodeEntity.edmx</DependentUpon>
+      <LastGenOutput>KeyCodeEntity.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="KeyCodeEntity.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>KeyCodeEntity.edmx</DependentUpon>
+      <LastGenOutput>KeyCodeEntity.cs</LastGenOutput>
+    </Content>
+    <None Include="Scripts\jquery-2.0.0.intellisense.js" />
+    <Content Include="Content\assets\mymodalcss.css" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\jquery-1.10.2.min.js" />
+    <Content Include="Scripts\jquery-2.0.0.js" />
+    <Content Include="Scripts\jquery-2.0.0.min.js" />
+    <Content Include="Scripts\jquery-ui-1.13.2.js" />
+    <Content Include="Scripts\jquery-ui-1.13.2.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AccHeadDT.cs">
+      <DependentUpon>KeyCodeEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AccSubHeadsDT.cs">
+      <DependentUpon>KeyCodeEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Assigned_test_DT.cs">
+      <DependentUpon>KeyCodeEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\AccountsController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LabPurchaseDTsController.cs" />
+    <Compile Include="Controllers\LabTestDataController.cs" />
+    <Compile Include="Controllers\MyTestListController.cs" />
+    <Compile Include="Controllers\PatientRegistrationController.cs" />
+    <Compile Include="Controllers\ReferalController.cs" />
+    <Compile Include="Controllers\StockEntryController.cs" />
+    <Compile Include="Controllers\TestGroupController.cs" />
+    <Compile Include="Controllers\TestPackageController.cs" />
+    <Compile Include="Controllers\TestPanelsController.cs" />
+    <Compile Include="Customer.cs">
+      <DependentUpon>KeyCodeEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ExPDT.cs">
+      <DependentUpon>KeyCodeEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="GroupDT.cs">
+      <DependentUpon>KeyCodeEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="KeyCodeEntity.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>KeyCodeEntity.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="KeyCodeEntity.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>KeyCodeEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="KeyCodeEntity.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>KeyCodeEntity.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="LabCompany.cs">
+      <DependentUpon>KeyCodeEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="LabITEMDT.cs">
+      <DependentUpon>KeyCodeEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="LabPurchaseDT.cs">
+      <DependentUpon>KeyCodeEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AccountsModels.cs" />
+    <Compile Include="Models\LabCompanyContext.cs" />
+    <Compile Include="Models\LabCompanyDetails.cs" />
+    <Compile Include="Models\LabItems.cs" />
+    <Compile Include="Models\LoginModels.cs" />
+    <Compile Include="Models\MultiModelView.cs" />
+    <Compile Include="Models\MyGenderenums.cs" />
+    <Compile Include="Models\MyLabTestList.cs" />
+    <Compile Include="Models\MyTestPackage.cs" />
+    <Compile Include="Models\MyTestPanels.cs" />
+    <Compile Include="Models\MyTitlesenums.cs" />
+    <Compile Include="Models\MyUnits.cs" />
+    <Compile Include="Models\PatientRegistrations.cs" />
+    <Compile Include="Models\PatRegistrationReceipts.cs" />
+    <Compile Include="Models\PaymentModes.cs" />
+    <Compile Include="Models\PurchaseModels.cs" />
+    <Compile Include="Models\ReferalDetails.cs" />
+    <Compile Include="Models\ReferalType.cs" />
+    <Compile Include="Models\ReferenceValues.cs" />
+    <Compile Include="Models\SearchModels.cs" />
+    <Compile Include="Models\TestGroupModel.cs" />
+    <Compile Include="Models\TestPackageModels.cs" />
+    <Compile Include="Models\TestParametsrsModels.cs" />
+    <Compile Include="Models\TestReportModel.cs" />
+    <Compile Include="Models\UserModuleEnum.cs" />
+    <Compile Include="Models\UsersRole.cs" />
+    <Compile Include="Models\MyLabstring.cs" />
+    <Compile Include="Models\VendorModel.cs" />
+    <Compile Include="Pat_InvestList.cs">
+      <DependentUpon>KeyCodeEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ReferalDT.cs">
+      <DependentUpon>KeyCodeEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ReferenceValuesDT.cs">
+      <DependentUpon>KeyCodeEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SP_SEARCHUSERSROLES_Result.cs">
+      <DependentUpon>KeyCodeEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SP_Search_Result.cs">
+      <DependentUpon>KeyCodeEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TestDT.cs">
+      <DependentUpon>KeyCodeEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TestParameterDT.cs">
+      <DependentUpon>KeyCodeEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TestResultDT.cs">
+      <DependentUpon>KeyCodeEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TestsPackagesDT.cs">
+      <DependentUpon>KeyCodeEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TestsPanel.cs">
+      <DependentUpon>KeyCodeEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UnitDT.cs">
+      <DependentUpon>KeyCodeEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UserRole.cs">
+      <DependentUpon>KeyCodeEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="User_DT.cs">
+      <DependentUpon>KeyCodeEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VendorDT.cs">
+      <DependentUpon>KeyCodeEntity.tt</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\web.config" />
+    <EntityDeploy Include="KeyCodeEntity.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>KeyCodeEntity.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="KeyCodeEntity.edmx.diagram">
+      <DependentUpon>KeyCodeEntity.edmx</DependentUpon>
+    </Content>
+    <None Include="packages.config" />
+    <Content Include="Views\Shared\_MainPageLayout.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Home\Order.cshtml" />
+    <Content Include="Views\Home\Dashboard.cshtml" />
+    <Content Include="Views\Home\Login.cshtml" />
+    <Content Include="Views\Home\AddCenterDetails.cshtml" />
+    <Content Include="Views\Home\ListCenterDetails.cshtml" />
+    <Content Include="Scripts\jquery-2.0.0.min.map" />
+    <Content Include="Views\Home\EditCenterDetails.cshtml" />
+    <Content Include="Views\Home\Delete.cshtml" />
+    <Content Include="Views\TestGroup\AddgRoups.cshtml" />
+    <Content Include="Views\TestGroup\ListGroups.cshtml" />
+    <Content Include="Views\TestGroup\EditGroups.cshtml" />
+    <Content Include="Views\TestGroup\Delete.cshtml" />
+    <Content Include="Views\LabTestData\AddTest.cshtml" />
+    <Content Include="Views\Referal\Index.cshtml" />
+    <Content Include="Views\Referal\ShowReferals.cshtml" />
+    <Content Include="Views\Referal\EditReferals.cshtml" />
+    <Content Include="Views\Referal\Delete.cshtml" />
+    <Content Include="Views\Home\Userslists.cshtml" />
+    <Content Include="Views\Home\EditUsersDetails.cshtml" />
+    <Content Include="Views\Home\DeleteUsers.cshtml" />
+    <Content Include="Views\Home\ShowUSersRoles.cshtml" />
+    <Content Include="Views\Home\AddUSersRoles.cshtml" />
+    <Content Include="Views\Home\AddUsers.cshtml" />
+    <Content Include="Views\StockEntry\ShowVendor.cshtml" />
+    <Content Include="Views\StockEntry\AddVendor.cshtml" />
+    <Content Include="Views\StockEntry\EditVendor.cshtml" />
+    <Content Include="Views\Shared\PartialViewExample.cshtml" />
+    <Content Include="Views\StockEntry\DeleteVendor.cshtml" />
+    <Content Include="Views\StockEntry\ShowProducts.cshtml" />
+    <Content Include="Views\StockEntry\AddProducts.cshtml" />
+    <Content Include="Views\StockEntry\EditProducts.cshtml" />
+    <Content Include="Views\StockEntry\DeleteProducts.cshtml" />
+    <Content Include="Views\StockEntry\Details.cshtml" />
+    <Content Include="Views\LabPurchaseDTs\Create.cshtml" />
+    <Content Include="Views\LabPurchaseDTs\Delete.cshtml" />
+    <Content Include="Views\LabPurchaseDTs\Details.cshtml" />
+    <Content Include="Views\LabPurchaseDTs\Edit.cshtml" />
+    <Content Include="Views\LabPurchaseDTs\Index.cshtml" />
+    <Content Include="Views\StockEntry\AddProductsWithjquery.cshtml" />
+    <Content Include="Views\MyTestList\Index.cshtml" />
+    <Content Include="Views\MyTestList\Create.cshtml" />
+    <Content Include="Views\MyTestList\Edit.cshtml" />
+    <Content Include="Views\MyTestList\ShowUnits.cshtml" />
+    <Content Include="Views\MyTestList\AddParameter.cshtml" />
+    <Content Include="Views\MyTestList\AddNewParameter.cshtml" />
+    <Content Include="Views\MyTestList\AddTestParameterParameter.cshtml" />
+    <Content Include="Views\MyTestList\ShowTestParemeters.cshtml" />
+    <Content Include="Views\MyTestList\Edit_Test_Paremeters.cshtml" />
+    <Content Include="Views\MyTestList\AddParameterNormalValues.cshtml" />
+    <Content Include="Views\MyTestList\ParameterNormalValues.cshtml" />
+    <Content Include="Views\TestPanels\TestPanelList.cshtml" />
+    <Content Include="Views\TestPanels\AddNewTestPanel.cshtml" />
+    <Content Include="Views\TestPackage\ViewPackageList.cshtml" />
+    <Content Include="Views\TestPackage\AddNewTestPackages.cshtml" />
+    <Content Include="Views\PatientRegistration\Pat_Registration_List.cshtml" />
+    <Content Include="Views\PatientRegistration\Pat_Registration.cshtml" />
+    <Content Include="Views\Accounts\AddNewHeads.cshtml" />
+    <Content Include="Views\Accounts\AddAccountHeadsList.cshtml" />
+    <Content Include="Views\Accounts\ShowAccountsList.cshtml" />
+    <Content Include="Views\Accounts\ExpenseEntry.cshtml" />
+    <Content Include="Views\Accounts\ShowExpenseDetails.cshtml" />
+    <Content Include="Views\PatientRegistration\Pat_RegistrationReceipts.cshtml" />
+    <Content Include="Views\PatientRegistration\Pat_RegistrationPreview.cshtml" />
+    <Content Include="Views\PatientRegistration\Pat_RegistrationPreview1.cshtml" />
+    <Content Include="Views\PatientRegistration\Pat_EditRegistration.cshtml" />
+    <Content Include="Views\PatientRegistration\PrepareLabReports.cshtml" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>61547</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>https://localhost:44349/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

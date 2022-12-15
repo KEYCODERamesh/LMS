@@ -1,0 +1,249 @@
+﻿@model HospitalManagementSystem.TestsPackagesDT
+
+@{
+    ViewBag.Title = "AddNewTestPackages";
+    Layout = "~/Views/Shared/_MainPageLayout.cshtml";
+}
+
+<h2>AddNewTestPackages</h2>
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/Scripts/Autocomplete/Jquery-ui.css" rel="stylesheet" />
+    <script src="~/Scripts/Autocomplete/jquery-1.10.2.js" type="text/javascript"></script>
+    <script src="~/Scripts/Autocomplete/jquery-ui.js" type="text/javascript"></script>
+
+</head>
+<body>
+    <div class="page-body">
+        <!-- Container-fluid starts-->
+        <div class="container-fluid">
+            <div class="page-body-wrapper">
+                <div class="container-fluid">
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
+
+                        <div class="form-horizontal">
+
+                            <hr />
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.PackageName, "* Must Enter Package Name", htmlAttributes: new { @class = "control-label col-md-4" })
+                                        <div class="col-md-10">
+                                            <input type="text" id="txtgroupnames" placeholder="Enter Package Name" class="form-control" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.Fees, htmlAttributes: new { @class = "control-label col-md-2" })
+                                        <div class="col-md-10">
+                                            <input type="text" id="txtotalsfees" placeholder="FEES" class="form-control" />
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <hr />
+                            <table id="tblpanellist" class="table" cellpadding="0" cellspacing="0">
+                                <thead>
+                                    <tr>
+                                        <th style="width:500px">Panel Name/Test Name</th>
+                                        <th style="width:150px">Fee</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <td><input type="text" id="txtpanelnames" placeholder="Search Panel/Test Name" class="form-control" /></td>
+                                        <td> <input type="text" id="txtfpanelfees" class="form-control" /></td>
+                                        <td><input type="button" id="btnAddpanels" value="Add Panel" class="btn btn-outline-primary" /></td>
+                                    </tr>
+                                </tfoot>
+                            </table>
+
+                            <hr />
+
+                           
+
+                            <div class="form-group">
+                                <div class="col-md-offset-2 col-md-10">
+                                    @*<input type="submit" value="Create" class="btn btn-default" />*@
+                                    <input type="submit" id="btnSubmit" value="Create Package" class="btn btn-outline-primary" />
+                                </div>
+                            </div>
+                        </div>
+                    }
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+
+
+        $(function () {
+            $("#txtpanelnames").autocomplete({
+                source: function (request, response) {
+                    $.ajax({
+                        url: '/TestPackage/SearchPanelandTestNames/',
+                        @*url:'@Url.Action("SearchCustomers", "TestPanels")',*@
+                        data: "{'term': '" + request.term + "'}",
+                        dataType: "json",
+                        type: "POST",
+                        contentType: "application/json; charset=utf-8",
+                        success: function (data) {
+                            response($.map(data, function (item) {
+                                return item;
+                            }))
+                        },
+                        error: function (response) {
+                            alert(response.responseText);
+                        },
+                        failure: function (response) {
+                            alert(response.responseText);
+                        }
+                    });
+                },
+                select: function (e, i) {
+
+                    $("#txtfpanelfees").val(i.item.val);
+                },
+                minLength: 1
+            });
+        });
+
+
+    </script>
+
+
+    <script type="text/javascript">
+        $("body").on("click", "#btnAddpanels", function () {
+            //Reference the Name and Country TextBoxes.
+            var txtName = $("#txtpanelnames");
+            var txtFees = $("#txtfpanelfees");
+            var Totalamount = 0;
+            //Get the reference of the Table's TBODY element.
+            var tBody = $("#tblpanellist > TBODY")[0];
+
+            //Add Row.
+            var row = tBody.insertRow(-1);
+
+            //Add Name cell.
+            var cell = $(row.insertCell(-1));
+            cell.html(txtName.val());
+
+            //Add Fee cell.
+            var cell = $(row.insertCell(-1));
+            cell.html(txtFees.val());
+
+
+            //Add Button cell.
+            cell = $(row.insertCell(-1));
+            var btnRemove = $("<input />");
+            btnRemove.attr("type", "button");
+            btnRemove.attr("onclick", "Remove(this);");
+            btnRemove.addClass("btn btn-outline-danger");
+            btnRemove.val("Remove");
+
+            cell.append(btnRemove);
+            $("#tblpanellist TBODY TR").each(function () {
+                var row = $(this);
+                //customer.Fees = row.find("TD").eq(1).html();
+                Totalamount += parseFloat(row.find("TD").eq(1).html());
+            });
+
+
+            if (!isNaN(Totalamount)) {
+                $('#txtotalsfees').val(Totalamount.toFixed());
+            }
+            else {
+                $('#txtotalsfees').val(Totalamount);
+            }
+            txtName.val("");
+            txtFees.val("");
+        });
+
+        function Remove(button) {
+            //Determine the reference of the Row using the Button.
+            var row = $(button).closest("TR");
+            var name = $("TD", row).eq(0).html();
+            if (confirm("Do you want to delete: " + name)) {
+                //Get the reference of the Table.
+                var table = $("#tblpanellist")[0];
+
+                //Delete the Table row using it's Index.
+                table.deleteRow(row[0].rowIndex);
+
+                var Totalamount = 0;
+                $("#tblpanellist TBODY TR").each(function () {
+                    var row = $(this);
+                    //customer.Fees = row.find("TD").eq(1).html();
+                    Totalamount += parseFloat(row.find("TD").eq(1).html());
+                });
+
+
+                if (!isNaN(Totalamount)) {
+                    $('#txtotalsfees').val(Totalamount.toFixed());
+                }
+                else {
+                    $('#txtotalsfees').val(Totalamount);
+                }
+
+
+               // CalculateTotal();
+            }
+        };
+
+
+        $("body").on("click", "#btnSubmit", function () {
+            //Loop through the Table rows and build a JSON array.
+            var packages = new Array();
+            var PackageNames = document.getElementById("txtgroupnames").value;
+           // alert(PackageNames);
+            var Totalfees = document.getElementById("txtotalsfees").value;
+            $("#tblpanellist TBODY TR").each(function () {
+                var row = $(this);
+                var packagedetails = {};
+                packagedetails.Panel_Test_Namelist = row.find("TD").eq(0).html();
+                packagedetails.Fees = row.find("TD").eq(1).html();
+                packagedetails.PackageName = PackageNames;
+               // packages.Fees = Totalfees;
+                packages.push(packagedetails);
+            });
+
+            //Send the JSON array to Controller using AJAX.
+            $.ajax({
+                type: "POST",
+                url: "/TestPackage/SaveTestInPackages",
+                data: JSON.stringify(packages),
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (r) {
+                    alert(r + " record(s) inserted.");
+                },
+                error: function (r) {
+                    alert("error");
+                },
+                failure: function (r) {
+                    alert("Failures");
+                }
+
+            });
+        });
+    </script>
+
+
+
+</body>
+</html>

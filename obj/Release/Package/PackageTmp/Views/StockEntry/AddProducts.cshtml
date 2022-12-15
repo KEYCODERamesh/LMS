@@ -1,0 +1,149 @@
+﻿@model HospitalManagementSystem.Models.LabItems
+
+
+@{
+    ViewBag.Title = "ShowVendor";
+    Layout = "~/Views/Shared/_MainPageLayout.cshtml";
+}
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Product List</title>
+    <link href="~/Content/assets/css/bootstrap.min.css" rel="stylesheet" />
+    @*<link href="~/Content/assets/mymodalcss.css" rel="stylesheet" />*@
+    @*<style>
+            .modal fade {
+                display: none; /* Hidden by default */
+                position: fixed; /* Stay in place */
+                z-index: 1; /* Sit on top */
+                left: 0;
+                top: 0;
+                width: 100%; /* Full width */
+                height: 100%; /* Full height */
+                overflow: auto; /* Enable scroll if needed */
+                background-color: rgb(0,0,0); /* Fallback color */
+                background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+            }
+        </style>*@
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+
+</head>
+<body>
+
+    <div class="page-body">
+        <div class="container-fluid">
+            <div class="page-body-wrapper">
+                <div class="container-fluid">
+                    <br />
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
+                        <div class="row">
+                            <div class="col-md-2">
+                                <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#AddModal">Open Add modal</a>
+                            </div>
+                            <div class="col-md-2">
+                                @Html.ActionLink("Back to List", "ShowProducts", new object { }, new { @class = "btn btn-primary" })
+                            </div>
+
+                        </div>
+
+                       
+
+
+                        <div class="row">
+
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.ItemName, "Product Name", htmlAttributes: new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.EditorFor(model => model.ItemName, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.ItemName, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.OPQTY, "Opening Stock", htmlAttributes: new { @class = "control-label col-md-2" })
+                                    <div class="col-md-10">
+                                        @Html.EditorFor(model => model.OPQTY, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.OPQTY, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-offset-2 col-md-10">
+                                    <input type="submit" value="Save" class="btn btn-primary" />
+                                </div>
+                            </div>
+                            <div>
+                                @Html.ActionLink("Back to List", "ShowProducts", new object { }, new { @class = "btn btn-info-gradien" })
+                            </div>
+                        }
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+       
+
+        <!------------script to add products using ajax-->
+        @*<script>
+                //const { data } = require("jquery");
+                $(document).ready(function () {
+                    $("btnsubmit").click(function () {
+                        $("#loaderdiv").show();
+                        var myformData = $("myForm").serialize();
+
+
+                        $.ajax({
+                            type: "POST",
+                            url: "/StockEntry/AddProducts",
+                            data: myformData,
+                            success: function () {
+
+                                $("#loaderdiv").hide();
+                                $("#AddModal").modal('hide');
+                                setInterval('location.reload()', 500);
+
+
+                            }
+
+
+                        }) // ajax function end
+
+
+
+                    }) // Click function end
+
+                })   // ready  function end
+
+
+
+            </script>*@
+
+        <script>
+
+            var AddProduct = function () {
+                $("#loaderdiv").show();
+                var myformData = $("myForm").serialize();
+
+                $.ajax({
+                    type: "POST",
+                    url: "/StockEntry/AddProducts",
+                    data: myformData,
+                    success: function () {
+
+                        $("#loaderdiv").hide();
+                        $("#AddModal").modal('hide');
+                        setInterval('location.reload()', 500);
+                    }
+                })
+
+            }
+        </script>
+    </body>
+</html>

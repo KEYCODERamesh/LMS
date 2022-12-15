@@ -1,0 +1,115 @@
+﻿@model IEnumerable<HospitalManagementSystem.Models.LabCompanyDetails>
+
+@{
+    Layout = "~/Views/Shared/_MainPageLayout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Company Details</title>
+</head>
+<body>
+    <div class="page-body">
+        <div class="page-body-wrapper">
+            <!-- Container-fluid starts-->
+            <div class="container-fluid">
+                <div class="page-header">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="page-header-left">
+                              Company List
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <ol class="breadcrumb pull-right">
+                                <li class="breadcrumb-item"><a href="index.html"><i data-feather="home"></i></a></li>
+                                <li class="breadcrumb-item active">Dashboard</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Container-fluid Ends-->
+            <!-- Container-fluid starts-->
+            <div class="container-fluid">
+
+                <p>
+                    @Html.ActionLink("Create New", "AddCenterDetails")
+                </p>
+                <table class="table">
+                    <tr>
+                        <th>Action</th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Company_Name)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Address)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Contact1)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Email_ID)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.District)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Pincode)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Website)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.State)
+                        </th>
+                    </tr>
+
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.ActionLink("Edit", "EditCenterDetails", new { id = item.Company_ID }) |
+                                @Html.ActionLink("Delete", "Delete", new { id = item.Company_ID })
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Company_Name)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Address)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Contact1)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Email_ID)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.District)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Pincode)
+                            </td>
+
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Website)
+                            </td>
+
+                            <td>
+                                @Html.DisplayFor(modelItem => item.State)
+                            </td>
+
+                        </tr>
+                    }
+
+                </table>
+
+            </div>
+            <!-- Container-fluid Ends-->
+        </div>
+  </div>
+</body>
+</html>

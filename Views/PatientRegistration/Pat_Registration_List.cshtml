@@ -1,0 +1,140 @@
+﻿@model IEnumerable<HospitalManagementSystem.Assigned_test_DT>
+@*@model IEnumerable<HospitalManagementSystem.Models.PatientRegistrations>*@
+
+@{
+    ViewBag.Title = "Pat_Registration_List";
+    Layout = "~/Views/Shared/_MainPageLayout.cshtml";
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+</head>
+<body>
+    <div class="page-body">
+        <!-- Container-fluid starts-->
+        <div class="container-fluid">
+            <div class="page-body-wrapper">
+                <div class="container-fluid">
+                    <hr />
+                    <div class="row">
+                        <div class="col-md-3">
+                            <input type="text" id="txtsearchdetails" placeholder="Search Name/Mobile/ID" class="form-control" required="" />
+                        </div>
+                        <div class="col-md-2">
+                            <input type="date" id="txtsearchdetails" class="form-control" required="" />
+                        </div>
+                        <div class="col-md-2">
+                            <input type="date" id="txtsearchdetails" class="form-control" required="" />
+                        </div>
+                        <div class="col-md-2">
+                            <input type="submit" id="btnsearch" value="Search" class="btn btn-outline-primary" />
+                        </div>
+
+                    </div>
+                    <hr />
+                    <table class="table">
+                        <tr>
+                            <th>Receipt?</th>
+                            <th>
+                                Report
+                            </th>
+
+                            <th>
+                                Date
+                            </th>
+                            <th>
+                                Amount
+                            </th>
+                            <th>
+                                Dis.Rs.
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Paid)
+                            </th>
+                            <th>
+                                Due
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.PayMode)
+                            </th>
+                            <th>
+                                Name
+                            </th>
+                            <th>
+                                Sex
+                            </th>
+                            <th>
+                                Mobile
+                            </th>
+                        </tr>
+
+                        @foreach (var item in Model)
+                        {
+                    <tr>
+                        <td>
+                            @*@Html.ActionLink("Edit", "Edit", new {  id=item.AssignID  }, new { @class = "btn btn-outline-primary btn-def fa fa-edit" }) |*@
+                            @Html.ActionLink(".", "Pat_RegistrationReceipts", new { id = item.AssignID }, new { @class = "btn btn-outline-primary btn-def fa fa-eye" })
+                        </td>
+                        <td>
+                            @*@Html.ActionLink("Edit", "Edit", new {  id=item.AssignID  }, new { @class = "btn btn-outline-primary btn-def fa fa-edit" }) |*@
+                            @Html.ActionLink(".", "PrepareLabReports", new { id = item.AssignID }, new { @class = "btn btn-outline-primary btn-def fa fa-eye" })
+                        </td>
+
+
+                        <td>
+                            @*@Html.DisplayFor(modelItem => item.TDate.Value.ToShortDateString())*@
+                            @Html.DisplayFor(modelItem => item.TDate)
+
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.TotRs)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Discounts)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Paid)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Balance)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.PayMode)
+                        </td>
+                        <td>
+                            @*@Html.DisplayFor(modelItem => item.FirstName)*@
+                            @(item.Title+" "+item.FirstName + " " + item.LastName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Gender)
+                        </td>
+                        @*<td>
+            @Html.DisplayFor(modelItem => item.AadharNos)
+        </td>*@
+                        <!--<td>-->
+                        @*@Html.DisplayFor(modelItem => item.AgeYear)*@
+                        <!--@(item.AgeYear + "/" + item.Inmonth+"/"+item.InDays)
+    </td>-->
+                        @*<td>
+            @Html.DisplayFor(modelItem => item.Inmonth)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.InDays)
+        </td>*@
+                        <td>
+                            @Html.DisplayFor(modelItem => item.MobileNo)
+                        </td>
+                        @*<td>
+            @Html.DisplayFor(modelItem => item.SampleColAgents)
+        </td>*@
+                    </tr>
+                        }
+
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

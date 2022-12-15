@@ -1,0 +1,70 @@
+﻿@model IEnumerable<HospitalManagementSystem.Models.TestGroupModel>
+@{
+    ViewBag.Title = "Group List";
+    Layout = "~/Views/Shared/_MainPageLayout.cshtml";
+    <script src="~/Content/assets/js/jquery-3.3.1.min.js"></script>
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Add Center Detail</title>
+    <link rel="stylesheet" href=@Url.Content("~/Content/themes/base/jquery-ui.css") type="text/css">
+    <script src=@Url.Content("~/Scripts/jquery-ui-1.13.2.js")></script>
+    <script src=@Url.Content("~/Scripts/jquery-ui-1.13.2.min.js")></script>
+
+    <script type="text/javascript">
+        function Submit() {
+            if (confirm("Are you sure you want to Delete ?")) {
+                document.getElementById('anchortag').href += "?isTrue=true";
+            } else {
+                document.getElementById('anchortag').href += "?isTrue=false";
+            }
+            return true;
+        }
+    </script>
+
+</head>
+<body>
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+    <div class="page-body">
+        <!-- Container-fluid starts-->
+        <div class="container-fluid">
+            <div class="page-body-wrapper">
+                <hr />
+                <p>
+                    @Html.ActionLink("Add New Group", "AddgRoups", new object { }, new { @class = "btn btn-outline-primary fa-plus-circlesssss" })
+                </p>
+                <table class="table">
+                    <tr>
+                        <th>Action</th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Group_Name)
+                        </th>
+
+                    </tr>
+
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.ActionLink("Edit", "EditGroups", new { id = item.Group_ID }) |
+                                @Html.ActionLink("Delete", "Delete", new { id = item.Group_ID })
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Group_Name)
+                            </td>
+                        </tr>
+                    }
+
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

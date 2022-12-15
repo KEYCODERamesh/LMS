@@ -1,0 +1,41 @@
+﻿@{
+    ViewBag.Title = "AddgRoups";
+    Layout = "~/Views/Shared/_MainPageLayout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Add Center Detail</title>
+    <link rel="stylesheet" href=@Url.Content("~/Content/themes/base/jquery-ui.css") type="text/css">
+    <script src=@Url.Content("~/Scripts/jquery-ui-1.13.2.js")></script>
+    <script src=@Url.Content("~/Scripts/jquery-ui-1.13.2.min.js")></script>
+
+  
+
+</head>
+<body>
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+    <div class="page-body">
+        <!-- Container-fluid starts-->
+        <div class="container-fluid">
+            <div class="page-body-wrapper">
+                <br />
+                <div>
+                    @Html.ActionLink("Show Groups", "ListGroups")
+                </div>
+
+                <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+                <script src="~/Scripts/jquery.validate.min.js"></script>
+                <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+            </div>
+        </div>
+    </div>
+</body>
+</html>

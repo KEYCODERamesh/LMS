@@ -1,0 +1,98 @@
+﻿@model IEnumerable<HospitalManagementSystem.ExPDT>
+
+@{
+    ViewBag.Title = "ShowExpenseDetails";
+    Layout = "~/Views/Shared/_MainPageLayout.cshtml";
+}
+
+<h2>ShowExpenseDetails</h2>
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Expense Details</title>
+
+</head>
+<body>
+    <div class="page-body">
+        <!-- Container-fluid starts-->
+        <div class="container-fluid">
+            <div class="page-body-wrapper">
+                <div class="container-fluid">
+                    <hr />
+
+                    <div class="row">
+                        <div class="col-md-2">
+                            <input type="date" id="txtfromdates" placeholder="FROM DATE" class="form-control" required="" />
+                        </div>
+                        <div class="col-md-2">
+                            <input type="date" id="txttosdates" placeholder="FROM DATE" class="form-control" required="" />
+                        </div>
+                        <div class="col-md-2">
+
+                        </div>
+
+                    </div>
+                    <hr />
+
+                    <table class="table table-striped table-bordered table-hover table-active">
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.AccSubHeadsDT.Accounts)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Remarks)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Amount)
+                            </th>
+
+                            <th>
+                                @Html.DisplayNameFor(model => model.ExDate)
+                            </th>
+
+                            <th>
+                                @Html.DisplayNameFor(model => model.PayMode)
+                            </th>
+
+
+                            <th></th>
+                        </tr>
+
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.AccSubHeadsDT.Accounts)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Remarks)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Amount)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.ExDate)
+                                </td>
+                               
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.PayMode)
+                                </td>
+                                
+                                <td>
+                                    @Html.ActionLink("Edit", "Edit", new { id = item.ExpID }, new { @class = "btn btn-outline-primary btn-def fa fa-edit" }) |
+                                    @Html.ActionLink("Delete", "Delete", new { id = item.ExpID }, new { @class = "btn btn-outline-primary btn-def fa fa-trash" })
+                                </td>
+                            </tr>
+                        }
+
+                    </table>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

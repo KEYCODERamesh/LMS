@@ -1,0 +1,60 @@
+﻿@*@model IEnumerable<HospitalManagementSystem.UserRole>*@
+@model System.Data.DataTable
+@using System.Data;
+
+@{
+    ViewBag.Title = "ShowUSersRoles";
+    Layout = "~/Views/Shared/_MainPageLayout.cshtml";
+}
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>User List</title>
+
+
+</head>
+<body>
+    <div class="page-body">
+        <!-- Container-fluid starts-->
+        <div class="container-fluid">
+            <div class="page-body-wrapper">
+                <div class="container-fluid">
+                    <p>
+                        @Html.ActionLink("Add Role", "AddUSersRoles", new object { }, new { @class = "btn btn-info-gradien" })
+                    </p>
+                    <table class="table">
+                        <tr>
+                            <th>Action</th>
+                            @foreach (DataColumn col in Model.Columns)
+                            {
+                                <th>@col.ColumnName</th>
+                            }
+
+                        </tr>
+
+                        @foreach (DataRow row in Model.Rows)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.ActionLink("Edit", "Edit") |
+                                    @Html.ActionLink("Delete", "Delete")
+                                </td>
+                                @foreach (DataColumn col in Model.Columns)
+                                {    
+                                <td>
+                                         @row[col.ColumnName]
+                                </td>
+                                }
+                            </tr>
+                        }
+
+                    </table>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

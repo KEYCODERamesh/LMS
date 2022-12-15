@@ -1,0 +1,131 @@
+﻿@model HospitalManagementSystem.LabPurchaseDT
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_MainPageLayout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>LabPurchaseDT</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.BillNo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BillNo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BillDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BillDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ItemName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ItemName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.QTY)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.QTY)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Units)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Units)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Rate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Rate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.GSTP)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GSTP)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.GSTMAT)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GSTMAT)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DisPer)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DisPer)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Grands)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Grands)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EntryBy)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EntryBy)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LabITEMDT.ItemName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LabITEMDT.ItemName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.VendorDT.VendorName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.VendorDT.VendorName)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
